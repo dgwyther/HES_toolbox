@@ -15,6 +15,8 @@ import plotly
 
 #own functions
 from functions.fun_removeDates import removeDates
+from functions.fun_loadDat import loadDat
+from functions.fun_applyAliasTable import applyAliasTable
 
 
 # Load defaults, externals and datasets
@@ -24,17 +26,14 @@ coloursDef = plotly.colors.DEFAULT_PLOTLY_COLORS
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-# Set filenames
-SS_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorStats.dat'
-SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
-
 # Load external datasets
-df_SS = pd.read_csv(SS_filename, skiprows=3, na_values='NAN')
-df_SS.columns=["TIMESTAMP","RECORD","BattV_Min","BattV_Avg","PTemp_C_Avg","SensorRel_Min(1)","SensorRel_Min(2)","SensorRel_Min(3)","SensorRel_Min(4)","SensorRel_Min(5)","SensorRel_Max(1)","SensorRel_Max(2)","SensorRel_Max(3)","SensorRel_Max(4)","SensorRel_Max(5)"]
+SS_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorStats.dat'
+colNamesSS = ["TIMESTAMP","RECORD","SensorRelEventMin(1)","SensorRelEventMin(2)","SensorRelEventMin(3)","SensorRelEventMin(4)","SensorRelEventMin(5)","SensorRelEventMax(1)","SensorRelEventMax(2)","SensorRelEventMax(3)","SensorRelEventMax(4)","SensorRelEventMax(5)","SensorRelEventPkp(1)","SensorRelEventPkp(2)","SensorRelEventPkp(3)","SensorRelEventPkp(4)","SensorRelEventPkp(5)","SensorWfmTrigSensor","SensorOffset(1)","SensorOffset(2)","SensorOffset(3)","SensorOffset(4)","SensorOffset(5)"]
+SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
+colNamesSRES = ["TIMESTAMP","RECORD","SensorRelEventMin(1)","SensorRelEventMin(2)","SensorRelEventMin(3)","SensorRelEventMin(4)","SensorRelEventMin(5)","SensorRelEventMax(1)","SensorRelEventMax(2)","SensorRelEventMax(3)","SensorRelEventMax(4)","SensorRelEventMax(5)","SensorRelEventPkp(1)","SensorRelEventPkp(2)","SensorRelEventPkp(3)","SensorRelEventPkp(4)","SensorRelEventPkp(5)","SensorWfmTrigSensor","SensorOffset(1)","SensorOffset(2)","SensorOffset(3)","SensorOffset(4)","SensorOffset(5)"]
 
-df_SRES=pd.read_csv(SRES_filename, skiprows=3, na_values='NAN')
-df_SRES.columns=["TIMESTAMP","RECORD","SensorRelEventMin(1)","SensorRelEventMin(2)","SensorRelEventMin(3)","SensorRelEventMin(4)","SensorRelEventMin(5)","SensorRelEventMax(1)","SensorRelEventMax(2)","SensorRelEventMax(3)","SensorRelEventMax(4)","SensorRelEventMax(5)","SensorRelEventPkp(1)","SensorRelEventPkp(2)","SensorRelEventPkp(3)","SensorRelEventPkp(4)","SensorRelEventPkp(5)","SensorWfmTrigSensor","SensorOffset(1)","SensorOffset(2)","SensorOffset(3)","SensorOffset(4)","SensorOffset(5)"]
-df_SRES=df_SRES.astype({'TIMESTAMP': 'datetime64'})
+df_SS = loadDat(SS_filename,"TIMESTAMP",colNamesSS)
+df_SRES = loadDat(SRES_filename,"TIMESTAMP",colNamesSRES)
 
 # Remove bad data by setting snipping lengths (by time)
 snipStart = ['2019-08-30 00:27:33',
@@ -47,6 +46,34 @@ snipEnd = ['2019-08-30 00:35:36.760',
 removeDates(df_SRES,"TIMESTAMP",snipStart,snipEnd)
 removeDates(df_SS,"TIMESTAMP",snipStart,snipEnd)
 
+# Use alias table to change names
+aliasTable_SRES = {
+    "TIMESTAMP":"time",
+    "RECORD":"record",
+    "SensorRelEventMin(1)":"S_P2_CH_L_HJCrack_Min",
+    "SensorRelEventMin(2)":"S_P2_CH_R_HJCrack_Min",
+    "SensorRelEventMin(3)":"S_S2_G1_Min",
+    "SensorRelEventMin(4)":"S_S2_G2_Min",
+    "SensorRelEventMin(5)":"S_S2_G3_Min",
+    "SensorRelEventMax(1)":"S_P2_CH_L_HJCrack_Max",
+    "SensorRelEventMax(2)":"S_P2_CH_R_HJCrack_Max",
+    "SensorRelEventMax(3)":"S_S2_G1_Max",
+    "SensorRelEventMax(4)":"S_S2_G2_Max",
+    "SensorRelEventMax(5)":"S_S2_G3_Max",
+    "SensorRelEventPkp(1)":"S_P2_CH_L_HJCrack_Pkp",
+    "SensorRelEventPkp(2)":"S_P2_CH_R_HJCrack_Pkp",
+    "SensorRelEventPkp(3)":"S_S2_G1_Pkp",
+    "SensorRelEventPkp(4)":"S_S2_G2_Pkp",
+    "SensorRelEventPkp(5)":"S_S2_G3_Pkp",
+    "SensorWfmTrigSensor":"Sensor Waveform Trigger",
+    "SensorOffset(1)":"S_P2_CH_L_HJCrack_Offset",
+    "SensorOffset(2)":"S_P2_CH_R_HJCrack_Offset",
+    "SensorOffset(3)":"S_S2_G1_Offset",
+    "SensorOffset(4)":"S_S2_G2_Offset",
+    "SensorOffset(5)":"S_S2_G3_Offset"
+}
+
+applyAliasTable(df_SRES,aliasTable_SRES)
 
 # define dropdown and plotting options
 opts=[{'label': k, 'value': k} for k in list(df_SS.columns.values)[1:]]
