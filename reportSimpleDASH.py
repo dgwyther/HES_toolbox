@@ -15,7 +15,7 @@ import plotly
 
 #own functions
 from functions.fun_removeDates import removeDates
-from functions.fun_loadDat import loadDat
+from functions.fun_loadData import loadData
 from functions.fun_applyAliasTable import applyAliasTable
 
 
@@ -28,12 +28,12 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # Load external datasets
 SS_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorStats.dat'
-colNamesSS = ["TIMESTAMP","RECORD","SensorRelEventMin(1)","SensorRelEventMin(2)","SensorRelEventMin(3)","SensorRelEventMin(4)","SensorRelEventMin(5)","SensorRelEventMax(1)","SensorRelEventMax(2)","SensorRelEventMax(3)","SensorRelEventMax(4)","SensorRelEventMax(5)","SensorRelEventPkp(1)","SensorRelEventPkp(2)","SensorRelEventPkp(3)","SensorRelEventPkp(4)","SensorRelEventPkp(5)","SensorWfmTrigSensor","SensorOffset(1)","SensorOffset(2)","SensorOffset(3)","SensorOffset(4)","SensorOffset(5)"]
+colNamesSS = ["TIMESTAMP","RECORD","BattV_Min","BattV_Avg","PTemp_C_Avg","SensorRel_Min(1)","SensorRel_Min(2)","SensorRel_Min(3)","SensorRel_Min(4)","SensorRel_Min(5)","SensorRel_Max(1)","SensorRel_Max(2)","SensorRel_Max(3)","SensorRel_Max(4)","SensorRel_Max(5)"]
 SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
 colNamesSRES = ["TIMESTAMP","RECORD","SensorRelEventMin(1)","SensorRelEventMin(2)","SensorRelEventMin(3)","SensorRelEventMin(4)","SensorRelEventMin(5)","SensorRelEventMax(1)","SensorRelEventMax(2)","SensorRelEventMax(3)","SensorRelEventMax(4)","SensorRelEventMax(5)","SensorRelEventPkp(1)","SensorRelEventPkp(2)","SensorRelEventPkp(3)","SensorRelEventPkp(4)","SensorRelEventPkp(5)","SensorWfmTrigSensor","SensorOffset(1)","SensorOffset(2)","SensorOffset(3)","SensorOffset(4)","SensorOffset(5)"]
 
-df_SS = loadDat(SS_filename,"TIMESTAMP",colNamesSS)
-df_SRES = loadDat(SRES_filename,"TIMESTAMP",colNamesSRES)
+df_SS = loadData(SS_filename,"TIMESTAMP",colNamesSS)
+df_SRES = loadData(SRES_filename,"TIMESTAMP",colNamesSRES)
 
 # Remove bad data by setting snipping lengths (by time)
 snipStart = ['2019-08-30 00:27:33',
