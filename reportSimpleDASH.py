@@ -17,7 +17,7 @@ import plotly
 from functions.fun_removeDates import removeDates
 from functions.fun_loadData import loadData
 from functions.fun_applyAliasTable import applyAliasTable
-
+import functions.fun_generateTimeSeriesPlots 
 
 # Load defaults, externals and datasets
 coloursDef = plotly.colors.DEFAULT_PLOTLY_COLORS
