@@ -11,7 +11,8 @@ Written and tested with `python3`. Dash works with `python2.7`. Requirements giv
 3. Voila!
 
 ## Main files
-- `reportSimple.py`: Run this file with `python3 reportSimple.py` to produce a simple dashboard report. It can be printed to PDF using the browser Print option.
+- `reportSimpleDASH.py`: Run this file with `python3 reportSimpleDASH.py` to produce a simple dashboard report. View in browser at `http://127.0.0.1:8050`. It can be printed to PDF using the browser Print option.
+- `reportSimplePDF.py`: compile a pdf directly with `python3 reportSimplePDF.py`. To change compilation options (including which layout, variables to include in plots, which plots to include, title, author, captions, etc), edit the file `reportSimplePDF.py`.
 
 ### Credits:
 David E. Gwyther
