@@ -70,6 +70,23 @@ invNorm_plots = ["S_P2_CH_R_HJCrack_Pkp",
                     "S_S2_G2_Pkp",
                     "S_S2_G3_Pkp"]
 
+# 5. Definitions and notes for Largest Events table
+table_title2 = '' # title for the table
+col_titles2 = ['','all time','last week'] # column titles
+sensorStatisticsFields2=['SensorRelEventPkp(1)',
+                        'SensorRelEventPkp(2)',
+                        'SensorRelEventPkp(3)',
+                        'SensorRelEventPkp(4)',
+                        'SensorRelEventPkp(5)'] # what fields to do you want stats for?
+sensorStatisticsNames2=['Sensor(1) Pkp',
+                       'Sensor(2) Pkp',
+                       'Sensor(3) Pkp',
+                       'Sensor(4) Pkp',
+                       'Sensor(5) Pkp'] # name to give in table?
+
+stats_notes2 = 'This bit can include any special notes that you want to make about the statistics in this report. e.g. Note erroneous data arising due to blah blah. This will be automatically added as a special note to the end of the statistics summary section.'
+
+
 
 ## GENERATE PLOTS
 
@@ -218,7 +235,48 @@ class PDF(FPDF):
         # add small vertical gap
         self.cell(90, 10, " ", 0, 2, 'C')
         self.cell(-30)
-    
+    def generateTableLargestEvents(self,inputData,noLargest,nCols,nRows,TimeIndex,table_title,col_titles,sensorStatisticsFields,sensorStatisticsNames):
+        #   get the largest elements
+        temporary = inputData.nlargest(noLargest,sensorStatisticsFields)
+        SRES_stats_Top20 = temporary[[TimeIndex]+sensorStatisticsFields]
+        #   make formatted dictionary
+        SRES_stats_Top20_form = {TimeIndex: SRES_stats_Top20[TimeIndex].dt.strftime("%d-%m-%y %H:%M")}
+        #   add variables
+        for i in range(0,len(sensorStatisticsNames)):
+            SRES_stats_Top20_form[sensorStatisticsNames[i]] = round(SRES_stats_Top20[sensorStatisticsFields[i]],1)
+        # convert to dataframe
+        df_SRES_stats_Top20=pd.DataFrame(SRES_stats_Top20_form)
+    #   Make Full Page table. Set title
+        self.set_xy(10,40)
+        self.set_font('arial', 'B', 12)
+        self.cell(60)
+        self.cell(75, 10, table_title, 0, 2, 'C')
+        self.cell(90, 10, " ", 0, 1, 'C')
+        self.set_font('arial', 'B', 10)
+    #   make column header 
+        for i in range(0, nCols):
+            if i==0:
+                self.cell(30, 5,df_SRES_stats_Top20.columns[i], 'B', 0, 'C')
+            elif i!=nCols-1:
+                self.cell(30, 5,df_SRES_stats_Top20.columns[i], 'B', 0, 'C')
+            elif i==nCols-1:
+                self.cell(30, 5,df_SRES_stats_Top20.columns[i], 'B', 1, 'C')
+
+#        self.cell(-90)
+        self.set_font('arial', '', 9)
+    #   fill data in for rest of table
+        for i in range(0, nRows-1):
+            for j in range(0, nCols):
+                if j==0:
+                    self.cell(30, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 0, 'C')
+                elif j!=nCols-1:
+                    self.cell(30, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 0, 'C')
+                elif j==nCols-1:
+                    self.cell(30, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 1, 'C')
+    #   finish table with some white space below
+        self.cell(-90)
+        self.cell(90, 10, " ", 0, 2, 'C')
+        self.cell(-30)
 
 ## COMPILE PDF
 
@@ -244,5 +302,10 @@ pdf.print_sectionHeader(3, 'X-Y data')
 
 pdf.print_sectionHeader(4, 'Inverse normal plots')
 # Add inverse normal plots
+
+pdf.print_sectionHeader(5, 'Largest events')
+pdf.generateTableLargestEvents(df_SRES,10,6,11,"TIMESTAMP",table_title2,col_titles2,sensorStatisticsFields2,sensorStatisticsNames2)
+pdf.print_text(stats_notes2)
+
 
 pdf.output(output_name, 'F')
