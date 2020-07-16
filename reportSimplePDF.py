@@ -11,6 +11,7 @@ from functions.fun_loadData import loadData
 from functions.fun_applyAliasTable import applyAliasTable
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlot
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlotZoomed
+from functions.fun_generateXYPlot import generateXYPlot
 
 #global defns
 title = 'Example title that is about the same length '
@@ -57,6 +58,13 @@ timeseries_plots = ["SensorRel_Max(1)",
                     "SensorRel_Max(5)"]
                     
 # 3. Definitions and notes for x-y section
+XY_plot1_title = '1 vs 2'
+XY_plot1 = ['SensorRelEventPkp(1)',
+            'SensorRelEventPkp(2)']
+XY_plot2_title = '3 vs 4'
+XY_plot2 = ['SensorRelEventPkp(3)',
+            'SensorRelEventPkp(4)']
+
 
 
 x_y_plots = [""]
@@ -93,6 +101,10 @@ stats_notes2 = 'This bit can include any special notes that you want to make abo
 generateTimeSeriesPlot(df_SS,"TIMESTAMP",timeseries_plots,'a temporary title','test_fig1.png','save')
 
 generateTimeSeriesPlotZoomed(df_SS,"TIMESTAMP",timeseries_plots,'a temporary title','test_fig2.png','save')
+
+generateXYPlot(df_SRES,XY_plot1,'linear',XY_plot1_title,'testXY1.png','save')
+
+generateXYPlot(df_SRES,XY_plot2,'linear',XY_plot2_title,'testXY2.png','save')
 
 
 ## DEFINE CLASSES
@@ -183,6 +195,12 @@ class PDF(FPDF):
         pdf.ln(2)
 # this adds a time series plot (Zoomed)        
     def print_timeSeriesPlotZoomed(self,fname,width,caption):
+        effective_page_width=self.w-2*self.l_margin
+        self.image(fname, x = None, y = None, w = width)
+        self.cell(effective_page_width,0.0, caption,0,0,'L')
+        pdf.ln(2)
+# this adds a plot        
+    def print_addPlot(self,fname,width,caption):
         effective_page_width=self.w-2*self.l_margin
         self.image(fname, x = None, y = None, w = width)
         self.cell(effective_page_width,0.0, caption,0,0,'L')
@@ -298,7 +316,9 @@ pdf.print_timeSeriesPlot('test_fig1.png',190,'A caption')
 pdf.print_timeSeriesPlotZoomed('test_fig2.png',190,'Another caption')
 
 pdf.print_sectionHeader(3, 'X-Y data')
-# Add X-Y data plot
+pdf.print_addPlot('testXY1.png',120,'Another caption')
+pdf.print_addPlot('testXY2.png',120,'Another caption again')
+
 
 pdf.print_sectionHeader(4, 'Inverse normal plots')
 # Add inverse normal plots
