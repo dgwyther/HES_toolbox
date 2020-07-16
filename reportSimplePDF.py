@@ -12,6 +12,8 @@ from functions.fun_applyAliasTable import applyAliasTable
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlot
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlotZoomed
 from functions.fun_generateXYPlot import generateXYPlot
+from functions.fun_generateInvNormPlot import generateInvNormPlot
+
 
 #global defns
 title = 'Example title that is about the same length '
@@ -66,17 +68,22 @@ XY_plot2 = ['SensorRelEventPkp(3)',
             'SensorRelEventPkp(4)']
 
 
-
-x_y_plots = [""]
-
 # 4. Definitions and notes for inv normal plot section
+# invNorm_plots = ["S_P2_CH_R_HJCrack_Pkp",
+                    # "S_P2_CH_L_HJCrack_Pkp",
+                    # "S_S2_G1_Pkp",
+                    # "S_S2_G2_Pkp",
+                    # "S_S2_G3_Pkp"]
+InvNorm_toPlot = ['SensorRelEventMax(1)',
+                    'SensorRelEventMax(2)',
+                    'SensorRelEventMax(3)']
+InvNormBinStart=0
+InvNormBinEnd=200
+InvNormBinInc=2
+InvNormMin = 1
+InvNormMax = 2.75
 
-
-invNorm_plots = ["S_P2_CH_R_HJCrack_Pkp",
-                    "S_P2_CH_L_HJCrack_Pkp",
-                    "S_S2_G1_Pkp",
-                    "S_S2_G2_Pkp",
-                    "S_S2_G3_Pkp"]
+title_InvNorm = 'title of inverse normal plot'
 
 # 5. Definitions and notes for Largest Events table
 table_title2 = '' # title for the table
@@ -106,6 +113,7 @@ generateXYPlot(df_SRES,XY_plot1,'linear',XY_plot1_title,'testXY1.png','save')
 
 generateXYPlot(df_SRES,XY_plot2,'linear',XY_plot2_title,'testXY2.png','save')
 
+generateInvNormPlot(df_SRES,"TIMESTAMP",InvNorm_toPlot,InvNormBinStart,InvNormBinInc,InvNormBinEnd,InvNormMin,InvNormMax,title_InvNorm,'testInvNorm.png','save')
 
 ## DEFINE CLASSES
 class PDF(FPDF):
@@ -306,23 +314,22 @@ pdf = PDF()
 effective_page_width=pdf.w-2*pdf.l_margin
 pdf.set_title(title) # change metadata title
 pdf.set_author(author) # change metadata author
-
+#
 pdf.print_sectionHeader(1, 'Summary statistics')
 pdf.generateTableOverview(df_SRES,"TIMESTAMP",table_title,col_titles,sensorStatisticsFields,sensorStatisticsNames)
 pdf.print_text(stats_notes)
-
+#
 pdf.print_sectionHeader(2, 'Timeseries data')
 pdf.print_timeSeriesPlot('test_fig1.png',190,'A caption')
 pdf.print_timeSeriesPlotZoomed('test_fig2.png',190,'Another caption')
-
+#
 pdf.print_sectionHeader(3, 'X-Y data')
 pdf.print_addPlot('testXY1.png',120,'Another caption')
 pdf.print_addPlot('testXY2.png',120,'Another caption again')
-
-
+#
 pdf.print_sectionHeader(4, 'Inverse normal plots')
-# Add inverse normal plots
-
+pdf.print_addPlot('testInvNorm.png',190,'Inverse Normal: Another caption again again')
+#
 pdf.print_sectionHeader(5, 'Largest events')
 pdf.generateTableLargestEvents(df_SRES,10,6,11,"TIMESTAMP",table_title2,col_titles2,sensorStatisticsFields2,sensorStatisticsNames2)
 pdf.print_text(stats_notes2)
