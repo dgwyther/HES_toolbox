@@ -32,21 +32,47 @@ df_SRES = loadData(SRES_filename,"TIMESTAMP",colNamesSRES)
 # Trim data
 
 # Alias data
+aliasTable_SRES = {
+    "TIMESTAMP":"TIMESTAMP",
+    "RECORD":"record",
+    "SensorRelEventMin(1)":"S_P2_CH_L_HJCrack_Min",
+    "SensorRelEventMin(2)":"S_P2_CH_R_HJCrack_Min",
+    "SensorRelEventMin(3)":"S_S2_G1_Min",
+    "SensorRelEventMin(4)":"S_S2_G2_Min",
+    "SensorRelEventMin(5)":"S_S2_G3_Min",
+    "SensorRelEventMax(1)":"S_P2_CH_L_HJCrack_Max",
+    "SensorRelEventMax(2)":"S_P2_CH_R_HJCrack_Max",
+    "SensorRelEventMax(3)":"S_S2_G1_Max",
+    "SensorRelEventMax(4)":"S_S2_G2_Max",
+    "SensorRelEventMax(5)":"S_S2_G3_Max",
+    "SensorRelEventPkp(1)":"S_P2_CH_L_HJCrack_Pkp",
+    "SensorRelEventPkp(2)":"S_P2_CH_R_HJCrack_Pkp",
+    "SensorRelEventPkp(3)":"S_S2_G1_Pkp",
+    "SensorRelEventPkp(4)":"S_S2_G2_Pkp",
+    "SensorRelEventPkp(5)":"S_S2_G3_Pkp",
+    "SensorWfmTrigSensor":"Sensor Waveform Trigger",
+    "SensorOffset(1)":"S_P2_CH_L_HJCrack_Offset",
+    "SensorOffset(2)":"S_P2_CH_R_HJCrack_Offset",
+    "SensorOffset(3)":"S_S2_G1_Offset",
+    "SensorOffset(4)":"S_S2_G2_Offset",
+    "SensorOffset(5)":"S_S2_G3_Offset"
+}
 
+applyAliasTable(df_SRES,aliasTable_SRES)
 
 # 1. Definitions and notes for summary table section
 table_title = '' # title for the table
 col_titles = ['','all time','last week'] # column titles
-sensorStatisticsFields=['SensorRelEventMax(1)',
-                        'SensorRelEventMax(2)',
-                        'SensorRelEventMax(3)',
-                        'SensorRelEventMax(4)',
-                        'SensorRelEventMax(5)'] # what fields to do you want stats for?
-sensorStatisticsNames=['Sensor(1) Max',
-                       'Sensor(2) Max',
-                       'Sensor(3) Max',
-                       'Sensor(4) Max',
-                       'Sensor(5) Max'] # name to give in table?
+sensorStatisticsFields=['S_P2_CH_L_HJCrack_Max',
+                        'S_P2_CH_R_HJCrack_Max',
+                        'S_S2_G1_Max',
+                        'S_S2_G2_Max',
+                        'S_S2_G3_Max'] # what fields to do you want stats for?
+sensorStatisticsNames=['S_P2_CH_L_HJCrack Max',
+                       'S_P2_CH_R_HJCrack Max',
+                       'S_S2_G1 Max',
+                       'S_S2_G2 Max',
+                       'S_S2_G3 Max'] # name to give in table?
 
 
 stats_notes = 'This bit can include any special notes that you want to make about the statistics in this report. e.g. Note erroneous data arising due to blah blah. This will be automatically added as a special note to the end of the statistics summary section.'
@@ -60,23 +86,21 @@ timeseries_plots = ["SensorRel_Max(1)",
                     "SensorRel_Max(5)"]
                     
 # 3. Definitions and notes for x-y section
-XY_plot1_title = '1 vs 2'
-XY_plot1 = ['SensorRelEventPkp(1)',
-            'SensorRelEventPkp(2)']
-XY_plot2_title = '3 vs 4'
-XY_plot2 = ['SensorRelEventPkp(3)',
-            'SensorRelEventPkp(4)']
+XY_plot1_title = 'R vs L HJ Crack'
+XY_plot1 = ['S_P2_CH_R_HJCrack_Pkp',
+            'S_P2_CH_L_HJCrack_Pkp']
+XY_plot2_title = 'G1 vs G3 of Span 2'
+XY_plot2 = ['S_S2_G1_Pkp',
+            'S_S2_G3_Pkp']
 
 
 # 4. Definitions and notes for inv normal plot section
-# invNorm_plots = ["S_P2_CH_R_HJCrack_Pkp",
-                    # "S_P2_CH_L_HJCrack_Pkp",
-                    # "S_S2_G1_Pkp",
-                    # "S_S2_G2_Pkp",
-                    # "S_S2_G3_Pkp"]
-InvNorm_toPlot = ['SensorRelEventMax(1)',
-                    'SensorRelEventMax(2)',
-                    'SensorRelEventMax(3)']
+InvNorm_toPlot = ["S_P2_CH_R_HJCrack_Pkp",
+                    "S_P2_CH_L_HJCrack_Pkp",
+                    "S_S2_G1_Pkp",
+                    "S_S2_G2_Pkp",
+                    "S_S2_G3_Pkp"]
+
 InvNormBinStart=0
 InvNormBinEnd=200
 InvNormBinInc=2
@@ -88,16 +112,16 @@ title_InvNorm = 'title of inverse normal plot'
 # 5. Definitions and notes for Largest Events table
 table_title2 = '' # title for the table
 col_titles2 = ['','all time','last week'] # column titles
-sensorStatisticsFields2=['SensorRelEventPkp(1)',
-                        'SensorRelEventPkp(2)',
-                        'SensorRelEventPkp(3)',
-                        'SensorRelEventPkp(4)',
-                        'SensorRelEventPkp(5)'] # what fields to do you want stats for?
-sensorStatisticsNames2=['Sensor(1) Pkp',
-                       'Sensor(2) Pkp',
-                       'Sensor(3) Pkp',
-                       'Sensor(4) Pkp',
-                       'Sensor(5) Pkp'] # name to give in table?
+sensorStatisticsFields2=['S_P2_CH_L_HJCrack_Pkp',
+                        'S_P2_CH_R_HJCrack_Pkp',
+                        'S_S2_G1_Pkp',
+                        'S_S2_G2_Pkp',
+                        'S_S2_G3_Pkp'] # what fields to do you want stats for?
+sensorStatisticsNames2=['P2_L_HJCrack Pkp',
+                        'P2_R_HJCrack Pkp',
+                        'S2_G1 Pkp',
+                        'S2_G2 Pkp',
+                        'S2_G3 Pkp'] # name to give in table?
 
 stats_notes2 = 'This bit can include any special notes that you want to make about the statistics in this report. e.g. Note erroneous data arising due to blah blah. This will be automatically added as a special note to the end of the statistics summary section.'
 

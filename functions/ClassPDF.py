@@ -177,15 +177,15 @@ class ClassPDF(FPDF):
         self.cell(60)
         self.cell(75, 10, table_title, 0, 2, 'C')
         self.cell(90, 10, " ", 0, 1, 'C')
-        self.set_font('arial', 'B', 10)
+        self.set_font('arial', 'B', 9)
     #   make column header 
         for i in range(0, nCols):
             if i==0:
-                self.cell(30, 5,df_SRES_stats_Top20.columns[i], 'B', 0, 'C')
+                self.cell(32, 5,df_SRES_stats_Top20.columns[i], 'B', 0, 'C')
             elif i!=nCols-1:
-                self.cell(30, 5,df_SRES_stats_Top20.columns[i], 'B', 0, 'C')
+                self.cell(32, 5,df_SRES_stats_Top20.columns[i], 'B', 0, 'C')
             elif i==nCols-1:
-                self.cell(30, 5,df_SRES_stats_Top20.columns[i], 'B', 1, 'C')
+                self.cell(32, 5,df_SRES_stats_Top20.columns[i], 'B', 1, 'C')
 
 #        self.cell(-90)
         self.set_font('arial', '', 9)
@@ -193,11 +193,11 @@ class ClassPDF(FPDF):
         for i in range(0, nRows-1):
             for j in range(0, nCols):
                 if j==0:
-                    self.cell(30, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 0, 'C')
+                    self.cell(32, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 0, 'C')
                 elif j!=nCols-1:
-                    self.cell(30, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 0, 'C')
+                    self.cell(32, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 0, 'C')
                 elif j==nCols-1:
-                    self.cell(30, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 1, 'C')
+                    self.cell(32, 10, '%s' % (df_SRES_stats_Top20.iloc[i,j]), 0, 1, 'C')
     #   finish table with some white space below
         self.cell(-90)
         self.cell(90, 10, " ", 0, 2, 'C')
