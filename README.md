@@ -12,7 +12,7 @@ Written and tested with `python3`. Dash works with `python2.7`. Requirements giv
 
 ## Toolbox structure
 Comments below show the purpose of each folder or file:
-
+```
 HES_toolbox/
 ├── assets							# styles, logos or repeatedly used files
 │   ├── header.css
@@ -35,7 +35,7 @@ HES_toolbox/
 ├── reportSimplePDF.py					# Script to generate reports with fpdf
 ├── reportTemplate.py					# user template file called by `reportDriver.py`
 └── requirements.txt					# package requirements
-
+```
 
 ## Main files
 - `reportSimpleDASH.py`: Run this file with `python3 reportSimpleDASH.py` to produce a simple dashboard report. View in browser at `http://127.0.0.1:8050`. It can be printed to PDF using the browser Print option.
