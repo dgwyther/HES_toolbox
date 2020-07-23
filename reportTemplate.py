@@ -16,8 +16,6 @@ output_name = 'test.pdf'
 SS_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorStats.dat'
 SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
 
-## LOAD DIRECTLY FROM FILE
-
 # Alias table definition
 aliasTable_SRES = {
     "TIMESTAMP":"TIMESTAMP",

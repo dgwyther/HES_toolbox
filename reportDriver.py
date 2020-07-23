@@ -13,6 +13,7 @@ from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlot
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlotZoomed
 from functions.fun_generateXYPlot import generateXYPlot
 from functions.fun_generateInvNormPlot import generateInvNormPlot
+from functions.fun_readAliasCSV import readAliasCSV
 
 #import template file
 from reportTemplate import *
@@ -24,7 +25,9 @@ df_SRES,colNamesSRES = loadData(SRES_filename,"TIMESTAMP")
 # Trim data
 
 # Alias data
-applyAliasTable(df_SRES,aliasTable_SRES)
+aliasTable_FromCSV=readAliasCSV('tmp.GAF_aliasTable.csv')
+#or use value in reportTemplate with aliasTable_SRES
+applyAliasTable(df_SRES,aliasTable_FromCSV)
 
 
 
