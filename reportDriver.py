@@ -18,8 +18,8 @@ from functions.fun_generateInvNormPlot import generateInvNormPlot
 from reportTemplate import *
 
 # Load data
-df_SS = loadData(SS_filename,"TIMESTAMP",colNamesSS)
-df_SRES = loadData(SRES_filename,"TIMESTAMP",colNamesSRES)
+df_SS,colNamesSS = loadData(SS_filename,"TIMESTAMP")
+df_SRES,colNamesSRES = loadData(SRES_filename,"TIMESTAMP")
 
 # Trim data
 

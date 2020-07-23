@@ -16,9 +16,7 @@ output_name = 'test.pdf'
 SS_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorStats.dat'
 SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
 
-# names of columns in each file from LoggerNet
-colNamesSS = ["TIMESTAMP","RECORD","BattV_Min","BattV_Avg","PTemp_C_Avg","SensorRel_Min(1)","SensorRel_Min(2)","SensorRel_Min(3)","SensorRel_Min(4)","SensorRel_Min(5)","SensorRel_Max(1)","SensorRel_Max(2)","SensorRel_Max(3)","SensorRel_Max(4)","SensorRel_Max(5)"]
-colNamesSRES = ["TIMESTAMP","RECORD","SensorRelEventMin(1)","SensorRelEventMin(2)","SensorRelEventMin(3)","SensorRelEventMin(4)","SensorRelEventMin(5)","SensorRelEventMax(1)","SensorRelEventMax(2)","SensorRelEventMax(3)","SensorRelEventMax(4)","SensorRelEventMax(5)","SensorRelEventPkp(1)","SensorRelEventPkp(2)","SensorRelEventPkp(3)","SensorRelEventPkp(4)","SensorRelEventPkp(5)","SensorWfmTrigSensor","SensorOffset(1)","SensorOffset(2)","SensorOffset(3)","SensorOffset(4)","SensorOffset(5)"]
+## LOAD DIRECTLY FROM FILE
 
 # Alias table definition
 aliasTable_SRES = {
@@ -46,6 +44,7 @@ aliasTable_SRES = {
     "SensorOffset(4)":"S_S2_G2_Offset",
     "SensorOffset(5)":"S_S2_G3_Offset"
 }
+## LOAD FROM SPREADSHEET
 
 # 1. Summary table title, sensor fields and names
 table_title = '' # title for the table
