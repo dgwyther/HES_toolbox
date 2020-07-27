@@ -10,7 +10,7 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,t
     if lines_or_markers=='markers':
         for var in timeseries_plots:
             ax.plot(inputData[TimeIndex], inputData[var], label=var,markersize=1,marker='.',linestyle = 'None')
-    elif lines_or_markers='lines':
+    elif lines_or_markers=='lines':
         for var in timeseries_plots:
             ax.plot(inputData[TimeIndex], inputData[var], label=var,linestyle = 'solid')  
             
@@ -46,15 +46,6 @@ def generateTimeSeriesPlotZoomed(inputData,TimeIndex,timeseries_plots,title,fnam
     elif plot_or_save=='save':
         plt.savefig(fname)
 
-inputData = df_SS
-TimeIndex = "TIMESTAMP"
-timeseries_plots_minmax=['SensorRel_Min(1)','SensorRel_Max(1)']
-timeseries_plots_avg=['test']
-
-title='test'
-fname='test'
-plot_or_save='plot'
-
 def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,title,fname,plot_or_save):
 ## generateTimeSeriesMinMaxAvg wants 3 input timeseries plot lists, with the following formats:
 # timeseries_plots_min = [  'var1_min',
@@ -67,16 +58,16 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
 #                           'var2_avg',
 #                           'var3_avg']
     fig, ax = plt.subplots(figsize=(10, 4.8), dpi=100)
-    for ii,var in enumerate(timeseries_plots_minmax):
+    for ii,var in enumerate(timeseries_plots_min):
         if beards==True:
-        ax.fill_between(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], inputData[timeseries_plots_min[ii]], alpha=0.2)
+            ax.fill_between(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], inputData[timeseries_plots_min[ii]], alpha=0.2)
         else:
-        ax.plot(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
-        ax.plot(inputData[TimeIndex], inputData[timeseries_plots_min[ii]], label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
+            ax.plot(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
+            ax.plot(inputData[TimeIndex], inputData[timeseries_plots_min[ii]], label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
 
-    for var in timeseries_plots_avg:
+    for ii,var in enumerate(timeseries_plots_avg):
         colour=next(ax._get_lines.prop_cycler)['color']
-        ax.plot(inputData[TimeIndex], tempo, label=var,markersize=1,marker='.',linestyle = 'solid',color=colour)
+        ax.plot(inputData[TimeIndex], inputData[timeseries_plots_avg[ii]], label=var,markersize=1,marker='.',linestyle = 'solid',color=colour)
 
     ax.set_xlabel('time')  # Add an x-label to the axes.
     ax.set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
@@ -93,12 +84,13 @@ def generateTimeSeriesSubplots(inputData,TimeIndex,timeseries_plots,nRows,nCols,
 ## generateTimeSeriesSubplots wants input timeseries plot lists and the number of rols and cols:
     fig, axs = plt.subplots(nRows, nCols, figsize=(10, 4.8), dpi=100)
     for ii, var in enumerate(timeseries_plots):
-        axs[ii].plot(inputData[TimeIndex], inputData[var], label=var,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
+        axs[ii].plot(inputData[TimeIndex], inputData[var], label=var,markersize=1,marker='.',linestyle = 'solid')
         axs[ii].set_title(var)
         axs[ii].set_xlabel('time')  # Add an x-label to the axes.
         axs[ii].set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
         axs[ii].grid(True)
 
+    fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
 
     if plot_or_save=='plot':
@@ -135,3 +127,48 @@ def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,
     elif plot_or_save=='save':
         plt.savefig(fname)
 
+def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,dispFactor,dispRef,title,fname,plot_or_save):
+## generateTimeSeriesMinMaxAvg wants 3 input timeseries plot lists, with the following formats:
+# timeseries_plots_min = [  'var1_min',
+#                           'var2_min',
+#                           'var3_min']
+# timeseries_plots_max = [  'var1_max',
+#                           'var2_max',
+#                           'var3_max']
+# timeseries_plots_avg = [  'var1_avg',
+#                           'var2_avg',
+#                           'var3_avg']
+# dispFactor = value to offset vertically
+# dispRef = method to offset by. e.g. 'initial' references to initial value.
+    fig, ax = plt.subplots(figsize=(10, 4.8), dpi=100)
+    for ii,var in enumerate(timeseries_plots_avg):
+        if dispRef=='initial':
+            offsetFactor = dispFactor
+            offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
+        if beards==True:
+            ax.fill_between(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_max[ii]]-offsetRef, (offsetFactor*ii)+inputData[timeseries_plots_min[ii]]-offsetRef, alpha=0.2)
+        else:
+            ax.plot(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_max[ii]]-offsetRef, label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
+            ax.plot(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_min[ii]]-offsetRef, label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
+
+    for ii,var in enumerate(timeseries_plots_avg):
+        if dispRef=='initial':
+            offsetFactor = dispFactor
+            offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
+        x0=inputData[TimeIndex].min()
+        x1=inputData[TimeIndex].max()
+        colour=next(ax._get_lines.prop_cycler)['color']
+        ax.plot(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_avg[ii]]-offsetRef, label=var,markersize=1,marker='.',linestyle = 'solid',color=colour)
+        ax.plot([x0,x1], [(dispFactor*ii),(dispFactor*ii)], label=None,linestyle = 'solid',color=(0.8, 0.8, 0.8))
+
+    ax.set_xlabel('time')  # Add an x-label to the axes.
+    ax.set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
+    ax.set_title(title)  # Add a title to the axes.
+    ax.set_xlim([x0,x1])
+    ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
+    plt.tight_layout()
+    
+    if plot_or_save=='plot':
+        plt.show()
+    elif plot_or_save=='save':
+        plt.savefig(fname)

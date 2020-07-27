@@ -13,7 +13,7 @@ logo_path = 'assets/logo.png'
 output_name = 'test.pdf'
 
 # file locations
-SS_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorStats.dat'
+SS_filename = '../SampleData/HE604_RV50_CCB_NB_SensorStats.dat'
 SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
 
 # Alias table definition
@@ -59,10 +59,10 @@ sensorStatisticsNames=['S_P2_CH_L_HJCrack Max',
                        'S_S2_G3 Max'] # name to give in table?
 
 
-stats_notes = 'This bit can include any special notes that you want to make about the statistics in this report. e.g. Note erroneous data arising due to blah blah. This will be automatically added as a special note to the end of the statistics summary section.'
+section1_notes = 'You might want to include some introductory notes.'
 
 # 2. Time series plot - include field names for each plot
-NoTimeSeriesPlots = 1
+NoTimeSeriesPlots = 0
 timeseries_plot1 = ["SensorRel_Max(1)",
                     "SensorRel_Max(2)",
                     "SensorRel_Max(3)",
@@ -70,46 +70,143 @@ timeseries_plot1 = ["SensorRel_Max(1)",
                     "SensorRel_Max(5)"]
                     
 NoTimeSeriesWithBeards=2
-timeseries_plots_min1=[  'L1_Min',
-                            'L2_Min',
-                            'L3_Min']
-timeseries_plots_max1=[  'L1_Max',
-                            'L2_Max',
-                            'L3_Max']
-timeseries_plots_avg1=[ 'L1_Avg',
-                        'L2_Avg',
-                        'L3_Avg']
+timeseries_plots_min1=[ 'L_NB_HJ3_B1_Min',
+                        'L_NB_HJ3_B2_Min',
+                        'L_NB_HJ3_B3_Min',
+                        'L_NB_HJ3_B123_Min']
+timeseries_plots_max1=[ 'L_NB_HJ3_B1_Max',
+                        'L_NB_HJ3_B2_Max',
+                        'L_NB_HJ3_B3_Max',
+                        'L_NB_HJ3_B123_Max']
+timeseries_plots_avg1=[ 'L_NB_HJ3_B1_Avg',
+                        'L_NB_HJ3_B2_Avg',
+                        'L_NB_HJ3_B3_Avg',
+                        'L_NB_HJ3_B123_Avg']
                         
-timeseries_plots_min2=[  'DF1_Min',
-                            'DF2_Min',
-                            'DF3_Min']
-timeseries_plots_max2=[  'DF1_Max',
-                            'DF2_Max',
-                            'DF3_Max',]
-timeseries_plots_avg2=[ 'DF1_Avg',
-                        'DF2_Avg',
-                        'DF3_Avg']
+timeseries_plots_min2=['DF_NB_HJ3_B1_Min',
+                        'DF_NB_HJ3_B2_Min',
+                        'DF_NB_HJ3_B3_Min']
+timeseries_plots_max2=['DF_NB_HJ3_B1_Max',
+                        'DF_NB_HJ3_B2_Max',
+                        'DF_NB_HJ3_B3_Max']
+timeseries_plots_avg2=['DF_NB_HJ3_B1_Avg',
+                        'DF_NB_HJ3_B2_Avg',
+                        'DF_NB_HJ3_B3_Avg']
 
 NoTimeSeriesSubplots=1
-timeseries_plots_subplot1=['Therm1_Avg',
-                            'Therm2_Avg',
-                            'Therm3_Avg']
+timeseries_plots_subplot1=['Therm1_Avg(1)',
+                            'Therm1_Avg(2)',
+                            'Therm1_Avg(3)']
 nRows=1
 nCols=3
 
-NoTimeSeriesDisplaced=1
-timeseries_plots_displaced1=['Disp1',
-                            'Disp2',
-                            'Disp3',
-                            'Disp4',
-                            'Disp5',
-                            'Disp6']
-dispFactor=20
-dispRef='initial'
+NoTimeSeriesDisplaced=3
+timeseries_plots_displaced1=['Disp_Avg(1)',
+                            'Disp_Avg(2)',
+                            'Disp_Avg(3)',
+                            'Disp_Avg(4)',
+                            'Disp_Avg(5)',
+                            'Disp_Avg(6)']
+dispFactor1=20
+dispRef1='initial'
+timeseries_plots_displaced2=['microS1T20_Avg(1)',
+                            'microS1T20_Avg(2)',
+                            'microS1T20_Avg(3)',
+                            'microS1T20_Avg(4)',
+                            'microS1T20_Avg(5)',
+                            'microS1T20_Avg(6)',
+                            'microS1T20_Avg(7)',
+                            'microS1T20_Avg(8)']
+dispFactor2=20
+dispRef2='initial'
+timeseries_plots_displaced3=['microS2T20_Avg(1)',
+                            'microS2T20_Avg(2)',
+                            'microS2T20_Avg(3)',
+                            'microS2T20_Avg(4)',
+                            'microS2T20_Avg(5)',
+                            'microS2T20_Avg(6)',
+                            'microS2T20_Avg(7)',
+                            'microS2T20_Avg(8)']
+dispFactor3=20
+dispRef3='initial'
 
+
+NoTimeSeriesDisplacedMinMaxAvg=3
+timeseries_plots_displaced_min1=['Disp_Min(1)',
+                            'Disp_Min(2)',
+                            'Disp_Min(3)',
+                            'Disp_Min(4)',
+                            'Disp_Min(5)',
+                            'Disp_Min(6)']
+timeseries_plots_displaced_max1=['Disp_Max(1)',
+                            'Disp_Max(2)',
+                            'Disp_Max(3)',
+                            'Disp_Max(4)',
+                            'Disp_Max(5)',
+                            'Disp_Max(6)']
+timeseries_plots_displaced_avg1=['Disp_Avg(1)',
+                            'Disp_Avg(2)',
+                            'Disp_Avg(3)',
+                            'Disp_Avg(4)',
+                            'Disp_Avg(5)',
+                            'Disp_Avg(6)']
+dispFactor1=20
+dispRef1='initial'
+timeseries_plots_displaced_min2=['microS1T20_Min(1)',
+                            'microS1T20_Min(2)',
+                            'microS1T20_Min(3)',
+                            'microS1T20_Min(4)',
+                            'microS1T20_Min(5)',
+                            'microS1T20_Min(6)',
+                            'microS1T20_Min(7)',
+                            'microS1T20_Min(8)']
+timeseries_plots_displaced_max2=['microS1T20_Max(1)',
+                            'microS1T20_Max(2)',
+                            'microS1T20_Max(3)',
+                            'microS1T20_Max(4)',
+                            'microS1T20_Max(5)',
+                            'microS1T20_Max(6)',
+                            'microS1T20_Max(7)',
+                            'microS1T20_Max(8)']
+timeseries_plots_displaced_avg2=['microS1T20_Avg(1)',
+                            'microS1T20_Avg(2)',
+                            'microS1T20_Avg(3)',
+                            'microS1T20_Avg(4)',
+                            'microS1T20_Avg(5)',
+                            'microS1T20_Avg(6)',
+                            'microS1T20_Avg(7)',
+                            'microS1T20_Avg(8)']
+dispFactor2=20
+dispRef2='initial'
+timeseries_plots_displaced_min3=['microS2T20_Min(1)',
+                            'microS2T20_Min(2)',
+                            'microS2T20_Min(3)',
+                            'microS2T20_Min(4)',
+                            'microS2T20_Min(5)',
+                            'microS2T20_Min(6)',
+                            'microS2T20_Min(7)',
+                            'microS2T20_Min(8)']
+timeseries_plots_displaced_max3=['microS2T20_Max(1)',
+                            'microS2T20_Max(2)',
+                            'microS2T20_Max(3)',
+                            'microS2T20_Max(4)',
+                            'microS2T20_Max(5)',
+                            'microS2T20_Max(6)',
+                            'microS2T20_Max(7)',
+                            'microS2T20_Max(8)']
+timeseries_plots_displaced_avg3=['microS2T20_Avg(1)',
+                            'microS2T20_Avg(2)',
+                            'microS2T20_Avg(3)',
+                            'microS2T20_Avg(4)',
+                            'microS2T20_Avg(5)',
+                            'microS2T20_Avg(6)',
+                            'microS2T20_Avg(7)',
+                            'microS2T20_Avg(8)']
+dispFactor3=20
+dispRef3='initial'
 
 # 3. Definitions and notes for x-y section
-NoXYPlots = 2
+NoXYPlots = 0
 XY_plot1_title = 'R vs L HJ Crack'
 XY_plot1 = ['S_P2_CH_R_HJCrack_Pkp',
             'S_P2_CH_L_HJCrack_Pkp']
@@ -120,7 +217,7 @@ XY_plot2 = ['S_S2_G1_Pkp',
 
 
 # 4. Definitions and notes for inv normal plot section
-NoInvNormPlots = 1
+NoInvNormPlots = 0
 title_InvNorm = 'title of inverse normal plot'
 InvNorm_toPlot1 = ["S_P2_CH_R_HJCrack_Pkp",
                     "S_P2_CH_L_HJCrack_Pkp",
