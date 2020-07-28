@@ -8,7 +8,7 @@ pdf.print_text(section1_notes)
 
 pdf.print_sectionHeader(2, 'Beard plots')
 for ii in range(1,NoTimeSeriesWithBeards+1):
-    pdf.print_timeSeriesPlot('test_timeseriesBeards'+str(ii)+'.png',190,'A caption')
+    pdf.print_timeSeriesPlot('test_timeseriesBeards'+str(ii)+'.png',190,eval('caption_Beards'+str(ii)))
 
 pdf.print_sectionHeader(3, 'Subplots')
 for ii in range(1,NoTimeSeriesSubplots+1):

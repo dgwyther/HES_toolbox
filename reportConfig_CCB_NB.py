@@ -84,6 +84,7 @@ timeseries_plots_avg1=[ 'L_NB_HJ3_B1_Avg',
                         'L_NB_HJ3_B123_Avg']
 title_Beards1='Loading Mass'
 yAx_Beards1='Loading mass (t)'
+caption_Beards1='first caption of beard plot'
 timeseries_plots_min2=['DF_NB_HJ3_B1_Min',
                         'DF_NB_HJ3_B2_Min',
                         'DF_NB_HJ3_B3_Min']
@@ -95,6 +96,7 @@ timeseries_plots_avg2=['DF_NB_HJ3_B1_Avg',
                         'DF_NB_HJ3_B3_Avg']
 title_Beards2='Distribution factor'
 yAx_Beards2='D-factor (unitless)'
+caption_Beards2='2nd caption of beard plot'
 timeseries_plots_min3=['Therm1_Min(1)',
                        'Therm1_Min(2)',
                        'Therm1_Min(3)',
@@ -121,6 +123,7 @@ timeseries_plots_avg3=['Therm1_Avg(1)',
                        'Therm1_Avg(8)']                       
 title_Beards3='Thermistor 1'
 yAx_Beards3='Temperature (C)'
+caption_Beards3='3rd caption of beard plot'
 timeseries_plots_min4=['Therm2_Min(1)',
                        'Therm2_Min(2)',
                        'Therm2_Min(3)',
@@ -147,6 +150,7 @@ timeseries_plots_avg4=['Therm2_Avg(1)',
                        'Therm2_Avg(8)']                       
 title_Beards4='Thermistor 2'
 yAx_Beards4='Temperature (C)'
+caption_Beards4='4th caption of beard plot'
 timeseries_plots_min5=['T_NB_HJ3_Asphalt_Min',
                         'T_NB_HJ3_ToTS_Min',
                         'T_NB_HJ3_BoTS_Min',
@@ -161,6 +165,7 @@ timeseries_plots_avg5=['T_NB_HJ3_Asphalt_Avg',
                         'T_NB_HJ3_ToBS_Avg',]                     
 title_Beards5='Thermistor 3'
 yAx_Beards5='Temperature (C)'
+caption_Beards5='5th caption of beard plot'
 #
 NoTimeSeriesSubplots=0
 timeseries_plots_subplot1=['Therm1_Avg(1)',
