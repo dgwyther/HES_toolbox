@@ -18,6 +18,7 @@ from functions.fun_generateTimeSeriesPlots import generateTimeSeriesDisplacedMin
 from functions.fun_generateXYPlot import generateXYPlot
 from functions.fun_generateInvNormPlot import generateInvNormPlot
 from functions.fun_readAliasCSV import readAliasCSV
+from functions.fun_addNANGaps import addNANGaps
 
 # DEFINE TEMPLATE AND CONFIG FILE:
 configFile = 'reportConfig_CCB_NB.py'
@@ -41,10 +42,10 @@ if 'SRES_filename' in locals():
 #or use value in reportTemplate with aliasTable_SRES
 #applyAliasTable(df_SRES,aliasTable_FromCSV)
 
-#df_SS.set_index('TIMESTAMP').resample('5min').first().reset_index()
-#fig,ax=plt.subplots()
-#ax.plot(df_SS['TIMESTAMP'],df_SS['T_NB_HJ3_BoTS_Max'])
-#plt.show()
+# Add NaN in any time gaps
+if 'SS_filename' in locals():
+    df_SS=addNANGaps(df_SS,"TIMESTAMP",'5Min')
+
 ## GENERATE PLOTS
 
 for ii in range(1,NoTimeSeriesWithBeards+1):
