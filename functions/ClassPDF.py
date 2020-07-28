@@ -77,7 +77,7 @@ class ClassPDF(FPDF):
         # Times 12
         self.set_font('Times', '', 12)
         # Output justified text
-        self.multi_cell(effective_page_width*2, 5, txt)
+        self.multi_cell(effective_page_width, 5, txt)
         # Line break
         self.ln()
 #        # Mention in italics

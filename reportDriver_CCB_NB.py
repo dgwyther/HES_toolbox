@@ -38,9 +38,12 @@ if 'SRES_filename' in locals():
 # Trim data
 
 # Alias data
-#aliasTable_FromCSV=readAliasCSV('tmp.GAF_aliasTable.csv')
-#or use value in reportTemplate with aliasTable_SRES
-#applyAliasTable(df_SRES,aliasTable_FromCSV)
+if loadAlias=='csv':
+    aliasTable_FromCSV=readAliasCSV(aliasTablePath)
+    applyAliasTable(df_SS,aliasTable_FromCSV)
+elif loadAlias=='dict':
+    applyAliasTable(df_SS,aliasTable)
+
 
 # Add NaN in any time gaps
 if 'SS_filename' in locals():
