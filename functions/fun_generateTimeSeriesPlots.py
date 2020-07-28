@@ -26,6 +26,7 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,t
         plt.show()
     elif plot_or_save=='save':
         plt.savefig(fname)
+        plt.close()
 
 def generateTimeSeriesPlotZoomed(inputData,TimeIndex,timeseries_plots,title,fname,plot_or_save):
     fig, ax = plt.subplots(figsize=(10, 4.8), dpi=100)  # pyplot uses inches (WTF) and scales by a dpi. so figsize*dpi should be in pixels
@@ -45,8 +46,9 @@ def generateTimeSeriesPlotZoomed(inputData,TimeIndex,timeseries_plots,title,fnam
         plt.show()
     elif plot_or_save=='save':
         plt.savefig(fname)
+        plt.close()
 
-def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,title,fname,plot_or_save):
+def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,title,xAxisName,yAxisName,fname,plot_or_save):
 ## generateTimeSeriesMinMaxAvg wants 3 input timeseries plot lists, with the following formats:
 # timeseries_plots_min = [  'var1_min',
 #                           'var2_min',
@@ -60,7 +62,7 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
     fig, ax = plt.subplots(figsize=(10, 4.8), dpi=100)
     for ii,var in enumerate(timeseries_plots_min):
         if beards==True:
-            ax.fill_between(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], inputData[timeseries_plots_min[ii]], alpha=0.2)
+            ax.fill_between(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], inputData[timeseries_plots_min[ii]], alpha=0.5)
         else:
             ax.plot(inputData[TimeIndex], inputData[timeseries_plots_max[ii]], label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
             ax.plot(inputData[TimeIndex], inputData[timeseries_plots_min[ii]], label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
@@ -69,25 +71,27 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
         colour=next(ax._get_lines.prop_cycler)['color']
         ax.plot(inputData[TimeIndex], inputData[timeseries_plots_avg[ii]], label=var,markersize=1,marker='.',linestyle = 'solid',color=colour)
 
-    ax.set_xlabel('time')  # Add an x-label to the axes.
-    ax.set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
     ax.set_title(title)  # Add a title to the axes.
+    ax.set_ylabel(xAxisName)
+    ax.set_ylabel(yAxisName)
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
+    ax.set_ylim(bottom=0)
     plt.grid(True)
     plt.tight_layout()
     if plot_or_save=='plot':
         plt.show()
     elif plot_or_save=='save':
         plt.savefig(fname)
+        plt.close()
 
-def generateTimeSeriesSubplots(inputData,TimeIndex,timeseries_plots,nRows,nCols,fname,plot_or_save):
+def generateTimeSeriesSubplots(inputData,TimeIndex,timeseries_plots,nRows,nCols,xAxisName='',yAxisName='',fname='text.png',plot_or_save='save'):
 ## generateTimeSeriesSubplots wants input timeseries plot lists and the number of rols and cols:
     fig, axs = plt.subplots(nRows, nCols, figsize=(10, 4.8), dpi=100)
     for ii, var in enumerate(timeseries_plots):
         axs[ii].plot(inputData[TimeIndex], inputData[var], label=var,markersize=1,marker='.',linestyle = 'solid')
         axs[ii].set_title(var)
-        axs[ii].set_xlabel('time')  # Add an x-label to the axes.
-        axs[ii].set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
+        axs[ii].set_xlabel(xAxisName)  # Add an x-label to the axes.
+        axs[ii].set_ylabel(yAxisName)  # Add a y-label to the axes.
         axs[ii].grid(True)
 
     fig.autofmt_xdate(rotation=45)
@@ -97,9 +101,10 @@ def generateTimeSeriesSubplots(inputData,TimeIndex,timeseries_plots,nRows,nCols,
         plt.show()
     elif plot_or_save=='save':
         plt.savefig(fname)
+        plt.close()
 
 
-def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,dispRef,fname,plot_or_save):
+def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,dispRef,title,xAxisName,yAxisName,fname,plot_or_save):
 ## generateTimeSeriesDisplaced makes time series plots and offsets them vertically.
 # The vertical offset is set as a constant value (dispFactor). The normalisation can be chosen (dispRef), with a choice of 'initial' referencing all to the initial value (and excluding any initial Null values e.g. NaN).
     fig, ax = plt.subplots(figsize=(10, 4.8), dpi=100)
@@ -112,12 +117,12 @@ def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,
         colour=next(ax._get_lines.prop_cycler)['color']
         ax.plot(inputData[TimeIndex],(offsetFactor*ii)+inputData[var]-offsetRef, label=var,markersize=1,marker='.',linestyle = 'solid',color=colour)
         ax.plot([x0,x1], [(dispFactor*ii),(dispFactor*ii)], label=None,linestyle = 'solid',color=(0.8, 0.8, 0.8))
-        ax.set_xlabel('time')  # Add an x-label to the axes.
-        ax.set_ylabel('Relative displacement')  # Add a y-label to the axes.
+        ax.set_xlabel(xAxisName)  # Add an x-label to the axes.
+        ax.set_ylabel(yAxisName)  # Add a y-label to the axes.
         ax.grid(False)
         plt.tight_layout()
 
-    ax.set_title('Displacement with offset of '+str(offsetFactor))
+    ax.set_title(title)
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
     ax.set_xlim([x0,x1])
     plt.tight_layout()
@@ -126,8 +131,9 @@ def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,
         plt.show()
     elif plot_or_save=='save':
         plt.savefig(fname)
+        plt.close()
 
-def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,dispFactor,dispRef,title,fname,plot_or_save):
+def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,dispFactor,dispRef,title='',xAxisName='',yAxisName='',fname='test.png',plot_or_save='plot'):
 ## generateTimeSeriesMinMaxAvg wants 3 input timeseries plot lists, with the following formats:
 # timeseries_plots_min = [  'var1_min',
 #                           'var2_min',
@@ -146,7 +152,7 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
             offsetFactor = dispFactor
             offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
         if beards==True:
-            ax.fill_between(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_max[ii]]-offsetRef, (offsetFactor*ii)+inputData[timeseries_plots_min[ii]]-offsetRef, alpha=0.2)
+            ax.fill_between(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_max[ii]]-offsetRef, (offsetFactor*ii)+inputData[timeseries_plots_min[ii]]-offsetRef, alpha=0.5)
         else:
             ax.plot(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_max[ii]]-offsetRef, label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
             ax.plot(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_min[ii]]-offsetRef, label=None,markersize=1,marker='.',linestyle = 'solid',color=(0.8, 0.8, 0.8))
@@ -161,8 +167,8 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
         ax.plot(inputData[TimeIndex], (offsetFactor*ii)+inputData[timeseries_plots_avg[ii]]-offsetRef, label=var,markersize=1,marker='.',linestyle = 'solid',color=colour)
         ax.plot([x0,x1], [(dispFactor*ii),(dispFactor*ii)], label=None,linestyle = 'solid',color=(0.8, 0.8, 0.8))
 
-    ax.set_xlabel('time')  # Add an x-label to the axes.
-    ax.set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
+    ax.set_xlabel(xAxisName)  # Add an x-label to the axes.
+    ax.set_ylabel(yAxisName)  # Add a y-label to the axes.
     ax.set_title(title)  # Add a title to the axes.
     ax.set_xlim([x0,x1])
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
@@ -172,3 +178,4 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
         plt.show()
     elif plot_or_save=='save':
         plt.savefig(fname)
+        plt.close()
