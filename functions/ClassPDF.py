@@ -20,22 +20,23 @@ class ClassPDF(FPDF):
         # Arial bold 15
         self.set_font('Arial', 'B', 15)
         # Calculate width of title and position
-        self.w = self.get_string_width(self.title) + 6
-        self.set_x((210 - self.w) / 2)
+        #self.string_w = self.get_string_width(self.title) + 6
+        #self.set_x((210 - self.string_w) / 2)
         # Colors of frame, background and text
 #        self.set_draw_color(0, 80, 180)
 #        self.set_fill_color(230, 230, 0)
 #        self.set_text_color(220, 50, 50)
 #        # Thickness of frame (1 mm)
 #        self.set_line_width(1)
+        effective_page_width=self.w-2*self.l_margin
         # Title
-        self.cell(self.w, 9, self.title, 0, 0, 'C')
+        self.cell(effective_page_width, 9, self.title, 0, 0, 'C')
         # Line break
         self.ln(10)
         # Author and date
-        self.cell(self.w, 9, self.author, 0, 0, 'R')        
+        self.cell(effective_page_width, 9, self.author, 0, 0, 'C')        
         # Line break
-        self.ln(20)
+        self.ln(10)
 # define footer
     def footer(self):
         # Position at 1.5 cm from bottom
@@ -46,7 +47,7 @@ class ClassPDF(FPDF):
         self.set_text_color(128)
         # Page number
         effective_page_width=self.w-2*self.l_margin
-        self.cell(effective_page_width*2, 10, 'Page ' + str(self.page_no()), 0, 0, 'C')
+        self.cell(effective_page_width, 10, 'Page ' + str(self.page_no()), 0, 0, 'C')
 # define the section title
     def section_title(self, num, label):
         # Arial 12
@@ -55,7 +56,7 @@ class ClassPDF(FPDF):
         self.set_fill_color(200, 220, 255)
         # Title
         effective_page_width=self.w-2*self.l_margin
-        self.cell(effective_page_width*2, 6, 'Section %d : %s' % (num, label), 0, 1, 'L', 1)
+        self.cell(effective_page_width, 6, 'Section %d : %s' % (num, label), 0, 1, 'L', 1)
         # Line break
         self.ln(4)
 # define section body text from an external txt file
@@ -92,26 +93,34 @@ class ClassPDF(FPDF):
         self.section_body(text_fill)
 # this adds a new section with section header        
     def print_sectionHeader(self, num, title):
+        if num==1:
+            self.add_page()
+        self.section_title(num, title)
+# this adds a new section with section header ON A NEW PAGE      
+    def print_sectionHeaderPageBreak(self, num, title):
         self.add_page()
         self.section_title(num, title)
 # this adds a time series plot (non-Zoomed)
     def print_timeSeriesPlot(self,fname,width,caption):
         effective_page_width=self.w-2*self.l_margin
         self.image(fname, x = None, y = None, w = width)
+        self.ln(10)
         self.cell(effective_page_width,0.0, caption,0,0,'L')
-        self.ln(2)
+        self.ln(10)
 # this adds a time series plot (Zoomed)        
     def print_timeSeriesPlotZoomed(self,fname,width,caption):
         effective_page_width=self.w-2*self.l_margin
         self.image(fname, x = None, y = None, w = width)
+        self.ln(10)
         self.cell(effective_page_width,0.0, caption,0,0,'L')
-        self.ln(2)
+        self.ln(10)
 # this adds a plot        
     def print_addPlot(self,fname,width,caption):
         effective_page_width=self.w-2*self.l_margin
         self.image(fname, x = None, y = None, w = width)
+        self.ln(10)
         self.cell(effective_page_width,0.0, caption,0,0,'L')
-        self.ln(2)
+        self.ln(10)
 # this adds the overview table
     def generateTableOverview(self,inputDataEvents,TimeIndex,table_title,col_titles,sensorStatisticsFields,sensorStatisticsNames):
         start_date = pd.to_datetime(inputDataEvents[TimeIndex].max())-datetime.timedelta(days=7)
