@@ -91,8 +91,8 @@ A more complex template is provided in the default `reportSimplePDF.py`, which i
 ### reportDriver.py
 This is an alternative method for compiling a PDF using the FPDF library, similar to using `reportSimplePDF.py`. However, this method separates out the driver (that compiles the PDF) from the template file (which contains all user input and definitions).
 
-#### 1. Set the user template file:
-See for example `reportTemplate.py`. 
+#### 1. Set the user config file:
+See for example `reportConfig_CCB_NB.py`. 
 
 1. First set the global definitions (e.g. title, author, output_name); the file locations and the names of the columns in the `.dat` file; and, what to alias those names as.
 2. Summary table: Set the title, column names, fields and names to show in the table. Optionally, include some notes about this table.
@@ -100,6 +100,11 @@ See for example `reportTemplate.py`.
 4. XP plots. Same as for Timeseries plots.
 5. Inverse Normal plots. Same as for Timeseries plots. In addition, set the bin increments and fitting limits.
 6. Largest events table: Set the title, column titles and fields.
+
+#### 2. Set the user template file
+See for example `reportTemplate_CCB_NB.py`. 
+
+1. Set the template for the report. For example, add new sections with section headers, plots for each section
 
 #### 2. Run `reportDriver.py`
 Now run `python3 reportDriver.py` to load the user definitions and compile the output PDF.
