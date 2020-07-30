@@ -101,6 +101,26 @@ for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
                                             yAxisName=eval('yAx_dispMMA'+str(ii)),
                                             fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
                                             plot_or_save='save')
+ii=2
+generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
+                                        TimeIndex="TIMESTAMP",
+                                        timeseries_plots_min=eval('timeseries_plots_displaced_min'+str(ii)),
+                                        timeseries_plots_max=eval('timeseries_plots_displaced_max'+str(ii)),
+                                        timeseries_plots_avg=eval('timeseries_plots_displaced_avg'+str(ii)),
+                                        beards=True,
+                                        dispFactor=eval('dispFactorMMA'+str(ii)),
+                                        dispRef=eval('dispRefMMA'+str(ii)),
+                                        title=eval('title_dispMMA'+str(ii)),
+                                        xAxisName='',
+                                        yAxisName=eval('yAx_dispMMA'+str(ii)),
+                                        fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
+                                        plot_or_save='save',
+                                        #axisLims=['2020-7-26','2020-7-27',0,100000],
+                                        xAxisLims=['2020-7-26 13:00','2020-7-26 16:00'],
+                                        yAxisLims=[-25,150]
+                                        )
+
+
 
 for ii in range(1,NoTimeSeriesPlots+1):
     generateTimeSeriesPlot(df_SS,"TIMESTAMP",eval('timeseries_plot'+str(ii)),'a temporary title','test_timeseries'+str(ii)+'.png','save')
