@@ -6,22 +6,30 @@ pdf.print_sectionHeader(1, 'Summary information')
 #pdf.generateTableOverview(df_SRES,"TIMESTAMP",table_title,col_titles,sensorStatisticsFields,sensorStatisticsNames)
 pdf.print_text(section1_notes)
 
-pdf.print_sectionHeader(2, 'Beard plots')
-for ii in range(1,NoTimeSeriesWithBeards+1):
+pdf.print_sectionHeader(2, 'Bearing Loads')
+for ii in range(1,3):
     pdf.print_timeSeriesPlot('test_timeseriesBeards'+str(ii)+'.png',190,eval('caption_Beards'+str(ii)))
 
-pdf.print_sectionHeader(3, 'Subplots')
-for ii in range(1,NoTimeSeriesSubplots+1):
-    pdf.print_timeSeriesPlot('test_timeseriesSubplots'+str(ii)+'.png',190,'A caption')
+pdf.print_sectionHeader(3, 'Temperatures')
+for ii in range(3,NoTimeSeriesWithBeards+1):
+    pdf.print_timeSeriesPlot('test_timeseriesBeards'+str(ii)+'.png',190,eval('caption_Beards'+str(ii)))
 
-pdf.print_sectionHeader(4, 'Displaced timeseries')
-for ii in range(1,NoTimeSeriesDisplaced+1):
-    pdf.print_timeSeriesPlot('test_timeseriesDisplaced'+str(ii)+'.png',190,'A caption')
+# pdf.print_sectionHeader(3, 'Subplots')
+# for ii in range(1,NoTimeSeriesSubplots+1):
+    # pdf.print_timeSeriesPlot('test_timeseriesSubplots'+str(ii)+'.png',190,'A caption')
 
-pdf.print_sectionHeader(5, 'Displaced timeseries with beards')
-for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
-    pdf.print_timeSeriesPlot('test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',190,'A caption')
+pdf.print_sectionHeader(4, 'Longitudinal Displacements')
+for ii in range(1,2):
+    pdf.print_timeSeriesPlot('test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',190,'')
 
-for ii in range(1,NoTimeSeriesPlots+1):
-    pdf.print_timeSeriesPlot('test_timeseries'+str(ii)+'.png',190,'A caption')
-    pdf.print_timeSeriesPlotZoomed('test_timeseries_zoom'+str(ii)+'.png',190,'Another caption')
+pdf.print_sectionHeader(5, 'Vibrating Wire Strains')
+for ii in range(2,NoTimeSeriesDisplacedMinMaxAvg+1):
+    pdf.print_timeSeriesPlot('test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',190,'')
+
+pdf.print_sectionHeader(6, 'Weather')
+pdf.image('tmp.chart-1.png', x=None, y=None, w=190)
+pdf.print_text('Red: Temperature. Blue: Rainfall since 9:00AM. Black triangle: Wind gust. Grey line: Wind speed.')
+
+# for ii in range(1,NoTimeSeriesPlots+1):
+    # pdf.print_timeSeriesPlot('test_timeseries'+str(ii)+'.png',190,'A caption')
+    # pdf.print_timeSeriesPlotZoomed('test_timeseries_zoom'+str(ii)+'.png',190,'Another caption')

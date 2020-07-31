@@ -29,6 +29,7 @@ class ClassPDF(FPDF):
 #        # Thickness of frame (1 mm)
 #        self.set_line_width(1)
         effective_page_width=self.w-2*self.l_margin
+        self.ln(10)
         # Title
         self.cell(effective_page_width, 9, self.title, 0, 0, 'C')
         # Line break
