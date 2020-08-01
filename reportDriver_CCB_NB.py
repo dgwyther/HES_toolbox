@@ -6,7 +6,8 @@ import numpy as np
 from fpdf import FPDF
 
 #own functions
-from functions.fun_removeDates import removeDates
+from functions.fun_removeBetweenDates import removeBetweenDates
+from functions.fun_removeVariableBetweenDates import removeVariableBetweenDates
 from functions.fun_loadData import loadData
 from functions.fun_applyAliasTable import applyAliasTable
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlot
@@ -35,14 +36,27 @@ if 'SS_filename' in locals():
 if 'SRES_filename' in locals():
     df_SRES,colNamesSRES = loadData(SRES_filename,"TIMESTAMP")
 
-# Trim data
-
 # Alias data
 if loadAlias=='csv':
     aliasTable_FromCSV=readAliasCSV(aliasTablePath)
     applyAliasTable(df_SS,aliasTable_FromCSV)
 elif loadAlias=='dict':
     applyAliasTable(df_SS,aliasTable)
+    
+    
+# Trim data
+trimVariable=['S_NB_HJ3_S2B_Min','S_NB_HJ3_S2B_Avg','S_NB_HJ3_S2B_Max']
+trimStart=  ['2020-7-26 13:20',
+            '2020-7-26 13:50',
+            '2020-7-26 14:30',
+            '2020-7-26 14:50',
+            '2020-7-26 15:10']
+trimEnd=    ['2020-7-26 13:30',
+            '2020-7-26 14:00',
+            '2020-7-26 14:50',
+            '2020-7-26 15:05',
+            '2020-7-26 15:20']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 
 
 # Add NaN in any time gaps
@@ -126,7 +140,7 @@ for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
                                         # plot_or_save='save',
                                         # #axisLims=['2020-7-26','2020-7-27',0,100000],
                                         # xAxisLims=['2020-7-26 13:00','2020-7-26 16:00'],
-                                        # yAxisLims=[-25,150]
+                                        # yAxisLims=[80,220]
                                         # )
 
 

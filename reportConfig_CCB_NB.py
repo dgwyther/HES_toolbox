@@ -52,6 +52,11 @@ aliasTablePath='../SampleData/tmp.TMR701_RV50_CCB_NB_aliasTable.csv'
     # "SensorOffset(5)":"S_S2_G3_Offset"
 # }
 
+## Trim data
+#trimVariable=['S_NB_HJ3_S2B_Min','S_NB_HJ3_S2B_Avg','S_NB_HJ3_S2B_Max']
+#trimStart['']
+#trimEnd['']
+
 ## LOAD FROM SPREADSHEET
 
 # 1. Summary table title, sensor fields and names
