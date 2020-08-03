@@ -14,7 +14,7 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,t
     elif lines_or_markers=='lines':
         for var in timeseries_plots:
             ax.plot(inputData[TimeIndex], inputData[var], label=var,linestyle = 'solid')  
-            
+
     ax.axvspan(x0,x1, alpha=0.5, color='red')
     ax.set_xlabel('time')  # Add an x-label to the axes.
     ax.set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
@@ -39,6 +39,18 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,t
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_xlim([x0,x1])
+    if ('annotate' in keyword_parameters):
+        annotation_text=keyword_parameters['annotate']
+        annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
+        annotate_y1=keyword_parameters['annotatePointXY'][1]
+        annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
+        annotate_y2=keyword_parameters['annotateTextXY'][1]
+        ax.annotate(annotation_text,
+                xy=(annotate_x1, annotate_y1), xycoords='data',
+                xytext=(annotate_x2, annotate_y2), textcoords='data',
+                arrowprops=dict(arrowstyle="->"),
+                horizontalalignment='right', verticalalignment='bottom')
+    fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
     if plot_or_save=='plot':
         plt.show()
@@ -75,6 +87,18 @@ def generateTimeSeriesPlotZoomed(inputData,TimeIndex,timeseries_plots,title,fnam
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_xlim([x0,x1])
+    if ('annotate' in keyword_parameters):
+        annotation_text=keyword_parameters['annotate']
+        annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
+        annotate_y1=keyword_parameters['annotatePointXY'][1]
+        annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
+        annotate_y2=keyword_parameters['annotateTextXY'][1]
+        ax.annotate(annotation_text,
+                xy=(annotate_x1, annotate_y1), xycoords='data',
+                xytext=(annotate_x2, annotate_y2), textcoords='data',
+                arrowprops=dict(arrowstyle="->"),
+                horizontalalignment='right', verticalalignment='bottom')
+    fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
     if plot_or_save=='plot':
         plt.show()
@@ -126,7 +150,19 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_ylim(bottom=0)
+    if ('annotate' in keyword_parameters):
+        annotation_text=keyword_parameters['annotate']
+        annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
+        annotate_y1=keyword_parameters['annotatePointXY'][1]
+        annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
+        annotate_y2=keyword_parameters['annotateTextXY'][1]
+        ax.annotate(annotation_text,
+                xy=(annotate_x1, annotate_y1), xycoords='data',
+                xytext=(annotate_x2, annotate_y2), textcoords='data',
+                arrowprops=dict(arrowstyle="->"),
+                horizontalalignment='center', verticalalignment='bottom')
     plt.grid(True)
+    fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
     if plot_or_save=='plot':
         plt.show()
@@ -158,6 +194,18 @@ def generateTimeSeriesSubplots(inputData,TimeIndex,timeseries_plots,nRows,nCols,
             y0=keyword_parameters['yAxisLims'][0]
             y1=keyword_parameters['yAxisLims'][1]
             axs[ii].set_ylim([y0,y1])
+        if ('annotate' in keyword_parameters):
+            annotation_text=keyword_parameters['annotate']
+            annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
+            annotate_y1=keyword_parameters['annotatePointXY'][1]
+            annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
+            annotate_y2=keyword_parameters['annotateTextXY'][1]
+            ax.annotate(annotation_text,
+                    xy=(annotate_x1, annotate_y1), xycoords='data',
+                    xytext=(annotate_x2, annotate_y2), textcoords='data',
+                    arrowprops=dict(arrowstyle="->"),
+                    horizontalalignment='right', verticalalignment='bottom')
+        
 
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
@@ -207,8 +255,20 @@ def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_xlim([x0,x1])
+    if ('annotate' in keyword_parameters):
+        annotation_text=keyword_parameters['annotate']
+        annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
+        annotate_y1=keyword_parameters['annotatePointXY'][1]
+        annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
+        annotate_y2=keyword_parameters['annotateTextXY'][1]
+        ax.annotate(annotation_text,
+                xy=(annotate_x1, annotate_y1), xycoords='data',
+                xytext=(annotate_x2, annotate_y2), textcoords='data',
+                arrowprops=dict(arrowstyle="->"),
+                horizontalalignment='right', verticalalignment='bottom')
 
     plt.grid(True,axis='x')
+    fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
 
     if plot_or_save=='plot':
@@ -271,8 +331,20 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_xlim([x0,x1])
+    if ('annotate' in keyword_parameters):
+        annotation_text=keyword_parameters['annotate']
+        annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
+        annotate_y1=keyword_parameters['annotatePointXY'][1]
+        annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
+        annotate_y2=keyword_parameters['annotateTextXY'][1]
+        ax.annotate(annotation_text,
+                xy=(annotate_x1, annotate_y1), xycoords='data',
+                xytext=(annotate_x2, annotate_y2), textcoords='data',
+                arrowprops=dict(arrowstyle="->"),
+                horizontalalignment='right', verticalalignment='bottom')
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
     plt.grid(True,axis='x')
+    fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
     
     if plot_or_save=='plot':

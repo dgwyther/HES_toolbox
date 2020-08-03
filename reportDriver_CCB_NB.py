@@ -66,19 +66,36 @@ if 'SS_filename' in locals():
 ## GENERATE PLOTS
 
 for ii in range(1,NoTimeSeriesWithBeards+1):
-    generateTimeSeriesMinMaxAvg(inputData=df_SS,
-                                TimeIndex="TIMESTAMP",
-                                timeseries_plots_min=eval('timeseries_plots_min'+str(ii)),
-                                timeseries_plots_max=eval('timeseries_plots_max'+str(ii)),
-                                timeseries_plots_avg=eval('timeseries_plots_avg'+str(ii)),
-                                beards=True,
-                                title=eval('title_Beards'+str(ii)),
-                                xAxisName='',
-                                yAxisName=eval('yAx_Beards'+str(ii)),
-                                fname='test_timeseriesBeards'+str(ii)+'.png',
-                                plot_or_save='save')
-                                #,
-                                #xAxisLims=['2020-7-26 00:00','2020-7-27 00:00'])
+    if ii==3:
+        generateTimeSeriesMinMaxAvg(inputData=df_SS,
+                            TimeIndex="TIMESTAMP",
+                            timeseries_plots_min=eval('timeseries_plots_min'+str(ii)),
+                            timeseries_plots_max=eval('timeseries_plots_max'+str(ii)),
+                            timeseries_plots_avg=eval('timeseries_plots_avg'+str(ii)),
+                            beards=True,
+                            title=eval('title_Beards'+str(ii)),
+                            xAxisName='',
+                            yAxisName=eval('yAx_Beards'+str(ii)),
+                            fname='test_timeseriesBeards'+str(ii)+'.png',
+                            plot_or_save='save',
+                            annotate=eval('annotation'+str(ii)),
+                            annotatePointXY=eval('annotatePointXY'+str(ii)),
+                            annotateTextXY=eval('annotateTextXY'+str(ii))
+                            )
+    else:
+        generateTimeSeriesMinMaxAvg(inputData=df_SS,
+                                    TimeIndex="TIMESTAMP",
+                                    timeseries_plots_min=eval('timeseries_plots_min'+str(ii)),
+                                    timeseries_plots_max=eval('timeseries_plots_max'+str(ii)),
+                                    timeseries_plots_avg=eval('timeseries_plots_avg'+str(ii)),
+                                    beards=True,
+                                    title=eval('title_Beards'+str(ii)),
+                                    xAxisName='',
+                                    yAxisName=eval('yAx_Beards'+str(ii)),
+                                    fname='test_timeseriesBeards'+str(ii)+'.png',
+                                    plot_or_save='save')
+                                    #,
+                                    #xAxisLims=['2020-7-26 00:00','2020-7-27 00:00'])
 
 for ii in range(1,NoTimeSeriesSubplots+1):
     generateTimeSeriesSubplots(df_SS,
