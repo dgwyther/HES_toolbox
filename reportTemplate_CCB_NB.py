@@ -3,9 +3,13 @@
 ## 
 
 pdf.print_sectionHeader(1, 'Summary information')
-#pdf.generateTableOverview(df_SRES,"TIMESTAMP",table_title,col_titles,sensorStatisticsFields,sensorStatisticsNames)
 pdf.print_text(section1_notes)
-
+DateStatsTable = pd.DataFrame( [['Start date:',df_SS["TIMESTAMP"].min().strftime("%d-%m-%y")],
+                                ['End date:',df_SS["TIMESTAMP"].max().strftime("%d-%m-%y")],
+                                ['duration (days):',round((df_SS["TIMESTAMP"].max()-df_SS["TIMESTAMP"].min()).total_seconds()/(60*60*24),1)]], columns=
+                                [' ',' '])
+pdf.generateTableGeneric(3,2,table_title1,DateStatsTable)
+pdf.print_text(' ')
 pdf.print_sectionHeader(2, 'Bearing Loads')
 for ii in range(1,3):
     pdf.print_timeSeriesPlot('test_timeseriesBeards'+str(ii)+'.png',190,eval('caption_Beards'+str(ii)))

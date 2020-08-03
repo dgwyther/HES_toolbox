@@ -60,19 +60,7 @@ aliasTablePath='../SampleData/tmp.TMR701_RV50_CCB_NB_aliasTable.csv'
 ## LOAD FROM SPREADSHEET
 
 # 1. Summary table title, sensor fields and names
-table_title = '' # title for the table
-col_titles = ['','all time','last week'] # column titles
-sensorStatisticsFields=['S_P2_CH_L_HJCrack_Max',
-                        'S_P2_CH_R_HJCrack_Max',
-                        'S_S2_G1_Max',
-                        'S_S2_G2_Max',
-                        'S_S2_G3_Max'] # what fields to do you want stats for?
-sensorStatisticsNames=['S_P2_CH_L_HJCrack Max',
-                       'S_P2_CH_R_HJCrack Max',
-                       'S_S2_G1 Max',
-                       'S_S2_G2 Max',
-                       'S_S2_G3 Max'] # name to give in table?
-
+table_title1 = 'title' # title for the table
 
 section1_notes = 'This report present data gathered at the CCB northbound halving joint 3 monitoring station.'
 

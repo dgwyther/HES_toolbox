@@ -212,3 +212,35 @@ class ClassPDF(FPDF):
         self.cell(-90)
         self.cell(90, 10, " ", 0, 2, 'C')
         self.cell(-30)
+    def generateTableGeneric(self,nRows,nCols,table_title,inputData):
+    #   Set title
+        self.set_font('arial', 'B', 12)
+        self.cell(60)
+#        self.cell(75, 10, table_title, 0, 1, 'C')
+        self.ln(-10)
+#        self.cell(90, 10, " ", 0, 2, 'C')
+#        self.cell(-90)
+        self.set_font('arial', 'B', 12)
+    #   make column header 
+        for i in range(0, nCols):
+            if i==0:
+                self.cell(40, 10,inputData.columns[i], 0, 0, 'C')
+            elif i==nCols-1:
+                self.cell(40, 10,inputData.columns[i], 0, 1, 'C')
+            else:
+                self.cell(40, 10,inputData.columns[i], 0, 0, 'C')
+
+        #self.cell(-90)
+        self.set_font('arial', '', 9)
+    #   fill data in for rest of table
+        for i in range(0, nRows):
+            self.cell(60) # centre the table (might need some tweaking)
+            for j in range(0, nCols):
+                if j==nCols-1:
+                    self.cell(40, 10, '%s' % (inputData.iloc[i,j]), 0, 1, 'C')
+                else:
+                    self.cell(40, 10, '%s' % (inputData.iloc[i,j]), 0, 0, 'C')
+    #   finish table with some white space below
+#        self.cell(-90)
+ #       self.cell(90, 10, " ", 0, 2, 'C')
+        self.cell(-30)
