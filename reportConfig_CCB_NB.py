@@ -127,9 +127,13 @@ timeseries_plots_avg3=['T_NB_HJ3_C2B_Avg',
                        'T_NB_HJ3_C1V_Avg']                       
 title_Beards3='Temperature (Vibrating Wire Sensor Group 1)'
 yAx_Beards3='Temperature (C)'
-annotation3='sudden drop in ambient temperature'
-annotatePointXY3=['26-07-2020 15:40',15]
-annotateTextXY3=['26-07-2020 15:40', 10]
+annotation3=['sudden drop in ambient temperature','working on instrument']
+annotatePointXY3={  'time':['26-07-2020 15:40','06-Aug-2020 15:00'],
+                    'height':[15, 15]}
+annotateTextXY3={   'time':['26-07-2020 15:40','06-Aug-2020 15:00'],
+                    'height':[10,10]}
+#annotatePointXY3=['26-07-2020 15:40',15]
+#annotateTextXY3=['26-07-2020 15:40', 10]
 
 caption_Beards3=''
 timeseries_plots_min4=['T_NB_HJ3_C2D_Min',

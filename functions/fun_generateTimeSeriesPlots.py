@@ -151,16 +151,17 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_ylim(bottom=0)
     if ('annotate' in keyword_parameters):
-        annotation_text=keyword_parameters['annotate']
-        annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
-        annotate_y1=keyword_parameters['annotatePointXY'][1]
-        annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY'][0]))
-        annotate_y2=keyword_parameters['annotateTextXY'][1]
-        ax.annotate(annotation_text,
-                xy=(annotate_x1, annotate_y1), xycoords='data',
-                xytext=(annotate_x2, annotate_y2), textcoords='data',
-                arrowprops=dict(arrowstyle="->"),
-                horizontalalignment='center', verticalalignment='bottom')
+        for ii,var in enumerate(keyword_parameters['annotate']):
+            annotation_text=var
+            annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY']['time'][ii]))
+            annotate_y1=keyword_parameters['annotatePointXY']['height'][ii]
+            annotate_x2=date2num(parser.parse(keyword_parameters['annotateTextXY']['time'][ii]))
+            annotate_y2=keyword_parameters['annotateTextXY']['height'][ii]
+            ax.annotate(annotation_text,
+                    xy=(annotate_x1, annotate_y1), xycoords='data',
+                    xytext=(annotate_x2, annotate_y2), textcoords='data',
+                    arrowprops=dict(arrowstyle="->"),
+                    horizontalalignment='center', verticalalignment='bottom')
     plt.grid(True)
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
