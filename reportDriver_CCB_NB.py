@@ -46,21 +46,83 @@ elif loadAlias=='dict':
     
 # Trim data
 trimVariable=['S_NB_HJ3_S2B_Min','S_NB_HJ3_S2B_Avg','S_NB_HJ3_S2B_Max']
-trimStart=  ['2020-7-26 13:20',
-            '2020-7-26 13:50',
-            '2020-7-26 14:30',
-            '2020-7-26 14:50',
-            '2020-7-26 15:10',
-            '2020-08-6 10:10',
-            '2020-08-6 10:20']
-trimEnd=    ['2020-7-26 13:30',
-            '2020-7-26 14:00',
-            '2020-7-26 14:50',
-            '2020-7-26 15:05',
-            '2020-7-26 15:20',
-            '2020-8-06 10:12',
-            '2020-8-06 10:30']
+trimStart=  ['2020-JUL-26 13:20',
+            '2020-JUL-26 13:50',
+            '2020-JUL-26 14:30',
+            '2020-JUL-26 14:50',
+            '2020-JUL-26 15:10',
+            '2020-AUG-4 08:40',
+            '2020-AUG-6 10:10',
+            '2020-AUG-6 10:20']
+trimEnd=    ['2020-JUL-26 13:30',
+            '2020-JUL-26 14:00',
+            '2020-JUL-26 14:50',
+            '2020-JUL-26 15:05',
+            '2020-JUL-26 15:20',
+            '2020-AUG-4 08:50',
+            '2020-AUG-06 10:20',
+            '2020-AUG-06 10:30']
 removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+
+trimVariable=['S_NB_HJ3_S1H_Min','S_NB_HJ3_S1H_Avg','S_NB_HJ3_S1H_Max']
+trimStart=  ['2020-AUG-06 14:00']
+trimEnd=    ['2020-AUG-06 14:10']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+
+trimVariable=['S_NB_HJ3_S2D_Min','S_NB_HJ3_S2D_Avg','S_NB_HJ3_S2D_Max']
+trimStart=  ['2020-AUG-07 01:15']
+trimEnd=    ['2020-AUG-07 01:25']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+
+trimVariable=['S_NB_HJ3_S1V_Min','S_NB_HJ3_S1V_Avg','S_NB_HJ3_S1V_Max']
+trimStart=  ['2020-AUG-06 14:00']
+trimEnd=    ['2020-AUG-06 14:10']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+
+trimVariable=['S_NB_HJ3_S3H_Min','S_NB_HJ3_S3H_Avg','S_NB_HJ3_S3H_Max']
+trimStart=  ['2020-AUG-06 14:15']
+trimEnd=    ['2020-AUG-06 14:25']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+
+
+
+trimVariable=['S_NB_HJ3_C3H_Min','S_NB_HJ3_C3H_Avg','S_NB_HJ3_C3H_Max']
+trimStart=  ['2020-AUG-6 14:25',
+            '2020-AUG-7 16:05',
+            '2020-AUG-08 00:25',
+            '2020-AUG-08 00:40',
+            '2020-AUG-08 06:30',
+            '2020-AUG-08 06:55',
+            '2020-AUG-08 07:15',
+            '2020-AUG-08 22:00',
+            '2020-AUG-08 22:35',
+            '2020-AUG-09 10:15',
+            '2020-AUG-09 19:45',
+            '2020-AUG-09 23:10',
+            '2020-AUG-10 00:20',
+            '2020-AUG-10 00:40',
+            '2020-AUG-10 01:25',
+            '2020-AUG-10 02:05',
+            '2020-AUG-10 02:35']
+trimEnd=    ['2020-AUG-6 14:35',
+            '2020-AUG-7 16:15',
+            '2020-AUG-08 00:35',
+            '2020-AUG-08 01:10',
+            '2020-AUG-08 06:40',
+            '2020-AUG-08 07:05',
+            '2020-AUG-08 07:25',
+            '2020-AUG-08 22:15',
+            '2020-AUG-08 23:00',
+            '2020-AUG-09 10:30',
+            '2020-AUG-09 19:55',
+            '2020-AUG-09 23:40',
+            '2020-AUG-10 00:35',
+            '2020-AUG-10 00:55',
+            '2020-AUG-10 01:35',
+            '2020-AUG-10 02:10',
+            '2020-AUG-10 02:40']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+
 
 
 # Add NaN in any time gaps
@@ -145,7 +207,7 @@ for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
                                             #,
                                             #xAxisLims=['2020-7-26 00:00','2020-7-27 00:00']
                                             #)
-# ii=2
+# ii=3
 # generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
                                         # TimeIndex="TIMESTAMP",
                                         # timeseries_plots_min=eval('timeseries_plots_displaced_min'+str(ii)),
@@ -160,8 +222,8 @@ for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
                                         # fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
                                         # plot_or_save='save',
                                         # #axisLims=['2020-7-26','2020-7-27',0,100000],
-                                        # xAxisLims=['2020-7-26 13:00','2020-7-26 16:00'],
-                                        # yAxisLims=[80,220]
+                                        # xAxisLims=['2020-8-6 12:00','2020-8-6 15:00']
+                                        # #yAxisLims=[80,220]
                                         # )
 
 
