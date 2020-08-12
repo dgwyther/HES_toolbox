@@ -2,6 +2,7 @@ from matplotlib.dates import date2num
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
+import numpy as np
 from dateutil import parser
 
 def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,title,fname,plot_or_save,**keyword_parameters):
@@ -295,7 +296,24 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
     for ii,var in enumerate(timeseries_plots_avg):
         if dispRef=='initial':
             offsetFactor = dispFactor
-            offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
+            if ('resetOffset' in keyword_parameters):
+                resetDates=keyword_parameters['resetOffset']
+                offsetRef = np.zeros(inputData[var].size)
+                for tt,ttdate in enumerate(resetDates):
+                    if tt==0:        
+                        if inputData[var].loc[inputData[TimeIndex]==ttdate].isna().bool(): #if date is nan
+                            offsetRef[(inputData[TimeIndex]<ttdate)]= inputData[var].loc[~inputData[var].isnull()].iloc[0]
+                            offsetRef[(inputData[TimeIndex]>=ttdate)]=inputData[var].bfill().loc[inputData[TimeIndex]==ttdate]
+                        else:
+                            offsetRef[(inputData[TimeIndex]<ttdate)]= inputData[var].loc[~inputData[var].isnull()].iloc[0]
+                            offsetRef[(inputData[TimeIndex]>=ttdate)]= inputData[var].loc[inputData[TimeIndex]==ttdate]
+                    else:
+                        if inputData[var].loc[inputData[TimeIndex]==ttdate].isna().bool(): #if date is nan
+                            offsetRef[ inputData[TimeIndex] >=resetDates[tt]] = inputData[var].bfill().loc[inputData[TimeIndex]==ttdate]
+                        else:
+                            offsetRef[ inputData[TimeIndex] >=resetDates[tt]] = inputData[var].loc[inputData[TimeIndex]==ttdate]
+            elif ('resetOffset' not in keyword_parameters):
+                offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
         if beards==True:
             ax.fill_between(inputData[TimeIndex], offsetFactor*(len(timeseries_plots_max)-ii-1)+inputData[timeseries_plots_max[ii]]-offsetRef, offsetFactor*(len(timeseries_plots_min)-ii-1)+inputData[timeseries_plots_min[ii]]-offsetRef, alpha=0.5)
         else:
@@ -305,13 +323,33 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
     for ii,var in enumerate(timeseries_plots_avg):
         if dispRef=='initial':
             offsetFactor = dispFactor
-            offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
+            if ('resetOffset' in keyword_parameters):
+                resetDates=keyword_parameters['resetOffset']
+                offsetRef = np.zeros(inputData[var].size)
+                for tt,ttdate in enumerate(resetDates):
+                    if tt==0:        
+                        if inputData[var].loc[inputData[TimeIndex]==ttdate].isna().bool(): #if date is nan
+                            offsetRef[(inputData[TimeIndex]<ttdate)]= inputData[var].loc[~inputData[var].isnull()].iloc[0]
+                            offsetRef[(inputData[TimeIndex]>=ttdate)]=inputData[var].bfill().loc[inputData[TimeIndex]==ttdate]
+                        else:
+                            offsetRef[(inputData[TimeIndex]<ttdate)]= inputData[var].loc[~inputData[var].isnull()].iloc[0]
+                            offsetRef[(inputData[TimeIndex]>=ttdate)]= inputData[var].loc[inputData[TimeIndex]==ttdate]
+                    else:
+                        if inputData[var].loc[inputData[TimeIndex]==ttdate].isna().bool(): #if date is nan
+                            offsetRef[ inputData[TimeIndex] >=resetDates[tt]] = inputData[var].bfill().loc[inputData[TimeIndex]==ttdate]
+                        else:
+                            offsetRef[ inputData[TimeIndex] >=resetDates[tt]] = inputData[var].loc[inputData[TimeIndex]==ttdate]
+            elif ('resetOffset' not in keyword_parameters):
+                offsetRef = inputData[var].loc[~inputData[var].isnull()].iloc[0]
         x0=inputData[TimeIndex].min()
         x1=inputData[TimeIndex].max()
         colour=next(ax._get_lines.prop_cycler)['color']
         ax.plot(inputData[TimeIndex], offsetFactor*(len(timeseries_plots_avg)-ii-1)+inputData[timeseries_plots_avg[ii]]-offsetRef, label=var,markersize=1,marker='None',linestyle = 'solid',color=colour)
         ax.plot([x0,x1], [(dispFactor*ii),(dispFactor*ii)], label=None,linestyle = 'solid',color=(0.8, 0.8, 0.8))
-
+        if ('resetOffset' in keyword_parameters):
+            resetDates=keyword_parameters['resetOffset']
+            for tt,ttdate in enumerate(resetDates):
+                ax.axvline(x=parser.parse(ttdate),color='black')
     ax.set_xlabel(xAxisName)  # Add an x-label to the axes.
     ax.set_ylabel(yAxisName)  # Add a y-label to the axes.
     ax.set_title(title)  # Add a title to the axes.
@@ -347,6 +385,10 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
     plt.grid(True,axis='x')
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
+    
+
+    
+    
     
     if plot_or_save=='plot':
         plt.show()
