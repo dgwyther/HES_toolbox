@@ -15,9 +15,7 @@ logo_path = 'assets/logo.png'
 output_name = 'test.pdf'
 
 # file locations
-SS_filename = '../SampleData/HE604_RV50_CCB_NB_SensorStats.dat'
 SS_filename = '../SampleData/TMR701_RV50_CCB_NB_SensorStats.dat'
-#SRES_filename = '../dash/GAF/Data/HE605_RV50_GAF_SensorRelEventStats.dat'
 
 ## Alias table definition
 # Either select 'none': no aliasing
@@ -51,11 +49,6 @@ aliasTablePath='../SampleData/tmp.TMR701_RV50_CCB_NB_aliasTable.csv'
     # "SensorOffset(4)":"S_S2_G2_Offset",
     # "SensorOffset(5)":"S_S2_G3_Offset"
 # }
-
-## Trim data
-#trimVariable=['S_NB_HJ3_S2B_Min','S_NB_HJ3_S2B_Avg','S_NB_HJ3_S2B_Max']
-#trimStart['']
-#trimEnd['']
 
 ## LOAD FROM SPREADSHEET
 
