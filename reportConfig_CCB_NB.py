@@ -10,7 +10,8 @@ today = datetime.date.today()
 
 # global defns
 title = 'Captain Cook Bridge: Halving Joint 3 Monitoring Project'
-author = 'Report issued: '+f"{datetime.datetime.now():%d-%b-%Y}"
+#author = 'Report issued: '+f"{datetime.datetime.now():%d-%b-%Y}"
+author = 'Northbound'
 logo_path = 'assets/logo.png'
 output_name = 'test.pdf'
 
@@ -120,11 +121,11 @@ timeseries_plots_avg3=['T_NB_HJ3_C2B_Avg',
                        'T_NB_HJ3_C1V_Avg']                       
 title_Beards3='Temperature (Vibrating Wire Sensor Group 1)'
 yAx_Beards3='Temperature (C)'
-annotation3=['sudden drop in ambient temperature','working on instrument']
-annotatePointXY3={  'time':['26-07-2020 15:40','06-Aug-2020 15:00'],
-                    'height':[15, 15]}
-annotateTextXY3={   'time':['26-07-2020 15:40','06-Aug-2020 15:00'],
-                    'height':[10,10]}
+annotation3=['sudden drop in ambient temperature']
+annotatePointXY3={  'time':['26-07-2020 15:40'],
+                    'height':[15]}
+annotateTextXY3={   'time':['26-07-2020 15:40'],
+                    'height':[10]}
 #annotatePointXY3=['26-07-2020 15:40',15]
 #annotateTextXY3=['26-07-2020 15:40', 10]
 
@@ -238,7 +239,7 @@ timeseries_plots_displaced_avg1=[   'D_NB_HJ3_1HU_Avg',
                                     'D_NB_HJ3_2HL_Avg',
                                     'D_NB_HJ3_3HU_Avg',
                                     'D_NB_HJ3_3HL_Avg']
-dispFactorMMA1=20
+dispFactorMMA1=25
 dispRefMMA1='initial'
 title_dispMMA1='Displacement (with offset of '+str(dispFactor1)+'mm )'
 yAx_dispMMA1='Displacement (mm)'
@@ -266,7 +267,7 @@ timeseries_plots_displaced_avg2=[   'S_NB_HJ3_C2B_Avg',
                                     'S_NB_HJ3_C1H_Avg',
                                     'S_NB_HJ3_C1D_Avg',
                                     'S_NB_HJ3_C1V_Avg']
-dispFactorMMA2=20
+dispFactorMMA2=25
 dispRefMMA2='initial'
 title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactor2)+'ue offset, temperature corrected)'
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
@@ -294,7 +295,7 @@ timeseries_plots_displaced_avg3=[   'S_NB_HJ3_C2D_Avg',
                                     'S_NB_HJ3_C3H_Avg',
                                     'S_NB_HJ3_C3D_Avg',
                                     'S_NB_HJ3_C3V_Avg']
-dispFactorMMA3=20
+dispFactorMMA3=25
 dispRefMMA3='initial'
 title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactor3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
