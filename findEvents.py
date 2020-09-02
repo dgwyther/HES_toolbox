@@ -1,6 +1,5 @@
 #module functions
 import pandas as pd
-import math
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,6 +8,7 @@ import matplotlib.dates as mdates
 from functions.fun_loadData import loadData
 from functions.fun_applyAliasTable import applyAliasTable
 from functions.fun_addWaveformIndex import addWaveformIndex
+from functions.fun_generateWaveformPlots import generateWaveformPlot
 
 # filename settings
 SWfm_filename = '../SampleData/HE602_3680_RV50_CCB_SB_SensorWfm.dat'
@@ -30,7 +30,10 @@ plotVariables=['microS1T20Rel(1)',
                 'microS1T20Rel(6)',
                 'microS1T20Rel(7)',
                 'microS1T20Rel(8)']
-plot_or_save='plot'
+nRows=10
+nCols=2
+fname='test_waveformsubplots'
+plot_or_save='save'
 
 ########################## NO EDITS BELOW #############
 
@@ -49,35 +52,37 @@ if loadAlias=='csv':
 # Find events
 df_SWfm=addWaveformIndex(df_SWfm,TimeIndex,Interval)
 
-# Plot events
-nRows=10
-nCols=2
-fig, axs = plt.subplots(nRows, nCols, figsize=(10, 15), dpi=100, sharex=True)
-for jj in range(0,math.ceil(df_SWfm['waveformIndex'].iloc[-1]/(nRows*nCols))):
-    fig, axs = plt.subplots(nRows, nCols, figsize=(10, 15), dpi=100, sharex=True)
-    axIndex=1;
-    for nn in range(nRows*nCols*jj+1,nRows*nCols*(jj+1)+1):
-        if nn > df_SWfm['waveformIndex'].iloc[-1]: #don't do anything if we hit the last waveformIndex
-            continue
-        ax = axs.ravel()[axIndex-1]
-        toPlotX = df_SWfm[TimeIndex].loc[df_SWfm['waveformIndex']==nn]-df_SWfm[TimeIndex].loc[df_SWfm['waveformIndex']==nn].iloc[0]
-        for vv,vname in enumerate(plotVariables):
-            toPlotY = df_SWfm[vname].loc[df_SWfm['waveformIndex']==nn]
-            _ = ax.plot(toPlotX.dt.total_seconds(), toPlotY, label=vname)
-        ax.grid(b=True, which='major', color='#666666', linestyle='-')
-        ax.minorticks_on()  
-        ax.grid(b=True, which='minor', color='#999999', linestyle='-',alpha=0.2)
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        _=ax.text(0.5,0.86,df_SWfm[TimeIndex].loc[df_SWfm['waveformIndex']==nn].iloc[0], horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
-        axIndex=axIndex+1;
-    leg = ax.legend(bbox_to_anchor=(-1.1, -.75, -2, .102), loc=3, ncol=4, frameon=False)
-    leg.set_in_layout(False)
-    plt.grid(True)
-    plt.tight_layout(rect=[0,0.031,1,1])
-    print('saving figure number '+str(jj+1))
-    plt.savefig('test_waveformsubplots'+str(jj+1)+'.png')
-    plt.close()
+generateWaveformPlot(df_SWfm, TimeIndex, plotVariables, nRows, nCols, fname, plot_or_save,'shareXaxis')
+
+# # Plot events
+# nRows=10
+# nCols=2
+# fig, axs = plt.subplots(nRows, nCols, figsize=(10, 15), dpi=100, sharex=True)
+# for jj in range(0,math.ceil(df_SWfm['waveformIndex'].iloc[-1]/(nRows*nCols))):
+    # fig, axs = plt.subplots(nRows, nCols, figsize=(10, 15), dpi=100, sharex=True)
+    # axIndex=1;
+    # for nn in range(nRows*nCols*jj+1,nRows*nCols*(jj+1)+1):
+        # if nn > df_SWfm['waveformIndex'].iloc[-1]: #don't do anything if we hit the last waveformIndex
+            # continue
+        # ax = axs.ravel()[axIndex-1]
+        # toPlotX = df_SWfm[TimeIndex].loc[df_SWfm['waveformIndex']==nn]-df_SWfm[TimeIndex].loc[df_SWfm['waveformIndex']==nn].iloc[0]
+        # for vv,vname in enumerate(plotVariables):
+            # toPlotY = df_SWfm[vname].loc[df_SWfm['waveformIndex']==nn]
+            # _ = ax.plot(toPlotX.dt.total_seconds(), toPlotY, label=vname)
+        # ax.grid(b=True, which='major', color='#666666', linestyle='-')
+        # ax.minorticks_on()  
+        # ax.grid(b=True, which='minor', color='#999999', linestyle='-',alpha=0.2)
+        # ax.spines['top'].set_visible(False)
+        # ax.spines['right'].set_visible(False)
+        # _=ax.text(0.5,0.86,df_SWfm[TimeIndex].loc[df_SWfm['waveformIndex']==nn].iloc[0], horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
+        # axIndex=axIndex+1;
+    # leg = ax.legend(bbox_to_anchor=(-1.1, -.75, -2, .102), loc=3, ncol=4, frameon=False)
+    # leg.set_in_layout(False)
+    # plt.grid(True)
+    # plt.tight_layout(rect=[0,0.031,1,1])
+    # print('saving figure number '+str(jj+1))
+    # plt.savefig('test_waveformsubplots'+str(jj+1)+'.png')
+    # plt.close()
 
 
 
