@@ -16,14 +16,14 @@ logo_path = 'assets/logo.png'
 output_name = 'test.sb.pdf'
 
 # file locations
-SS_filename = '../SampleData/TMR701_RV50_CCB_SB_SensorStats.dat'
+SS_filename = '../SampleData/HE602_3680_RV50_CCB_SB_SensorStats.dat'
 
 ## Alias table definition
 # Either select 'none': no aliasing
 # or 'csv': to load from a path given in aliasTablePath
 # or 'dict': to load from a dictionary entered below.
-loadAlias='none'
-aliasTablePath='../SampleData/tmp.TMR701_RV50_CCB_NB_aliasTable.csv'
+loadAlias='csv'
+aliasTablePath='../SampleData/HE602_RV50_CCB_SB_aliasTable.csv'
 
 ## LOAD FROM SPREADSHEET
 # 1. Summary table title, sensor fields and names
@@ -88,14 +88,12 @@ timeseries_plots_avg3=['T_SB_HJ3_C2B_Avg',
                        'T_SB_HJ3_C1V_Avg']
 title_Beards3='Temperature (Vibrating Wire Sensor Group 1)'
 yAx_Beards3='Temperature (C)'
-annotation3=['sudden drop in ambient temperature']
-annotatePointXY3={  'time':['26-07-2020 15:40'],
-                    'height':[15]}
-annotateTextXY3={   'time':['26-07-2020 15:40'],
-                    'height':[10]}
-#annotatePointXY3=['26-07-2020 15:40',15]
-#annotateTextXY3=['26-07-2020 15:40', 10]
-
+keyword_parameters3={'yAxisLims':[0,26],
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None', #['sudden drop in ambient temperature'],
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]}
+                    }
 caption_Beards3=''
 timeseries_plots_min4=['T_SB_HJ3_C2D_Min',
                        'T_SB_HJ3_S2D_Min',
@@ -123,6 +121,10 @@ timeseries_plots_avg4=['T_SB_HJ3_C2D_Avg',
                        'T_SB_HJ3_C3V_Avg']
 title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
+#yAxisLims4=[0,26]
+keyword_parameters4={'yAxisLims':[0,26],
+                     'xAxisLims': 'None' #['2020-8-27 09:00','2020-8-27 12:30'],
+                     }
 caption_Beards4=''
 timeseries_plots_min5=[ 'T_SB_HJ3_Asphalt_Min',
                         'T_SB_HJ3_ToTS_Min',
@@ -138,6 +140,12 @@ timeseries_plots_avg5=[ 'T_SB_HJ3_Asphalt_Avg',
                         'T_SB_HJ3_ToBS_Avg',]
 title_Beards5='Temperature - Concrete & Asphalt'
 yAx_Beards5='Temperature (C)'
+keyword_parameters5={'yAxisLims':'None',
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None', #['sudden drop in ambient temperature'],
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]}
+                    }
 caption_Beards5=''
 
 #############################################################
@@ -210,6 +218,10 @@ dispFactorMMA1=25
 dispRefMMA1='initial'
 title_dispMMA1='Displacement (with offset of '+str(dispFactor1)+'mm )'
 yAx_dispMMA1='Displacement (mm)'
+keyword_parametersDisp1={'yAxisLims':'None',
+                         'xAxisLims':'None',
+                         'plot_or_save':'save'
+                         }
 timeseries_plots_displaced_min2=[   'S_SB_HJ3_C2B_Min',
                                     'S_SB_HJ3_S2B_Min',
                                     'S_SB_HJ3_S1H_Min',
@@ -238,6 +250,10 @@ dispFactorMMA2=25
 dispRefMMA2='initial'
 title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactor2)+'ue offset, temperature corrected)'
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
+keyword_parametersDisp2={'yAxisLims':[-50,275],
+                         'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                         'plot_or_save':'save'
+                         }
 timeseries_plots_displaced_min3=[   'S_SB_HJ3_C2D_Min',
                                     'S_SB_HJ3_S2D_Min',
                                     'S_SB_HJ3_S3H_Min',
@@ -266,7 +282,10 @@ dispFactorMMA3=25
 dispRefMMA3='initial'
 title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactor3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
-
+keyword_parametersDisp3={'yAxisLims':[-50,220],
+                         'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                         'plot_or_save':'save'
+                         }
 #############################################################
 # 3. Definitions and notes for x-y section
 NoXYPlots = 0

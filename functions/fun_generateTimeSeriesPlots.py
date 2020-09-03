@@ -14,7 +14,7 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,t
             ax.plot(inputData[TimeIndex], inputData[var], label=var,markersize=1,marker='.',linestyle = 'None')
     elif lines_or_markers=='lines':
         for var in timeseries_plots:
-            ax.plot(inputData[TimeIndex], inputData[var], label=var,linestyle = 'solid')  
+            ax.plot(inputData[TimeIndex], inputData[var], label=var,linestyle = 'solid')
 
     ax.axvspan(x0,x1, alpha=0.5, color='red')
     ax.set_xlabel('time')  # Add an x-label to the axes.
@@ -134,24 +134,24 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
     ax.set_ylabel(xAxisName)
     ax.set_ylabel(yAxisName)
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
-    if ('axisLims' in keyword_parameters):
+    if ('axisLims' in keyword_parameters and keyword_parameters['axisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['axisLims'][0])
         x1=parser.parse(keyword_parameters['axisLims'][1])
         y0=keyword_parameters['axisLims'][2]
         y1=keyword_parameters['axisLims'][3]
         ax.set_xlim([x0,x1])
         ax.set_ylim([y0,y1])
-    if ('xAxisLims' in keyword_parameters):
+    if ('xAxisLims' in keyword_parameters and keyword_parameters['xAxisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['xAxisLims'][0])
         x1=parser.parse(keyword_parameters['xAxisLims'][1])
         ax.set_xlim([x0,x1])
-    if ('yAxisLims' in keyword_parameters):
+    if ('yAxisLims' in keyword_parameters and keyword_parameters['yAxisLims'] != 'None'):
         y0=keyword_parameters['yAxisLims'][0]
         y1=keyword_parameters['yAxisLims'][1]
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_ylim(bottom=0)
-    if ('annotate' in keyword_parameters):
+    if ('annotate' in keyword_parameters and keyword_parameters['annotate'] != 'None'):
         for ii,var in enumerate(keyword_parameters['annotate']):
             annotation_text=var
             annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY']['time'][ii]))
@@ -207,7 +207,7 @@ def generateTimeSeriesSubplots(inputData,TimeIndex,timeseries_plots,nRows,nCols,
                     xytext=(annotate_x2, annotate_y2), textcoords='data',
                     arrowprops=dict(arrowstyle="->"),
                     horizontalalignment='right', verticalalignment='bottom')
-        
+
 
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
@@ -279,7 +279,7 @@ def generateTimeSeriesDisplaced(inputData,TimeIndex,timeseries_plots,dispFactor,
         plt.savefig(fname)
         plt.close()
 
-def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,dispFactor,dispRef,title='',xAxisName='',yAxisName='',fname='test.png',plot_or_save='plot',**keyword_parameters):
+def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timeseries_plots_max,timeseries_plots_avg,beards,dispFactor,dispRef,title='',xAxisName='',yAxisName='',fname='test.png',**keyword_parameters):
 ## generateTimeSeriesMinMaxAvg wants 3 input timeseries plot lists, with the following formats:
 # timeseries_plots_min = [  'var1_min',
 #                           'var2_min',
@@ -300,7 +300,7 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
                 resetDates=keyword_parameters['resetOffset']
                 offsetRef = np.zeros(inputData[var].size)
                 for tt,ttdate in enumerate(resetDates):
-                    if tt==0:        
+                    if tt==0:
                         if inputData[var].loc[inputData[TimeIndex]==ttdate].isna().bool(): #if date is nan
                             offsetRef[(inputData[TimeIndex]<ttdate)]= inputData[var].loc[~inputData[var].isnull()].iloc[0]
                             offsetRef[(inputData[TimeIndex]>=ttdate)]=inputData[var].bfill().loc[inputData[TimeIndex]==ttdate]
@@ -327,7 +327,7 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
                 resetDates=keyword_parameters['resetOffset']
                 offsetRef = np.zeros(inputData[var].size)
                 for tt,ttdate in enumerate(resetDates):
-                    if tt==0:        
+                    if tt==0:
                         if inputData[var].loc[inputData[TimeIndex]==ttdate].isna().bool(): #if date is nan
                             offsetRef[(inputData[TimeIndex]<ttdate)]= inputData[var].loc[~inputData[var].isnull()].iloc[0]
                             offsetRef[(inputData[TimeIndex]>=ttdate)]=inputData[var].bfill().loc[inputData[TimeIndex]==ttdate]
@@ -353,24 +353,24 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
     ax.set_xlabel(xAxisName)  # Add an x-label to the axes.
     ax.set_ylabel(yAxisName)  # Add a y-label to the axes.
     ax.set_title(title)  # Add a title to the axes.
-    if ('axisLims' in keyword_parameters):
+    if ('axisLims' in keyword_parameters and keyword_parameters['axisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['axisLims'][0])
         x1=parser.parse(keyword_parameters['axisLims'][1])
         y0=keyword_parameters['axisLims'][2]
         y1=keyword_parameters['axisLims'][3]
         ax.set_xlim([x0,x1])
         ax.set_ylim([y0,y1])
-    if ('xAxisLims' in keyword_parameters):
+    if ('xAxisLims' in keyword_parameters and keyword_parameters['xAxisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['xAxisLims'][0])
         x1=parser.parse(keyword_parameters['xAxisLims'][1])
         ax.set_xlim([x0,x1])
-    if ('yAxisLims' in keyword_parameters):
+    if ('yAxisLims' in keyword_parameters and keyword_parameters['yAxisLims'] != 'None'):
         y0=keyword_parameters['yAxisLims'][0]
         y1=keyword_parameters['yAxisLims'][1]
         ax.set_ylim([y0,y1])
     if (('axisLims','xAxisLims',) not in keyword_parameters):
         ax.set_xlim([x0,x1])
-    if ('annotate' in keyword_parameters):
+    if ('annotate' in keyword_parameters and keyword_parameters['annotate'] != 'None'):
         annotation_text=keyword_parameters['annotate']
         annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
         annotate_y1=keyword_parameters['annotatePointXY'][1]
@@ -385,13 +385,8 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
     plt.grid(True,axis='x')
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
-    
-
-    
-    
-    
-    if plot_or_save=='plot':
+    if keyword_parameters['plot_or_save']=='plot':
         plt.show()
-    elif plot_or_save=='save':
+    elif keyword_parameters['plot_or_save']=='save':
         plt.savefig(fname)
         plt.close()
