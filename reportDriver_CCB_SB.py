@@ -245,17 +245,58 @@ trimEnd=    ['2020-AUG-23 21:10',
              '2020-AUG-27 02:10']
 removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 
-trimVariable=['S_SB_HJ3_C3H_Min','S_SB_HJ3_C3H_Max','S_SB_HJ3_C3H_Avg']
-trimStart=  ['2020-AUG-23 22:35',
-             '2020-AUG-24 00:20',
-             '2020-AUG-24 20:30',
-             '2020-AUG-25 01:20']
-trimEnd=    ['2020-AUG-23 22:45',
-             '2020-AUG-24 00:30',
-             '2020-AUG-24 21:25',
-             '2020-AUG-25 01:30']
+# remove first alignments of strain group 1
+trimVariable=['S_SB_HJ3_C2B_Min','S_SB_HJ3_C2B_Max','S_SB_HJ3_C2B_Avg',
+              'S_SB_HJ3_S2B_Min','S_SB_HJ3_S2B_Max','S_SB_HJ3_S2B_Avg',
+              'S_SB_HJ3_S1H_Min','S_SB_HJ3_S1H_Max','S_SB_HJ3_S1H_Avg',
+              'S_SB_HJ3_S1D_Min','S_SB_HJ3_S1D_Max','S_SB_HJ3_S1D_Avg',
+              'S_SB_HJ3_S1V_Min','S_SB_HJ3_S1V_Max','S_SB_HJ3_S1V_Avg',
+              'S_SB_HJ3_C1H_Min','S_SB_HJ3_C1H_Max','S_SB_HJ3_C1H_Avg',
+              'S_SB_HJ3_C1D_Min','S_SB_HJ3_C1D_Max','S_SB_HJ3_C1D_Avg',
+              'S_SB_HJ3_C1V_Min','S_SB_HJ3_C1V_Max','S_SB_HJ3_C1V_Avg']
+trimStart=  ['2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40']
+trimEnd=    ['2020-AUG-25 11:50',
+             '2020-AUG-25 11:50',
+             '2020-AUG-25 11:50',
+             '2020-AUG-25 11:50',
+             '2020-AUG-25 11:50',
+             '2020-AUG-25 11:50',
+             '2020-AUG-25 11:50',
+             '2020-AUG-25 11:50']
 removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
-
+# remove first alignments of strain group 2
+trimVariable=['S_SB_HJ3_C2D_Min','S_SB_HJ3_C2D_Max','S_SB_HJ3_C2D_Avg',
+              'S_SB_HJ3_S2D_Min','S_SB_HJ3_S2D_Max','S_SB_HJ3_S2D_Avg',
+              'S_SB_HJ3_S3H_Min','S_SB_HJ3_S3H_Max','S_SB_HJ3_S3H_Avg',
+              'S_SB_HJ3_S3D_Min','S_SB_HJ3_S3D_Max','S_SB_HJ3_S3D_Avg',
+              'S_SB_HJ3_S3V_Min','S_SB_HJ3_S3V_Max','S_SB_HJ3_S3V_Avg',
+              'S_SB_HJ3_C3H_Min','S_SB_HJ3_C3H_Max','S_SB_HJ3_C3H_Avg',
+              'S_SB_HJ3_C3D_Min','S_SB_HJ3_C3D_Max','S_SB_HJ3_C3D_Avg',
+              'S_SB_HJ3_C3V_Min','S_SB_HJ3_C3V_Max','S_SB_HJ3_C3V_Avg']
+trimStart=  ['2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40',
+             '2020-AUG-25 11:40']
+trimEnd=    ['2020-AUG-25 15:50',
+             '2020-AUG-25 15:50',
+             '2020-AUG-25 15:50',
+             '2020-AUG-25 15:50',
+             '2020-AUG-25 15:50',
+             '2020-AUG-25 15:50',
+             '2020-AUG-25 15:50',
+             '2020-AUG-25 15:50']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 
 
 
@@ -264,35 +305,21 @@ if 'SS_filename' in locals():
     df_SS=addNANGaps(df_SS,"TIMESTAMP",'5Min')
 
 # Re-align/join any datasets which have had shifts mid-data
-variablesToRealign=['S_SB_HJ3_S2D_Avg','S_SB_HJ3_S2D_Min','S_SB_HJ3_S2D_Max',
-                    'S_SB_HJ3_C2D_Avg','S_SB_HJ3_C2D_Min','S_SB_HJ3_C2D_Max',
-                    'S_SB_HJ3_S3H_Avg','S_SB_HJ3_S3H_Min','S_SB_HJ3_S3H_Max',
-                    'S_SB_HJ3_C3H_Avg','S_SB_HJ3_C3H_Min','S_SB_HJ3_C3H_Max']
-shiftTimes=['2020-AUG-07 01:30','2020-AUG-07 01:30','2020-AUG-07 01:30',
-            '2020-AUG-07 01:30','2020-AUG-07 01:30','2020-AUG-07 01:30',
-            '2020-AUG-06 14:35','2020-AUG-06 14:35','2020-AUG-06 14:35',
-            '2020-AUG-06 14:35','2020-AUG-06 14:35','2020-AUG-06 14:35']
-shiftValues=[64.4, 64.4, 64.4,
-             17.3, 17.3, 17.3,
-             -50.8,-50.8,-50.8,
-             -28.5,-28.5,-28.5 ]
-joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
+# variablesToRealign=['S_SB_HJ3_C2B_Avg','S_SB_HJ3_C2B_Min','S_SB_HJ3_C2B_Max',
+#                     'S_SB_HJ3_S2B_Avg','S_SB_HJ3_S2B_Min','S_SB_HJ3_S2B_Max',
+#                     'S_SB_HJ3_S3H_Avg','S_SB_HJ3_S3H_Min','S_SB_HJ3_S3H_Max',
+#                     'S_SB_HJ3_C3H_Avg','S_SB_HJ3_C3H_Min','S_SB_HJ3_C3H_Max']
+# shiftTimes=['2020-AUG-07 11:50','2020-AUG-07 11:50','2020-AUG-07 11:50',
+#             '2020-AUG-07 01:30','2020-AUG-07 01:30','2020-AUG-07 01:30',
+#             '2020-AUG-06 14:35','2020-AUG-06 14:35','2020-AUG-06 14:35',
+#             '2020-AUG-06 14:35','2020-AUG-06 14:35','2020-AUG-06 14:35']
+# shiftValues=[48.38, 48.38, 48.38,
+#              17.3, 17.3, 17.3,
+#              -50.8,-50.8,-50.8,
+#              -28.5,-28.5,-28.5 ]
+# joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
 
-variablesToRealign=['S_SB_HJ3_S1H_Avg','S_SB_HJ3_S1H_Min','S_SB_HJ3_S1H_Max',
-                    'S_SB_HJ3_S2B_Avg','S_SB_HJ3_S2B_Min','S_SB_HJ3_S2B_Max',
-                    'S_SB_HJ3_S1V_Avg','S_SB_HJ3_S1V_Min','S_SB_HJ3_S1V_Max']
-shiftTimes=['2020-AUG-06 14:20','2020-AUG-06 14:20','2020-AUG-06 14:20',
-            '2020-AUG-06 14:25','2020-AUG-06 14:25','2020-AUG-06 14:25',
-            '2020-AUG-06 14:10','2020-AUG-06 14:10','2020-AUG-06 14:10']
-shiftValues=[-6.0,-6.0,-6.0,
-             33.1,33.1,33.1,
-             42.5,42.5,42.5]
-joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
 
-variablesToRealign=['S_SB_HJ3_C3H_Avg','S_SB_HJ3_C3H_Min','S_SB_HJ3_C3H_Max',]
-shiftTimes=['2020-AUG-25 15:20','2020-AUG-25 15:20','2020-AUG-25 15:20']
-shiftValues=[167,167,167]
-joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
 
 
 ## GENERATE PLOTS
