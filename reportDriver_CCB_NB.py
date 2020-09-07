@@ -48,8 +48,8 @@ if loadAlias=='csv':
     applyAliasTable(df_SS,aliasTable_FromCSV)
 elif loadAlias=='dict':
     applyAliasTable(df_SS,aliasTable)
-    
-    
+
+
 # # Trim data
 print('trimming data')
 trimVariable=['D_NB_HJ3_1HU_Min',
@@ -272,9 +272,9 @@ shiftTimes=['2020-AUG-07 01:30','2020-AUG-07 01:30','2020-AUG-07 01:30',
             '2020-AUG-07 01:30','2020-AUG-07 01:30','2020-AUG-07 01:30',
             '2020-AUG-06 14:35','2020-AUG-06 14:35','2020-AUG-06 14:35',
             '2020-AUG-06 14:35','2020-AUG-06 14:35','2020-AUG-06 14:35']
-shiftValues=[64.4, 64.4, 64.4,  
-             17.3, 17.3, 17.3,  
-             -50.8,-50.8,-50.8, 
+shiftValues=[64.4, 64.4, 64.4,
+             17.3, 17.3, 17.3,
+             -50.8,-50.8,-50.8,
              -28.5,-28.5,-28.5 ]
 joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
 
@@ -336,26 +336,19 @@ generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             yAxisName=eval('yAx_Beards'+str(ii)),
                             fname='test_timeseriesBeards'+str(ii)+'.png',
                             plot_or_save='save')
-                                #,
-                                #xAxisLims=['2020-7-26 00:00','2020-7-27 00:00'])
 
 ii=3 # Temperatures in Group 1
 generateTimeSeriesMinMaxAvg(inputData=df_SS,
-                    TimeIndex="TIMESTAMP",
-                    timeseries_plots_min=eval('timeseries_plots_min'+str(ii)),
-                    timeseries_plots_max=eval('timeseries_plots_max'+str(ii)),
-                    timeseries_plots_avg=eval('timeseries_plots_avg'+str(ii)),
-                    beards=True,
-                    title=eval('title_Beards'+str(ii)),
-                    xAxisName='',
-                    yAxisName=eval('yAx_Beards'+str(ii)),
-                    fname='test_timeseriesBeards'+str(ii)+'.png',
-                    plot_or_save='save',
-                    annotate=eval('annotation'+str(ii)),
-                    annotatePointXY=eval('annotatePointXY'+str(ii)),
-                    annotateTextXY=eval('annotateTextXY'+str(ii))
-                    #xAxisLims=['2020-8-27 09:00','2020-8-27 12:30']
-                    )
+                            TimeIndex="TIMESTAMP",
+                            timeseries_plots_min=eval('timeseries_plots_min'+str(ii)),
+                            timeseries_plots_max=eval('timeseries_plots_max'+str(ii)),
+                            timeseries_plots_avg=eval('timeseries_plots_avg'+str(ii)),
+                            beards=True,
+                            title=eval('title_Beards'+str(ii)),
+                            xAxisName='',
+                            yAxisName=eval('yAx_Beards'+str(ii)),
+                            fname='test_timeseriesBeards'+str(ii)+'.png',
+                            **keyword_parameters3)
 
 ii=4 # Temperatures in group 2
 generateTimeSeriesMinMaxAvg(inputData=df_SS,
@@ -368,8 +361,8 @@ generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             xAxisName='',
                             yAxisName=eval('yAx_Beards'+str(ii)),
                             fname='test_timeseriesBeards'+str(ii)+'.png',
-                            plot_or_save='save')
-                            
+                            **keyword_parameters4)
+
 ii=5 # Temperatures in concrete and asphalt
 generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             TimeIndex="TIMESTAMP",
@@ -381,7 +374,7 @@ generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             xAxisName='',
                             yAxisName=eval('yAx_Beards'+str(ii)),
                             fname='test_timeseriesBeards'+str(ii)+'.png',
-                            plot_or_save='save')
+                            **keyword_parameters5)
 
 
 for ii in range(1,NoTimeSeriesSubplots+1):
@@ -408,25 +401,23 @@ for ii in range(1,NoTimeSeriesDisplaced+1):
                                 yAxisName=eval('yAx_disp'+str(ii)),
                                 fname='test_timeseriesDisplaced'+str(ii)+'.png',
                                 plot_or_save='save')
-                                #,
-                                #xAxisLims=['2020-7-26 00:00','2020-7-27 00:00'])
 
-for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
-    generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
-                                            TimeIndex="TIMESTAMP",
-                                            timeseries_plots_min=eval('timeseries_plots_displaced_min'+str(ii)),
-                                            timeseries_plots_max=eval('timeseries_plots_displaced_max'+str(ii)),
-                                            timeseries_plots_avg=eval('timeseries_plots_displaced_avg'+str(ii)),
-                                            beards=True,
-                                            dispFactor=eval('dispFactorMMA'+str(ii)),
-                                            dispRef=eval('dispRefMMA'+str(ii)),
-                                            title=eval('title_dispMMA'+str(ii)),
-                                            xAxisName='',
-                                            yAxisName=eval('yAx_dispMMA'+str(ii)),
-                                            fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
-                                            plot_or_save='save'#,
-                                            #xAxisLims=['2020-8-13 09:00','2020-8-13 12:00']
-                                            )
+#for ii in range(1,NoTimeSeriesDisplacedMinMaxAvg+1):
+ii=1
+generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
+                                        TimeIndex="TIMESTAMP",
+                                        timeseries_plots_min=eval('timeseries_plots_displaced_min'+str(ii)),
+                                        timeseries_plots_max=eval('timeseries_plots_displaced_max'+str(ii)),
+                                        timeseries_plots_avg=eval('timeseries_plots_displaced_avg'+str(ii)),
+                                        beards=True,
+                                        dispFactor=eval('dispFactorMMA'+str(ii)),
+                                        dispRef=eval('dispRefMMA'+str(ii)),
+                                        title=eval('title_dispMMA'+str(ii)),
+                                        xAxisName='',
+                                        yAxisName=eval('yAx_dispMMA'+str(ii)),
+                                        fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
+                                        **keyword_parametersDisp1
+                                        )
 ii=2
 generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
                                         TimeIndex="TIMESTAMP",
@@ -440,11 +431,7 @@ generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
                                         xAxisName='',
                                         yAxisName=eval('yAx_dispMMA'+str(ii)),
                                         fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
-                                        plot_or_save='save',
-                                        #resetOffset=['2020-8-9'],
-                                        #axisLims=['2020-7-26','2020-7-27',0,100000],
-                                        #xAxisLims=['2020-8-24 00:00','2020-8-24 11:30'],
-                                        yAxisLims=[-50,275]
+                                        **keyword_parametersDisp2
                                         )
 
 ii=3
@@ -460,11 +447,7 @@ generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
                                         xAxisName='',
                                         yAxisName=eval('yAx_dispMMA'+str(ii)),
                                         fname='test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',
-                                        plot_or_save='save',
-                                        #resetOffset=['2020-8-9'],
-                                        #axisLims=['2020-7-26','2020-7-27',0,100000],
-                                        #xAxisLims=['2020-8-23 12:00','2020-8-27 14:40'],
-                                        yAxisLims=[-50,220]
+                                        **keyword_parametersDisp3
                                         )
 
 

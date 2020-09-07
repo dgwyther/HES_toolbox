@@ -121,7 +121,6 @@ timeseries_plots_avg4=['T_SB_HJ3_C2D_Avg',
                        'T_SB_HJ3_C3V_Avg']
 title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
-#yAxisLims4=[0,26]
 keyword_parameters4={'yAxisLims':[0,26],
                      'xAxisLims': 'None' #['2020-8-27 09:00','2020-8-27 12:30'],
                      }
