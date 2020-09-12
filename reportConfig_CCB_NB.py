@@ -23,7 +23,7 @@ SS_filename = '../SampleData/TMR701_RV50_CCB_NB_SensorStats.dat'
 # or 'csv': to load from a path given in aliasTablePath
 # or 'dict': to load from a dictionary entered below.
 loadAlias='csv'
-aliasTablePath='../SampleData/tmp.TMR701_RV50_CCB_NB_aliasTable.csv'
+aliasTablePath='../SampleData/TMR701_RV50_CCB_NB_aliasTable.csv'
 # loadAlias='dict'
 # aliasTable_SRES = {
     # "TIMESTAMP":"TIMESTAMP",
@@ -60,39 +60,59 @@ section1_notes = 'This report present data gathered at the CCB northbound halvin
 #############################################################
 # 2. Time series plot - include field names for each plot
 NoTimeSeriesPlots = 0
-timeseries_plot1 = ["SensorRel_Max(1)",
-                    "SensorRel_Max(2)",
-                    "SensorRel_Max(3)",
-                    "SensorRel_Max(4)",
-                    "SensorRel_Max(5)"]
+timeseries_plot1 = ["A116_BattV_Avg","BattV_Avg"]
+keyword_parameters_ts1={'addHighlight':'None',
+                     'yAxisName':'Voltage (V)',
+                     'xAxisName':'time',
+                     'yAxisLims':'None',
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None',
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'plot'
+                    }
 #
 NoTimeSeriesWithBeards=5
-timeseries_plots_min1=[ 'L_NB_HJ3_B1_Min',
-                        'L_NB_HJ3_B2_Min',
-                        'L_NB_HJ3_B3_Min',
+timeseries_plots_min1=[ 'L_NB_HJ3_B1(S15_KGA2)_Min',
+                        'L_NB_HJ3_B2(S14_KGE1)_Min',
+                        'L_NB_HJ3_B3(S13_KGA1)_Min',
                         'L_NB_HJ3_B123_Min']
-timeseries_plots_max1=[ 'L_NB_HJ3_B1_Max',
-                        'L_NB_HJ3_B2_Max',
-                        'L_NB_HJ3_B3_Max',
+timeseries_plots_max1=[ 'L_NB_HJ3_B1(S15_KGA2)_Max',
+                        'L_NB_HJ3_B2(S14_KGE1)_Max',
+                        'L_NB_HJ3_B3(S13_KGA1)_Max',
                         'L_NB_HJ3_B123_Max']
-timeseries_plots_avg1=[ 'L_NB_HJ3_B1_Avg',
-                        'L_NB_HJ3_B2_Avg',
-                        'L_NB_HJ3_B3_Avg',
+timeseries_plots_avg1=[ 'L_NB_HJ3_B1(S15_KGA2)_Avg',
+                        'L_NB_HJ3_B2(S14_KGE1)_Avg',
+                        'L_NB_HJ3_B3(S13_KGA1)_Avg',
                         'L_NB_HJ3_B123_Avg']
 title_Beards1='Bearing Loads (Minimum, Average & Maximum)'
 yAx_Beards1='Bearing load (t)'
+keyword_parameters1={'yAxisLims':'None',
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None',
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'save'
+                    }
 caption_Beards1=''
-timeseries_plots_min2=['DF_NB_HJ3_B1_Min',
-                        'DF_NB_HJ3_B2_Min',
-                        'DF_NB_HJ3_B3_Min']
-timeseries_plots_max2=['DF_NB_HJ3_B1_Max',
-                        'DF_NB_HJ3_B2_Max',
-                        'DF_NB_HJ3_B3_Max']
-timeseries_plots_avg2=['DF_NB_HJ3_B1_Avg',
-                        'DF_NB_HJ3_B2_Avg',
-                        'DF_NB_HJ3_B3_Avg']
+timeseries_plots_min2=['DF_NB_HJ3_B1(S15_KGA2)_Min',
+                        'DF_NB_HJ3_B2(S14_KGE1)_Min',
+                        'DF_NB_HJ3_B3(S13_KGA1)_Min']
+timeseries_plots_max2=['DF_NB_HJ3_B1(S15_KGA2)_Max',
+                        'DF_NB_HJ3_B2(S14_KGE1)_Max',
+                        'DF_NB_HJ3_B3(S13_KGA1)_Max']
+timeseries_plots_avg2=['DF_NB_HJ3_B1(S15_KGA2)_Avg',
+                        'DF_NB_HJ3_B2(S14_KGE1)_Avg',
+                        'DF_NB_HJ3_B3(S13_KGA1)_Avg']
 title_Beards2='Distribution factor (Minimum, Average & Maximum)'
 yAx_Beards2='Distribution factor'
+keyword_parameters2={'yAxisLims':'None',
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None',
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'save'
+                    }
 caption_Beards2=''
 timeseries_plots_min3=['T_NB_HJ3_C2B_Min',
                        'T_NB_HJ3_S2B_Min',
@@ -120,7 +140,7 @@ timeseries_plots_avg3=['T_NB_HJ3_C2B_Avg',
                        'T_NB_HJ3_C1V_Avg']
 title_Beards3='Temperature (Vibrating Wire Sensor Group 1)'
 yAx_Beards3='Temperature (C)'
-keyword_parameters3={'yAxisLims':[0,26],
+keyword_parameters3={'yAxisLims':[5,30],
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': ['sudden drop in ambient temperature'],
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
@@ -154,7 +174,7 @@ timeseries_plots_avg4=['T_NB_HJ3_C2D_Avg',
                        'T_NB_HJ3_C3V_Avg']
 title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
-keyword_parameters4={'yAxisLims':[0,26],
+keyword_parameters4={'yAxisLims':[5,30],
                      'xAxisLims': 'None',
                      'plot_or_save':'save'
                      }
@@ -173,7 +193,7 @@ timeseries_plots_avg5=['T_NB_HJ3_Asphalt_Avg',
                         'T_NB_HJ3_ToBS_Avg',]
 title_Beards5='Temperature - Concrete & Asphalt'
 yAx_Beards5='Temperature (C)'
-keyword_parameters5={'yAxisLims': 'None',
+keyword_parameters5={'yAxisLims': [5,30],
                      'xAxisLims': 'None',
                      'plot_or_save':'save'
                      }
@@ -315,7 +335,7 @@ dispFactorMMA3=25
 dispRefMMA3='initial'
 title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactor3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
-keyword_parametersDisp3={'yAxisLims':[-50,220],
+keyword_parametersDisp3={'yAxisLims':[-50,400],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                          'plot_or_save':'save'
                          }

@@ -52,34 +52,20 @@ elif loadAlias=='dict':
 
 # # Trim data
 print('trimming data')
-trimVariable=['D_NB_HJ3_1HU_Min',
-              'D_NB_HJ3_1HU_Max',
-              'D_NB_HJ3_1HU_Avg',
-              'D_NB_HJ3_1HL_Min',
-              'D_NB_HJ3_1HL_Max',
-              'D_NB_HJ3_1HL_Avg']
+# NaN the displacement data, as these sensors are currently disconnected (from Aug-13)
+trimVariable=['D_NB_HJ3_1HU_Min','D_NB_HJ3_1HU_Max','D_NB_HJ3_1HU_Avg',
+              'D_NB_HJ3_1HL_Min','D_NB_HJ3_1HL_Max','D_NB_HJ3_1HL_Avg',
+              'D_NB_HJ3_2HU_Min','D_NB_HJ3_2HL_Min','D_NB_HJ3_3HU_Min',
+              'D_NB_HJ3_3HL_Min','D_NB_HJ3_2HU_Max','D_NB_HJ3_2HL_Max',
+              'D_NB_HJ3_3HU_Max','D_NB_HJ3_3HL_Max','D_NB_HJ3_2HU_Avg',
+              'D_NB_HJ3_2HL_Avg','D_NB_HJ3_3HU_Avg','D_NB_HJ3_3HL_Avg']
 trimStart=  ['2020-AUG-13 09:50']
-trimEnd=    ['2020-SEP-01 00:00']
-removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
-trimVariable=['D_NB_HJ3_2HU_Min',
-              'D_NB_HJ3_2HL_Min',
-              'D_NB_HJ3_3HU_Min',
-              'D_NB_HJ3_3HL_Min',
-              'D_NB_HJ3_2HU_Max',
-              'D_NB_HJ3_2HL_Max',
-              'D_NB_HJ3_3HU_Max',
-              'D_NB_HJ3_3HL_Max',
-              'D_NB_HJ3_2HU_Avg',
-              'D_NB_HJ3_2HL_Avg',
-              'D_NB_HJ3_3HU_Avg',
-              'D_NB_HJ3_3HL_Avg']
-trimStart=  ['2020-AUG-13 11:15']
-trimEnd=    ['2020-SEP-01 00:00']
+trimEnd=    ['2020-OCT-01 00:00']
 removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 
-trimVariable=[  'T_NB_HJ3_C1H_Min','T_NB_HJ3_C1H_Max','T_NB_HJ3_C1H_Avg',
-                'T_NB_HJ3_S1H_Min','T_NB_HJ3_S1H_Max','T_NB_HJ3_S1H_Avg',
-                'T_NB_HJ3_C2B_Min','T_NB_HJ3_C2B_Max','T_NB_HJ3_C2B_Avg']
+trimVariable=['T_NB_HJ3_C1H_Min','T_NB_HJ3_C1H_Max','T_NB_HJ3_C1H_Avg',
+              'T_NB_HJ3_S1H_Min','T_NB_HJ3_S1H_Max','T_NB_HJ3_S1H_Avg',
+              'T_NB_HJ3_C2B_Min','T_NB_HJ3_C2B_Max','T_NB_HJ3_C2B_Avg']
 trimStart=  ['2020-AUG-6 13:50']
 trimEnd=    ['2020-AUG-6 14:20']
 removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
@@ -255,9 +241,52 @@ trimEnd=    ['2020-AUG-23 22:45',
              '2020-AUG-24 21:25',
              '2020-AUG-25 01:30']
 removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
-
-
-
+# remove data that is corrupted post 'blackout'/servicing on ~Sep-03.
+trimVariable=['L_NB_HJ3_B1(S15_KGA2)_Min','L_NB_HJ3_B1(S15_KGA2)_Max','L_NB_HJ3_B1(S15_KGA2)_Avg',
+              'L_NB_HJ3_B2(S14_KGE1)_Min','L_NB_HJ3_B2(S14_KGE1)_Max','L_NB_HJ3_B2(S14_KGE1)_Avg',
+              'L_NB_HJ3_B3(S13_KGA1)_Min','L_NB_HJ3_B3(S13_KGA1)_Max','L_NB_HJ3_B3(S13_KGA1)_Avg',
+              'L_NB_HJ3_B123_Min','L_NB_HJ3_B123_Max','L_NB_HJ3_B123_Avg',
+              'DF_NB_HJ3_B1(S15_KGA2)_Min','DF_NB_HJ3_B1(S15_KGA2)_Max','DF_NB_HJ3_B1(S15_KGA2)_Avg',
+              'DF_NB_HJ3_B2(S14_KGE1)_Min','DF_NB_HJ3_B2(S14_KGE1)_Max','DF_NB_HJ3_B2(S14_KGE1)_Avg',
+              'DF_NB_HJ3_B3(S13_KGA1)_Min','DF_NB_HJ3_B3(S13_KGA1)_Max','DF_NB_HJ3_B3(S13_KGA1)_Avg']
+trimStart=  ['2020-SEP-03 20:00',
+             '2020-SEP-04 11:55',
+             '2020-SEP-04 16:40',
+             '2020-SEP-06 11:15',
+             '2020-SEP-08 20:30']
+trimEnd=    ['2020-SEP-03 20:15',
+             '2020-SEP-04 14:05',
+             '2020-SEP-04 18:50',
+             '2020-SEP-06 18:20',
+             '2020-SEP-09 01:10']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+trimVariable=['T_NB_HJ3_ToBS_Min','T_NB_HJ3_ToBS_Max','T_NB_HJ3_ToBS_Avg']
+trimStart=  ['2020-SEP-03 12:45']
+trimEnd=    ['2020-SEP-03 12:55']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+trimVariable=['T_NB_HJ3_ToBS_Min','T_NB_HJ3_ToBS_Max','T_NB_HJ3_ToBS_Avg',
+              'T_NB_HJ3_ToTS_Min','T_NB_HJ3_ToTS_Max','T_NB_HJ3_ToTS_Avg',
+              'T_NB_HJ3_BoTS_Min','T_NB_HJ3_BoTS_Max','T_NB_HJ3_BoTS_Avg',
+              'T_NB_HJ3_Asphalt_Min','T_NB_HJ3_Asphalt_Max','T_NB_HJ3_Asphalt_Avg']
+trimStart=  ['2020-SEP-03 12:45',
+             '2020-SEP-04 01:50',
+             '2020-SEP-05 03:05',
+             '2020-SEP-06 05:10',
+             '2020-SEP-06 21:05',
+             '2020-SEP-08 01:10',
+             '2020-SEP-09 00:10']
+trimEnd=    ['2020-SEP-03 12:55',
+             '2020-SEP-04 10:50',
+             '2020-SEP-05 10:50',
+             '2020-SEP-06 09:55',
+             '2020-SEP-07 10:55',
+             '2020-SEP-09 11:50',
+             '2020-SEP-09 11:55']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+trimVariable=['S_NB_HJ3_C2B_Min','S_NB_HJ3_C2B_Max','S_NB_HJ3_C2B_Avg']
+trimStart=  ['2020-SEP-07 14:40']
+trimEnd=    ['2020-SEP-07 14:55']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 
 # Add NaN in any time gaps
 if 'SS_filename' in locals():
@@ -293,8 +322,29 @@ variablesToRealign=['S_NB_HJ3_C3H_Avg','S_NB_HJ3_C3H_Min','S_NB_HJ3_C3H_Max',]
 shiftTimes=['2020-AUG-25 15:20','2020-AUG-25 15:20','2020-AUG-25 15:20']
 shiftValues=[167,167,167]
 joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
-
-
+#testing of B1 on 10th and 11th Sep.
+trimVariable=['L_NB_HJ3_B1(S15_KGA2)_Min','L_NB_HJ3_B1(S15_KGA2)_Max','L_NB_HJ3_B1(S15_KGA2)_Avg',
+              'L_NB_HJ3_B123_Min','L_NB_HJ3_B123_Max','L_NB_HJ3_B123_Avg',
+              'DF_NB_HJ3_B1(S15_KGA2)_Min','DF_NB_HJ3_B1(S15_KGA2)_Max','DF_NB_HJ3_B1(S15_KGA2)_Avg',
+              'DF_NB_HJ3_B2(S14_KGE1)_Min','DF_NB_HJ3_B2(S14_KGE1)_Max','DF_NB_HJ3_B2(S14_KGE1)_Avg',
+              'DF_NB_HJ3_B3(S13_KGA1)_Min','DF_NB_HJ3_B3(S13_KGA1)_Max','DF_NB_HJ3_B3(S13_KGA1)_Avg']
+trimStart=  ['2020-SEP-10 14:10',
+             '2020-SEP-11 08:15']
+trimEnd=    ['2020-SEP-10 14:40',
+             '2020-SEP-11 09:40']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+trimVariable=['L_NB_HJ3_B1(S15_KGA2)_Min','L_NB_HJ3_B1(S15_KGA2)_Max','L_NB_HJ3_B1(S15_KGA2)_Avg',
+              'L_NB_HJ3_B2(S14_KGE1)_Min','L_NB_HJ3_B2(S14_KGE1)_Max','L_NB_HJ3_B2(S14_KGE1)_Avg',
+              'L_NB_HJ3_B3(S13_KGA1)_Min','L_NB_HJ3_B3(S13_KGA1)_Max','L_NB_HJ3_B3(S13_KGA1)_Avg',
+              'L_NB_HJ3_B123_Min','L_NB_HJ3_B123_Max','L_NB_HJ3_B123_Avg',
+              'DF_NB_HJ3_B1(S15_KGA2)_Min','DF_NB_HJ3_B1(S15_KGA2)_Max','DF_NB_HJ3_B1(S15_KGA2)_Avg',
+              'DF_NB_HJ3_B2(S14_KGE1)_Min','DF_NB_HJ3_B2(S14_KGE1)_Max','DF_NB_HJ3_B2(S14_KGE1)_Avg',
+              'DF_NB_HJ3_B3(S13_KGA1)_Min','DF_NB_HJ3_B3(S13_KGA1)_Max','DF_NB_HJ3_B3(S13_KGA1)_Avg']
+trimStart=  ['2020-SEP-10 17:15',
+             '2020-SEP-11 09:50']
+trimEnd=    ['2020-SEP-10 21:50',
+             '2020-SEP-11 12:00']
+removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 ## GENERATE PLOTS
 print('generating plots:')
 if NoTimeSeriesWithBeards!=0:
@@ -323,7 +373,7 @@ generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             xAxisName='',
                             yAxisName=eval('yAx_Beards'+str(ii)),
                             fname='test_timeseriesBeards'+str(ii)+'.png',
-                            plot_or_save='save')
+                            **keyword_parameters1)
 ii=2 # Distribution factor
 generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             TimeIndex="TIMESTAMP",
@@ -335,7 +385,7 @@ generateTimeSeriesMinMaxAvg(inputData=df_SS,
                             xAxisName='',
                             yAxisName=eval('yAx_Beards'+str(ii)),
                             fname='test_timeseriesBeards'+str(ii)+'.png',
-                            plot_or_save='save')
+                            **keyword_parameters2)
 
 ii=3 # Temperatures in Group 1
 generateTimeSeriesMinMaxAvg(inputData=df_SS,
@@ -453,8 +503,8 @@ generateTimeSeriesDisplacedMinMaxAvg(inputData=df_SS,
 
 
 for ii in range(1,NoTimeSeriesPlots+1):
-    generateTimeSeriesPlot(df_SS,"TIMESTAMP",eval('timeseries_plot'+str(ii)),'a temporary title','test_timeseries'+str(ii)+'.png','save')
-    generateTimeSeriesPlotZoomed(df_SS,"TIMESTAMP",eval('timeseries_plot'+str(ii)),'a temporary title','test_timeseries_zoom'+str(ii)+'.png','save')
+   generateTimeSeriesPlot(df_SS,"TIMESTAMP",eval('timeseries_plot'+str(ii)),'a temporary title','test_timeseries'+str(ii)+'.png','save')
+   generateTimeSeriesPlotZoomed(df_SS,"TIMESTAMP",eval('timeseries_plot'+str(ii)),'a temporary title','test_timeseries_zoom'+str(ii)+'.png','save')
 
 for ii in range(1,NoXYPlots+1):
     generateXYPlot(df_SRES,eval('XY_plot'+str(ii)),'linear',eval('XY_plot'+str(ii)+'_title'),'test_XY'+str(ii)+'.png','save')

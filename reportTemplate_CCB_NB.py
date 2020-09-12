@@ -1,6 +1,6 @@
 ### Template file
 # This file provides the layout and order template for the document.
-## 
+##
 
 pdf.print_sectionHeader(1, 'Summary information')
 pdf.print_text(section1_notes)
@@ -22,7 +22,7 @@ for ii in range(3,NoTimeSeriesWithBeards+1):
 # for ii in range(1,NoTimeSeriesSubplots+1):
     # pdf.print_timeSeriesPlot('test_timeseriesSubplots'+str(ii)+'.png',190,'A caption')
 
-pdf.print_sectionHeader(4, 'Longitudinal Displacements')
+pdf.print_sectionHeaderPageBreak(4, 'Longitudinal Displacements')
 for ii in range(1,2):
     pdf.print_timeSeriesPlot('test_timeseriesDisplacedMinMaxAvg'+str(ii)+'.png',190,'')
 

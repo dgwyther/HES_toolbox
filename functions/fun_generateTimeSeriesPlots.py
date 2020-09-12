@@ -5,42 +5,47 @@ import datetime
 import numpy as np
 from dateutil import parser
 
-def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,title,fname,plot_or_save,**keyword_parameters):
+def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_markers,title,fname,**keyword_parameters):
     fig, ax = plt.subplots(figsize=(10, 4.8), dpi=100)  # pyplot uses inches (WTF) and scales by a dpi. so figsize*dpi should be in pixels
-    x0=date2num(pd.to_datetime(inputData[TimeIndex].max())-datetime.timedelta(days=14))
-    x1=date2num(pd.to_datetime(inputData[TimeIndex].max()))
+
     if lines_or_markers=='markers':
         for var in timeseries_plots:
             ax.plot(inputData[TimeIndex], inputData[var], label=var,markersize=1,marker='.',linestyle = 'None')
     elif lines_or_markers=='lines':
         for var in timeseries_plots:
             ax.plot(inputData[TimeIndex], inputData[var], label=var,linestyle = 'solid')
-
-    ax.axvspan(x0,x1, alpha=0.5, color='red')
-    ax.set_xlabel('time')  # Add an x-label to the axes.
-    ax.set_ylabel(r'Microstrain ($\mu \epsilon$)')  # Add a y-label to the axes.
+    if ('addHighlight' in keyword_parameters and keyword_parameters['addHighlight'] != 'None'):
+            x0=date2num(pd.to_datetime(inputData[TimeIndex].max())-datetime.timedelta(days=keyword_parameters['addHighlight']))
+            x1=date2num(pd.to_datetime(inputData[TimeIndex].max()))
+            ax.axvspan(x0,x1, alpha=0.5, color='red')
+    if ('yAxisName' in keyword_parameters and keyword_parameters['yAxisName'] != 'None'):
+        ax.set_ylabel(keyword_parameters['yAxisName'])
+    else:
+        ax.set_ylabel('')
+    if ('xAxisName' in keyword_parameters and keyword_parameters['xAxisName'] != 'None'):
+        ax.set_xlabel(keyword_parameters['xAxisName'])
+    else:
+        ax.set_xlabel('')
     ax.set_title(title)  # Add a title to the axes.
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
     plt.grid(True)
     ax.autoscale(enable=True, axis='both', tight=True)
-    if ('axisLims' in keyword_parameters):
+    if ('axisLims' in keyword_parameters and keyword_parameters['axisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['axisLims'][0])
         x1=parser.parse(keyword_parameters['axisLims'][1])
         y0=keyword_parameters['axisLims'][2]
         y1=keyword_parameters['axisLims'][3]
         ax.set_xlim([x0,x1])
         ax.set_ylim([y0,y1])
-    if ('xAxisLims' in keyword_parameters):
+    if ('xAxisLims' in keyword_parameters and keyword_parameters['xAxisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['xAxisLims'][0])
         x1=parser.parse(keyword_parameters['xAxisLims'][1])
         ax.set_xlim([x0,x1])
-    if ('yAxisLims' in keyword_parameters):
+    if ('yAxisLims' in keyword_parameters and keyword_parameters['yAxisLims'] != 'None'):
         y0=keyword_parameters['yAxisLims'][0]
         y1=keyword_parameters['yAxisLims'][1]
         ax.set_ylim([y0,y1])
-    if (('axisLims','xAxisLims',) not in keyword_parameters):
-        ax.set_xlim([x0,x1])
-    if ('annotate' in keyword_parameters):
+    if ('annotate' in keyword_parameters and keyword_parameters['annotate'] != 'None'):
         annotation_text=keyword_parameters['annotate']
         annotate_x1=date2num(parser.parse(keyword_parameters['annotatePointXY'][0]))
         annotate_y1=keyword_parameters['annotatePointXY'][1]
@@ -53,9 +58,9 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_marks,t
                 horizontalalignment='right', verticalalignment='bottom')
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
-    if plot_or_save=='plot':
+    if keyword_parameters['plot_or_save']=='plot':
         plt.show()
-    elif plot_or_save=='save':
+    elif keyword_parameters['plot_or_save']=='save':
         plt.savefig(fname)
         plt.close()
 
