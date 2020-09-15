@@ -9,11 +9,11 @@ today = datetime.date.today()
 ###
 
 # global defns
-title = 'Captain Cook Bridge: Halving Joint 3 Monitoring Project'
+title = 'Captain Cook Bridge (Northbound): Halving Joint 3 Monitoring Project'
 #author = 'Report issued: '+f"{datetime.datetime.now():%d-%b-%Y}"
-author = 'Northbound'
+author = ''
 logo_path = 'assets/logo.png'
-output_name = 'test.pdf'
+output_name = str(f"{datetime.datetime.now():%Y_%m_%d}"+'.nb.draft.pdf')
 
 # file locations
 SS_filename = '../SampleData/TMR701_RV50_CCB_NB_SensorStats.dat'
@@ -69,6 +69,7 @@ keyword_parameters_ts1={'addHighlight':'None',
                      'annotate': 'None',
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'plot'
                     }
 #
@@ -92,6 +93,7 @@ keyword_parameters1={'yAxisLims':'None',
                      'annotate': 'None',
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                     }
 caption_Beards1=''
@@ -111,6 +113,7 @@ keyword_parameters2={'yAxisLims':'None',
                      'annotate': 'None',
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                     }
 caption_Beards2=''
@@ -145,6 +148,7 @@ keyword_parameters3={'yAxisLims':[5,30],
                      'annotate': ['sudden drop in ambient temperature'],
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                     }
 caption_Beards3=''
@@ -176,6 +180,7 @@ title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
 keyword_parameters4={'yAxisLims':[5,30],
                      'xAxisLims': 'None',
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                      }
 caption_Beards4=''
@@ -195,6 +200,7 @@ title_Beards5='Temperature - Concrete & Asphalt'
 yAx_Beards5='Temperature (C)'
 keyword_parameters5={'yAxisLims': [5,30],
                      'xAxisLims': 'None',
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                      }
 caption_Beards5=''
@@ -271,6 +277,7 @@ title_dispMMA1='Displacement (with offset of '+str(dispFactor1)+'mm )'
 yAx_dispMMA1='Displacement (mm)'
 keyword_parametersDisp1={'yAxisLims':'None',
                          'xAxisLims':'None',
+                         'xTickFormat':['%d-%m','weekly'],
                          'plot_or_save':'save'
                          }
 #
@@ -304,6 +311,7 @@ title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dis
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
 keyword_parametersDisp2={'yAxisLims':[-50,275],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                         'xTickFormat':['%d-%m','weekly'],
                          'plot_or_save':'save'
                          }
 #
@@ -337,6 +345,7 @@ title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dis
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
 keyword_parametersDisp3={'yAxisLims':[-50,400],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                         'xTickFormat':['%d-%m','weekly'],
                          'plot_or_save':'save'
                          }
 #############################################################
