@@ -59,31 +59,46 @@ section1_notes = 'This report present data gathered at the CCB northbound halvin
 
 #############################################################
 # 2. Time series plot - include field names for each plot
-NoTimeSeriesPlots = 2
+NoTimeSeriesPlots = 3
 timeseries_plot1 = ["A116_BattV_Avg","BattV_Avg"]
 keyword_parameters_ts1={'addHighlight':'None',
                      'yAxisName':'Voltage (V)',
-                     'xAxisName':'time',
+                     'xAxisName':'',
                      'yAxisLims':'None',
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': 'None',
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                     }
 caption_timeseries1=''
-timeseries_plot2 = ["PTemp_Avg","A116_PTemp_Avg"]
+timeseries_plot2 = ["A116_BattV_Avg","BattV_Avg"]
 keyword_parameters_ts2={'addHighlight':'None',
+                     'yAxisName':'Voltage (V)',
+                     'xAxisName':'',
+                     'yAxisLims':[12.2,13.2],
+                     'xAxisLims':['2020-9-3 21:00','2020-9-16 12:00'],
+                     'annotate': 'None',
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
+                     'plot_or_save':'save'
+                    }
+caption_timeseries2='Battery voltages (zoomed for the period 2020/9/3-2020/9/16)'
+timeseries_plot3 = ["PTemp_Avg","A116_PTemp_Avg"]
+keyword_parameters_ts3={'addHighlight':'None',
                      'yAxisName':'Panel temperature (C)',
-                     'xAxisName':'time',
+                     'xAxisName':'',
                      'yAxisLims':'None',
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': 'None',
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                     }
-caption_timeseries2=''
+caption_timeseries3=''
 #
 NoTimeSeriesWithBeards=0
 timeseries_plots_min1=[ 'L_NB_HJ3_B1(S15_KGA2)_Min',
