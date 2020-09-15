@@ -13,7 +13,7 @@ title = 'Captain Cook Bridge (Northbound): Halving Joint 3 Monitoring Project'
 #author = 'Report issued: '+f"{datetime.datetime.now():%d-%b-%Y}"
 author = 'Diagnostic report'
 logo_path = 'assets/logo.png'
-output_name = 'test.nb.diags.pdf'
+output_name = str(f"{datetime.datetime.now():%Y_%m_%d}"+'.nb.diagnostics.draft.pdf')
 
 # file locations
 SS_filename = '../SampleData/TMR701_RV50_CCB_NB_SensorStats.dat'

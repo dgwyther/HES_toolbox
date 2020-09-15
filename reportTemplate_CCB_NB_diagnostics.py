@@ -4,8 +4,8 @@
 
 pdf.print_sectionHeader(1, 'Summary information')
 pdf.print_text(section1_notes)
-DateStatsTable = pd.DataFrame( [['Start date:',df_SS["TIMESTAMP"].min().strftime("%d-%m-%y")],
-                                ['End date:',df_SS["TIMESTAMP"].max().strftime("%d-%m-%y")],
+DateStatsTable = pd.DataFrame( [['Start date:',df_SS["TIMESTAMP"].min().strftime("%Y-%m-%d")],
+                                ['End date:',df_SS["TIMESTAMP"].max().strftime("%Y-%m-%d")],
                                 ['duration (days):',round((df_SS["TIMESTAMP"].max()-df_SS["TIMESTAMP"].min()).total_seconds()/(60*60*24),1)]], columns=
                                 [' ',' '])
 pdf.generateTableGeneric(3,2,table_title1,DateStatsTable)
