@@ -13,7 +13,7 @@ title = 'Captain Cook Bridge: Halving Joint 3 Monitoring Project'
 #author = 'Report issued: '+f"{datetime.datetime.now():%d-%b-%Y}"
 author = 'Southbound'
 logo_path = 'assets/logo.png'
-output_name = 'test.sb.pdf'
+output_name = str(f"{datetime.datetime.now():%Y_%m_%d}"+'.sb.draft.pdf')
 
 # file locations
 SS_filename = '../SampleData/HE602_3680_RV50_CCB_SB_SensorStats.dat'
@@ -49,6 +49,13 @@ timeseries_plots_avg1=[ 'L_SB_HJ3_B1_Avg',
                         'L_SB_HJ3_B123_Avg']
 title_Beards1='Bearing Loads (Minimum, Average & Maximum)'
 yAx_Beards1='Bearing load (t)'
+keyword_parameters1={'yAxisLims':'None',
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None', #['sudden drop in ambient temperature'],
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'save'
+                    }
 caption_Beards1=''
 timeseries_plots_min2=[ 'DF_SB_HJ3_B1_Min',
                         'DF_SB_HJ3_B2_Min',
@@ -61,6 +68,13 @@ timeseries_plots_avg2=[ 'DF_SB_HJ3_B1_Avg',
                         'DF_SB_HJ3_B3_Avg']
 title_Beards2='Distribution factor (Minimum, Average & Maximum)'
 yAx_Beards2='Distribution factor'
+keyword_parameters2={'yAxisLims':'None',
+                     'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
+                     'annotate': 'None', #['sudden drop in ambient temperature'],
+                     'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'save'
+                    }
 caption_Beards2=''
 timeseries_plots_min3=['T_SB_HJ3_C2B_Min',
                        'T_SB_HJ3_S2B_Min',
@@ -88,11 +102,12 @@ timeseries_plots_avg3=['T_SB_HJ3_C2B_Avg',
                        'T_SB_HJ3_C1V_Avg']
 title_Beards3='Temperature (Vibrating Wire Sensor Group 1)'
 yAx_Beards3='Temperature (C)'
-keyword_parameters3={'yAxisLims':[0,26],
+keyword_parameters3={'yAxisLims':[0,30],
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': 'None', #['sudden drop in ambient temperature'],
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
-                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]}
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'save'
                     }
 caption_Beards3=''
 timeseries_plots_min4=['T_SB_HJ3_C2D_Min',
@@ -121,8 +136,9 @@ timeseries_plots_avg4=['T_SB_HJ3_C2D_Avg',
                        'T_SB_HJ3_C3V_Avg']
 title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
-keyword_parameters4={'yAxisLims':[0,26],
-                     'xAxisLims': 'None' #['2020-8-27 09:00','2020-8-27 12:30'],
+keyword_parameters4={'yAxisLims':[0,30],
+                     'xAxisLims': 'None',
+                     'plot_or_save':'save'
                      }
 caption_Beards4=''
 timeseries_plots_min5=[ 'T_SB_HJ3_Asphalt_Min',
@@ -143,7 +159,8 @@ keyword_parameters5={'yAxisLims':'None',
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': 'None', #['sudden drop in ambient temperature'],
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
-                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]}
+                     'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
+                     'plot_or_save':'save'
                     }
 caption_Beards5=''
 
