@@ -1,6 +1,8 @@
 from matplotlib.dates import date2num
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib.dates import DateFormatter
 import datetime
 import numpy as np
 from dateutil import parser
@@ -30,6 +32,14 @@ def generateTimeSeriesPlot(inputData,TimeIndex,timeseries_plots,lines_or_markers
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
     plt.grid(True)
     ax.autoscale(enable=True, axis='both', tight=True)
+    if ('xTickFormat' in keyword_parameters and keyword_parameters['xTickFormat'] != 'auto'):
+            date_form = DateFormatter(keyword_parameters['xTickFormat'][0]) # Define the date format
+            ax.xaxis.set_major_formatter(date_form)
+            if keyword_parameters['xTickFormat'][1]=='weekly':
+                ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+                ax.xaxis.set_minor_locator(mdates.DayLocator())
+            if keyword_parameters['xTickFormat'][1]=='daily':
+                ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
     if ('axisLims' in keyword_parameters and keyword_parameters['axisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['axisLims'][0])
         x1=parser.parse(keyword_parameters['axisLims'][1])
@@ -139,6 +149,14 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
     ax.set_ylabel(xAxisName)
     ax.set_ylabel(yAxisName)
     ax.legend(loc=(1.05, 0.5), edgecolor='None', markerscale=1.8)
+    if ('xTickFormat' in keyword_parameters and keyword_parameters['xTickFormat'] != 'auto'):
+            date_form = DateFormatter(keyword_parameters['xTickFormat'][0]) # Define the date format
+            ax.xaxis.set_major_formatter(date_form)
+            if keyword_parameters['xTickFormat'][1]=='weekly':
+                ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+                ax.xaxis.set_minor_locator(mdates.DayLocator())
+            if keyword_parameters['xTickFormat'][1]=='daily':
+                ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
     if ('axisLims' in keyword_parameters and keyword_parameters['axisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['axisLims'][0])
         x1=parser.parse(keyword_parameters['axisLims'][1])
@@ -358,6 +376,15 @@ def generateTimeSeriesDisplacedMinMaxAvg(inputData,TimeIndex,timeseries_plots_mi
     ax.set_xlabel(xAxisName)  # Add an x-label to the axes.
     ax.set_ylabel(yAxisName)  # Add a y-label to the axes.
     ax.set_title(title)  # Add a title to the axes.
+    if ('xTickFormat' in keyword_parameters and keyword_parameters['xTickFormat'] != 'auto'):
+            date_form = DateFormatter(keyword_parameters['xTickFormat'][0]) # Define the date format
+            ax.xaxis.set_major_formatter(date_form)
+            if keyword_parameters['xTickFormat'][1]=='weekly':
+                ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+                ax.xaxis.set_minor_locator(mdates.DayLocator())
+            if keyword_parameters['xTickFormat'][1]=='daily':
+                ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
+
     if ('axisLims' in keyword_parameters and keyword_parameters['axisLims'] != 'None'):
         x0=parser.parse(keyword_parameters['axisLims'][0])
         x1=parser.parse(keyword_parameters['axisLims'][1])
