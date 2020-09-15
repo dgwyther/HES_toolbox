@@ -212,91 +212,91 @@ yAx_disp3=r'Microstrain ($\mu \epsilon$)'
 
 #############################################################
 NoTimeSeriesDisplacedMinMaxAvg=3
-timeseries_plots_displaced_min1=[   'D_SB_HJ3_1HU_Min',
-                                    'D_SB_HJ3_1HL_Min',
-                                    'D_SB_HJ3_2HU_Min',
-                                    'D_SB_HJ3_2HL_Min',
-                                    'D_SB_HJ3_3HU_Min',
-                                    'D_SB_HJ3_3HL_Min']
-timeseries_plots_displaced_max1=[   'D_SB_HJ3_1HU_Max',
-                                    'D_SB_HJ3_1HL_Max',
-                                    'D_SB_HJ3_2HU_Max',
-                                    'D_SB_HJ3_2HL_Max',
-                                    'D_SB_HJ3_3HU_Max',
-                                    'D_SB_HJ3_3HL_Max']
-timeseries_plots_displaced_avg1=[   'D_SB_HJ3_1HU_Avg',
-                                    'D_SB_HJ3_1HL_Avg',
-                                    'D_SB_HJ3_2HU_Avg',
-                                    'D_SB_HJ3_2HL_Avg',
-                                    'D_SB_HJ3_3HU_Avg',
-                                    'D_SB_HJ3_3HL_Avg']
-dispFactorMMA1=25
+timeseries_plots_displaced_min1=[   'D_SB_HJ3_H1U_Min',
+                                    'D_SB_HJ3_H1L_Min',
+                                    'D_SB_HJ3_H2U_Min',
+                                    'D_SB_HJ3_H2L_Min',
+                                    'D_SB_HJ3_H3U_Min',
+                                    'D_SB_HJ3_H3L_Min']
+timeseries_plots_displaced_max1=[   'D_SB_HJ3_H1U_Max',
+                                    'D_SB_HJ3_H1L_Max',
+                                    'D_SB_HJ3_H2U_Max',
+                                    'D_SB_HJ3_H2L_Max',
+                                    'D_SB_HJ3_H3U_Max',
+                                    'D_SB_HJ3_H3L_Max']
+timeseries_plots_displaced_avg1=[   'D_SB_HJ3_H1U_Avg',
+                                    'D_SB_HJ3_H1L_Avg',
+                                    'D_SB_HJ3_H2U_Avg',
+                                    'D_SB_HJ3_H2L_Avg',
+                                    'D_SB_HJ3_H3U_Avg',
+                                    'D_SB_HJ3_H3L_Avg']
+dispFactorMMA1=.005
 dispRefMMA1='initial'
-title_dispMMA1='Displacement (with offset of '+str(dispFactor1)+'mm )'
+title_dispMMA1='Displacement (with offset of '+str(dispFactorMMA1)+'mm )'
 yAx_dispMMA1='Displacement (mm)'
 keyword_parametersDisp1={'yAxisLims':'None',
                          'xAxisLims':'None',
                          'plot_or_save':'save'
                          }
-timeseries_plots_displaced_min2=[   'S_SB_HJ3_C2B_Min',
-                                    'S_SB_HJ3_S2B_Min',
-                                    'S_SB_HJ3_S1H_Min',
-                                    'S_SB_HJ3_S1D_Min',
-                                    'S_SB_HJ3_S1V_Min',
-                                    'S_SB_HJ3_C1H_Min',
-                                    'S_SB_HJ3_C1D_Min',
-                                    'S_SB_HJ3_C1V_Min']
-timeseries_plots_displaced_max2=[   'S_SB_HJ3_C2B_Max',
-                                    'S_SB_HJ3_S2B_Max',
-                                    'S_SB_HJ3_S1H_Max',
-                                    'S_SB_HJ3_S1D_Max',
-                                    'S_SB_HJ3_S1V_Max',
-                                    'S_SB_HJ3_C1H_Max',
-                                    'S_SB_HJ3_C1D_Max',
-                                    'S_SB_HJ3_C1V_Max']
-timeseries_plots_displaced_avg2=[   'S_SB_HJ3_C2B_Avg',
-                                    'S_SB_HJ3_S2B_Avg',
-                                    'S_SB_HJ3_S1H_Avg',
-                                    'S_SB_HJ3_S1D_Avg',
-                                    'S_SB_HJ3_S1V_Avg',
-                                    'S_SB_HJ3_C1H_Avg',
-                                    'S_SB_HJ3_C1D_Avg',
-                                    'S_SB_HJ3_C1V_Avg']
+timeseries_plots_displaced_min2=[   'S_SB_HJ3_C2D_Min',
+                                    'S_SB_HJ3_S2D_Min',
+                                    'S_SB_HJ3_C3H_Min',
+                                    'S_SB_HJ3_C3D_Min',
+                                    'S_SB_HJ3_C3V_Min',
+                                    'S_SB_HJ3_S3H_Min',
+                                    'S_SB_HJ3_S3D_Min',
+                                    'S_SB_HJ3_S3V_Min']
+timeseries_plots_displaced_max2=[   'S_SB_HJ3_C2D_Max',
+                                    'S_SB_HJ3_S2D_Max',
+                                    'S_SB_HJ3_C3H_Max',
+                                    'S_SB_HJ3_C3D_Max',
+                                    'S_SB_HJ3_C3V_Max',
+                                    'S_SB_HJ3_S3H_Max',
+                                    'S_SB_HJ3_S3D_Max',
+                                    'S_SB_HJ3_S3V_Max']
+timeseries_plots_displaced_avg2=[   'S_SB_HJ3_C2D_Avg',
+                                    'S_SB_HJ3_S2D_Avg',
+                                    'S_SB_HJ3_C3H_Avg',
+                                    'S_SB_HJ3_C3D_Avg',
+                                    'S_SB_HJ3_C3V_Avg',
+                                    'S_SB_HJ3_S3H_Avg',
+                                    'S_SB_HJ3_S3D_Avg',
+                                    'S_SB_HJ3_S3V_Avg']
 dispFactorMMA2=25
 dispRefMMA2='initial'
-title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactor2)+'ue offset, temperature corrected)'
+title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactorMMA2)+'ue offset, temperature corrected)'
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
 keyword_parametersDisp2={'yAxisLims':[-50,275],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                          'plot_or_save':'save'
                          }
-timeseries_plots_displaced_min3=[   'S_SB_HJ3_C2D_Min',
-                                    'S_SB_HJ3_S2D_Min',
-                                    'S_SB_HJ3_S3H_Min',
-                                    'S_SB_HJ3_S3D_Min',
-                                    'S_SB_HJ3_S3V_Min',
-                                    'S_SB_HJ3_C3H_Min',
-                                    'S_SB_HJ3_C3D_Min',
-                                    'S_SB_HJ3_C3V_Min']
-timeseries_plots_displaced_max3=[   'S_SB_HJ3_C2D_Max',
-                                    'S_SB_HJ3_S2D_Max',
-                                    'S_SB_HJ3_S3H_Max',
-                                    'S_SB_HJ3_S3D_Max',
-                                    'S_SB_HJ3_S3V_Max',
-                                    'S_SB_HJ3_C3H_Max',
-                                    'S_SB_HJ3_C3D_Max',
-                                    'S_SB_HJ3_C3V_Max']
-timeseries_plots_displaced_avg3=[   'S_SB_HJ3_C2D_Avg',
-                                    'S_SB_HJ3_S2D_Avg',
-                                    'S_SB_HJ3_S3H_Avg',
-                                    'S_SB_HJ3_S3D_Avg',
-                                    'S_SB_HJ3_S3V_Avg',
-                                    'S_SB_HJ3_C3H_Avg',
-                                    'S_SB_HJ3_C3D_Avg',
-                                    'S_SB_HJ3_C3V_Avg']
+timeseries_plots_displaced_min3=[   'S_SB_HJ3_C1H_Min',
+                                    'S_SB_HJ3_C1D_Min',
+                                    'S_SB_HJ3_C1V_Min',
+                                    'S_SB_HJ3_C2B_Min',
+                                    'S_SB_HJ3_S2B_Min',
+                                    'S_SB_HJ3_S1H_Min',
+                                    'S_SB_HJ3_S1D_Min',
+                                    'S_SB_HJ3_S1V_Min']
+timeseries_plots_displaced_max3=[   'S_SB_HJ3_C1H_Max',
+                                    'S_SB_HJ3_C1D_Max',
+                                    'S_SB_HJ3_C1V_Max',
+                                    'S_SB_HJ3_C2B_Max',
+                                    'S_SB_HJ3_S2B_Max',
+                                    'S_SB_HJ3_S1H_Max',
+                                    'S_SB_HJ3_S1D_Max',
+                                    'S_SB_HJ3_S1V_Max']
+timeseries_plots_displaced_avg3=[   'S_SB_HJ3_C1H_Avg',
+                                    'S_SB_HJ3_C1D_Avg',
+                                    'S_SB_HJ3_C1V_Avg',
+                                    'S_SB_HJ3_C2B_Avg',
+                                    'S_SB_HJ3_S2B_Avg',
+                                    'S_SB_HJ3_S1H_Avg',
+                                    'S_SB_HJ3_S1D_Avg',
+                                    'S_SB_HJ3_S1V_Avg']
 dispFactorMMA3=25
 dispRefMMA3='initial'
-title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactor3)+'ue offset, temperature corrected)'
+title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactorMMA3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
 keyword_parametersDisp3={'yAxisLims':[-50,220],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
