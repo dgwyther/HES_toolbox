@@ -16,14 +16,14 @@ logo_path = 'assets/logo.png'
 output_name = str(f"{datetime.datetime.now():%Y_%m_%d}"+'.nb.draft.pdf')
 
 # file locations
-SS_filename = '../SampleData/TMR701_RV50_CCB_NB_SensorStats.dat'
+SS_filename = '../SampleData/HE604_RV50_CCB_NB_SensorStats.dat'
 
 ## Alias table definition
 # Either select 'none': no aliasing
 # or 'csv': to load from a path given in aliasTablePath
 # or 'dict': to load from a dictionary entered below.
 loadAlias='csv'
-aliasTablePath='../SampleData/TMR701_RV50_CCB_NB_aliasTable.csv'
+aliasTablePath='../SampleData/HE604_RV50_CCB_NB_aliasTable.csv'
 # loadAlias='dict'
 # aliasTable_SRES = {
     # "TIMESTAMP":"TIMESTAMP",

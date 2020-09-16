@@ -9,5 +9,4 @@ def loadData(filename,timeIndex):
     df_out = pd.read_csv(filename,header=1, skiprows=[2,3], na_values='NAN')
     df_out=df_out.astype({'TIMESTAMP': 'datetime64'})
     colNames_out = list(df_out.columns)
-    print(df_out)
     return df_out, colNames_out
