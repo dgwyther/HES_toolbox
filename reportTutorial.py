@@ -1,10 +1,7 @@
-import time # this module allows interaction with the current
-import pandas as pd
-import plotly.graph_objects as go
-import plotly
-import datetime
-import numpy as np
-from fpdf import FPDF
+import pandas as pd # import pandas for all the data handling
+import datetime # import system module datetime to do all the loading and conversion of dates
+import numpy as np # import numpy to do all the real maths.
+from fpdf import FPDF #import fpdf to compile the pdf document.
 
 # load some of our own local functions - in this tutorial it is just the 3 types of plots.
 from functions.fun_generateTimeSeriesPlots import generateTimeSeriesPlot
