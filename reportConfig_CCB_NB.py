@@ -198,7 +198,7 @@ timeseries_plots_avg5=['T_NB_HJ3_Asphalt_Avg',
                         'T_NB_HJ3_ToBS_Avg',]
 title_Beards5='Temperature - Concrete & Asphalt'
 yAx_Beards5='Temperature (C)'
-keyword_parameters5={'yAxisLims': [5,30],
+keyword_parameters5={'yAxisLims': [12.5,35],
                      'xAxisLims': 'None',
                      'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
@@ -273,7 +273,7 @@ timeseries_plots_displaced_avg1=[   'D_NB_HJ3_1HU_Avg',
                                     'D_NB_HJ3_3HL_Avg']
 dispFactorMMA1=25
 dispRefMMA1='initial'
-title_dispMMA1='Displacement (with offset of '+str(dispFactor1)+'mm )'
+title_dispMMA1='Displacement (with offset of '+str(dispFactorMMA1)+'mm )'
 yAx_dispMMA1='Displacement (mm)'
 keyword_parametersDisp1={'yAxisLims':'None',
                          'xAxisLims':'None',
@@ -307,7 +307,7 @@ timeseries_plots_displaced_avg2=[   'S_NB_HJ3_C2B_Avg',
                                     'S_NB_HJ3_C1V_Avg']
 dispFactorMMA2=25
 dispRefMMA2='initial'
-title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactor2)+'ue offset, temperature corrected)'
+title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactorMMA2)+'ue offset, temperature corrected)'
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
 keyword_parametersDisp2={'yAxisLims':[-50,275],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
@@ -341,7 +341,7 @@ timeseries_plots_displaced_avg3=[   'S_NB_HJ3_C2D_Avg',
                                     'S_NB_HJ3_C3V_Avg']
 dispFactorMMA3=25
 dispRefMMA3='initial'
-title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactor3)+'ue offset, temperature corrected)'
+title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactorMMA3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
 keyword_parametersDisp3={'yAxisLims':[-50,400],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']

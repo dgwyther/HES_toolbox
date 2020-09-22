@@ -1,4 +1,5 @@
 import datetime
+from matplotlib.dates import date2num
 today = datetime.date.today()
 ### Template file
 # This file provides the template for outputting a report with reportDriver.py
@@ -74,18 +75,20 @@ keyword_parameters_ts1={'addHighlight':'None',
                     }
 caption_timeseries1=''
 timeseries_plot2 = ["A116_BattV_Avg","BattV_Avg"]
+x_now=str(today)
+x_2wks=str(today-datetime.timedelta(days=14))
 keyword_parameters_ts2={'addHighlight':'None',
                      'yAxisName':'Voltage (V)',
                      'xAxisName':'',
                      'yAxisLims':[12.2,13.2],
-                     'xAxisLims':['2020-9-3 21:00','2020-9-16 12:00'],
+                     'xAxisLims':[x_2wks, x_now],
                      'annotate': 'None',
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
                      'annotateTextXY': {'time':['26-07-2020 15:40'],'height':[10]},
                      'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
                     }
-caption_timeseries2='Battery voltages (zoomed for the period 2020/9/3-2020/9/16)'
+caption_timeseries2='Battery voltages (zoomed for the period '+x_2wks+' - '+x_now+')'
 timeseries_plot3 = ["PTemp_Avg","A116_PTemp_Avg"]
 keyword_parameters_ts3={'addHighlight':'None',
                      'yAxisName':'Panel temperature (C)',
