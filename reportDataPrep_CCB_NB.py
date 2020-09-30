@@ -302,3 +302,14 @@ variablesToRealign=['S_NB_HJ3_C3H_Avg','S_NB_HJ3_C3H_Min','S_NB_HJ3_C3H_Max',]
 shiftTimes=['2020-AUG-25 15:20','2020-AUG-25 15:20','2020-AUG-25 15:20']
 shiftValues=[167,167,167]
 joinOffsetData(df_SS,"TIMESTAMP",variablesToRealign,shiftTimes,shiftValues)
+
+## REMOVING ANY POLYNOMIAL DRIFTS
+# remove the drift in Load B1
+from functions.fun_removePolyFit import removePolyFit
+keyword_parameters={'plot':'no',
+                	'includeMinMax':'yes'}
+df_SS = removePolyFit(df_SS, "TIMESTAMP", "L_NB_HJ3_B1(S15_KGA2)_Avg", "L_NB_HJ3_B1(S15_KGA2)_Avg", **keyword_parameters)
+df_SS = removePolyFit(df_SS, "TIMESTAMP", "L_NB_HJ3_B123_Avg", "L_NB_HJ3_B123_Avg", **keyword_parameters)
+df_SS = removePolyFit(df_SS, "TIMESTAMP", "DF_NB_HJ3_B1(S15_KGA2)_Avg", "DF_NB_HJ3_B1(S15_KGA2)_Avg", **keyword_parameters)
+df_SS = removePolyFit(df_SS, "TIMESTAMP", "DF_NB_HJ3_B2(S14_KGE1)_Avg", "DF_NB_HJ3_B2(S14_KGE1)_Avg", **keyword_parameters)
+df_SS = removePolyFit(df_SS, "TIMESTAMP", "DF_NB_HJ3_B3(S13_KGA1)_Avg", "DF_NB_HJ3_B3(S13_KGA1)_Avg", **keyword_parameters)

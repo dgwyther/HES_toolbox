@@ -266,7 +266,7 @@ dispFactorMMA2=25
 dispRefMMA2='initial'
 title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactorMMA2)+'ue offset, temperature corrected)'
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
-keyword_parametersDisp2={'yAxisLims':[-50,275],
+keyword_parametersDisp2={'yAxisLims':[-50,300],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                          'plot_or_save':'save'
                          }
@@ -298,7 +298,7 @@ dispFactorMMA3=25
 dispRefMMA3='initial'
 title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactorMMA3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
-keyword_parametersDisp3={'yAxisLims':[-50,220],
+keyword_parametersDisp3={'yAxisLims':[-50,250],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                          'plot_or_save':'save'
                          }
