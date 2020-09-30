@@ -10,3 +10,4 @@ def joinOffsetData(inputData,TimeIndex,Variable,shiftTime,shiftValue):
     print(Variable)
     print('by the following amounts: ')
     print(shiftValue)
+    print('')

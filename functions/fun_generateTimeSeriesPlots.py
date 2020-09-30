@@ -172,7 +172,6 @@ def generateTimeSeriesMinMaxAvg(inputData,TimeIndex,timeseries_plots_min, timese
         y0=keyword_parameters['yAxisLims'][0]
         y1=keyword_parameters['yAxisLims'][1]
         ax.set_ylim([y0,y1])
-    print(keyword_parameters)
     if (keyword_parameters['yAxisLims'] == 'None'):
         ax.set_ylim(bottom=0)
     if ('annotate' in keyword_parameters and keyword_parameters['annotate'] != 'None'):
