@@ -1,14 +1,26 @@
-# HES_toolbox
+# HES Toolbox
 This repository contains assorted tools for HES work.
+
+## Contents
+- [Install](#install)
+- [Toolbox structure](#toolbox-structure)
+- [Use case: Generating a report with FPDF](#report-generation)
+  - [Data preparation](#report-data-prep)
+  - [User config](#report-config)
+  - [Template](#report-template)
+  - [Report Driver](#report-driver)
+- [Use case: Generating a report for a new site](#new-report-generation)
+- [Use case: Generating a report with Dash](#dash-report)
 
 ## Requirements
 Written and tested with `python3`. Dash works with `python2.7`. Requirements given in `requirements.txt`.
 
 ## Install
 0. Suggest using an anaconda environment.
-1. `git clone` to local environment
-2. Install requirements with `$ pip install -r requirements.txt`
-3. Voila!
+1. Activate the python 3.7 environment and change the desired directory
+1. `git clone git@github.com:dgwyther/HES_toolbox.git` will clone this package to the current directory within a new folder called `HES_toolbox`. Alternatively, if you wish to control the folder name it is cloned into: `git clone git@github.com:dgwyther/HES_toolbox.git HES_toolbox_CCB_reports` will clone into `HES_toolbox_CCB_reports`.
+2. Install requirements with `$ pip install -r requirements.txt`. Or, run the toolbox (with `python3 reportDriver_*.py`) and install the packages asked for in the error code.
+3. To create a report, call python on the driver scripts like: `python3 reportDriver_*.py`.
 
 ## Toolbox structure
 Comments below show the purpose of each folder or file:
@@ -18,6 +30,9 @@ HES_toolbox/
 │   ├── header.css
 │   ├── logo.png
 │   └── print_setup.css
+├── development           # files currently not being used or in dev.
+│   ├── reportSimpleDASH.py					# Script to generate report with plotly-dash
+│   └── reportSimplePDF.py					# Script to generate reports with fpdf
 ├── functions						# stand-alone functions called by other functions
 │   ├── ClassPDF.py						# class file for reporting with FPDF
 │   ├── fun_applyAliasTable.py
@@ -28,23 +43,30 @@ HES_toolbox/
 │   ├── fun_generateXYPlot.py
 │   ├── fun_loadData.py
 │   ├── fun_removeDates.py
-│   └── __init__.py
+│   └── __init__.py   
 ├── README.md							# Readme file
-├── reportDriver.py						# Driver script for generating reports with fpdf
-├── reportSimpleDASH.py					# Script to generate report with plotly-dash
-├── reportSimplePDF.py					# Script to generate reports with fpdf
-├── reportTemplate.py					# user template file called by `reportDriver.py`
+├── reportDriver_*.py						# Driver script for generating reports with fpdf
+├── reportDataPrep_*.py					# data cleaning & prep that is called by `reportDriver_*.py`
+├── reportConfig_*.py					# plot config called by `reportDriver_*.py`
+├── reportTemplate_*.py					# report template file called by `reportDriver_*.py`
 └── requirements.txt					# package requirements
 ```
 
-## Main files
-- `reportSimpleDASH.py`: Run this file with `python3 reportSimpleDASH.py` to produce a simple dashboard report. View in browser at `http://127.0.0.1:8050`. It can be printed to PDF using the browser Print option.
-- `reportSimplePDF.py`: compile a pdf directly with `python3 reportSimplePDF.py`. To change compilation options (including which layout, variables to include in plots, which plots to include, title, author, captions, etc), edit the file `reportSimplePDF.py`.
-- `reportDriver.py`: compile a pdf with the same FPDF package as `reportSimplePDF.py`. With `reportDriver.py` all user input is split into a separate template file (e.g. `reportTemplate.py`) which is loaded by the `reportDriver.py` to compile the PDF. Run with `python3 reportDriver.py`.
+## Report Generation
+The process for generating a report is outlined below. Also, in the next subsections, each constituent file is detailed.
+1. Prepare the input data through removal of erroneous data, adding of NaN's to any data gaps, etc using the file `reportDataPrep_*.py`.
 
-### reportSimplePDF.py
-To configure, set the following options in `reportSimplePDF.py`, which is split up into Configuration, Analysis and Compilation sections:
-#### Configuration options
+2. Set the user configuration options, such as the title, date, data path and plotting choices in `reportConfig_*.py`.
+
+3. Set the layout for the report in `reportTemplate_*.py`. For example, add new sections, plots, captions.
+
+4. Run `python3 reportDriver._*py`to load the project data, user definitions and compile the output PDF.
+
+#### Report Data prep
+
+#### Report Config
+This file is used to set the logo, metadata and output options, as well the all important plotting options.
+
 Logo, metadata and output options:
 ```
 title = 'Example title that is about the same length '
@@ -53,7 +75,7 @@ logo_path = 'assets/logo.png'
 output_name = 'test.pdf'
 ```
 
-Data settings including input filenames and column names which are used to `loadData`:
+This file also sets the data path and the aliasing options. Data settings including input filenames and column names are used to `loadData`:
 ```
 SRES_filename = 'Data/SensorRelEventStats.dat'
 colNamesSRES = ["col1","col2","col3","etc"]
@@ -69,15 +91,18 @@ aliasTable = {
   "TIMESTAMP":"TIMESTAMP"}
 ```
 Note that I've kept `TIMESTAMP` as `TIMESTAMP`, and order should not matter.
-#### Analysis options
-- set options for the summary table
-- set options for any time series plots
-- set options for any X-Y plots
-- set options for any inverse normal plots
-- set options for a largest event table.
 
-#### Compilation options
-Here, you can add or remove plots, tables, text, caption to suit. For example, a simple report would be:
+Then, choices for plotting are set, such as:
+- options for the summary table
+- options for any time series plots (with and without beards)
+- options for any X-Y plots
+- options for any displaced plots
+- options for any inverse normal plots
+- options for a largest event table.
+
+#### Report Template
+
+This file sets the layout for the final report. A simple layout would look like this:
 ```
 pdf = ClassPDF(logo_path=logo_path,title=title,author=author)
 pdf.print_sectionHeader(1, 'The only section')
@@ -86,28 +111,30 @@ pdf.print_timeSeriesPlot('test_fig1.png',190,'A caption')
 pdf.print_text('some more notes')
 pdf.output(output_name, 'F')
 ```
-A more complex template is provided in the default `reportSimplePDF.py`, which includes a table of summary statistics followed by some general notes; 2 plots of timeseries data; 2 plots of X-Y data; 1 inverse normal plot; and, a largest event table followed by some notes. Each section is separated by a section title and a page break.
 
-### reportDriver.py
-This is an alternative method for compiling a PDF using the FPDF library, similar to using `reportSimplePDF.py`. However, this method separates out the driver (that compiles the PDF) from the template file (which contains all user input and definitions).
+#### Report Driver
 
-#### 1. Set the user config file:
-See for example `reportConfig_CCB_NB.py`. 
+The driver file is the driver for the report generation process. It first loads (i.e. it runs) the config file. It then loads the data, applies the aliases and applies the data prep file. It then generates the figures, which are defined as on/off in the config file. Lastly, it creates the PDF class object and loads the template file, before making the actual output PDF.
 
-1. First set the global definitions (e.g. title, author, output_name); the file locations and the names of the columns in the `.dat` file; and, what to alias those names as.
-2. Summary table: Set the title, column names, fields and names to show in the table. Optionally, include some notes about this table.
-3. Time series plots: Set how many plots you want, then include a definition `timeseries_plotX = ["first_variable","etc"]` where `X` is increments for each plot.
-4. XP plots. Same as for Timeseries plots.
-5. Inverse Normal plots. Same as for Timeseries plots. In addition, set the bin increments and fitting limits.
-6. Largest events table: Set the title, column titles and fields.
+The only editable section of the driver file is below the loading of functions/modules, where 3 lines define the config, template and data prep files:
 
-#### 2. Set the user template file
-See for example `reportTemplate_CCB_NB.py`. 
+```
+# DEFINE TEMPLATE AND CONFIG FILE:
+configFile = 'reportConfig_CCB_NB.py'
+templateFile = 'reportTemplate_CCB_NB.py'
+dataPrepFile = 'reportDataPrep_CCB_NB.py'
+```
 
-1. Set the template for the report. For example, add new sections with section headers, plots for each section
+## New Report Generation
+If you require a new report, there is a standard process for creating the new report. The process will depend on whether the report is for a completely new site, or if it is a new type of report for an existing site (e.g. diagnostic report, troubleshooting report, internal report, TMR report, etc).
 
-#### 2. Run `reportDriver.py`
-Now run `python3 reportDriver.py` to load the user definitions and compile the output PDF.
+- If the new report is for a new sensor site, then all files will need to be copy and modified for this new site. The new config file should contain the prescription for which plots you require. The new template file should outline the order and captions of the new report. If you don't require a different report outline, then there could be a generic template that is used for different reports (e.g. the diagnostics template for CCB_NB and CCB_SB is virtually identical). Lastly, a data prep file will need to be written for each site. As time progresses, you may find you need to edit the data prep file occasionally to deal with data errors and outages. Lastly, the driver file will need to be edited (at the top) to specify the config, template and data prep files.
+- If the new report is a different report for an existing site, then the existing reportDataPrep_*.py file can be used. For example, a diagnostics report for an existing site would use the existing data prep file for that site. Likewise, if a report needs to be produced for a different end-user (e.g. internal reporting vs. for the instrument manufacturer), then the same data prep file would be used. In both of these cases, a new/modified template file and config file would be needed. As the driver calls the config, template and data prep files, the driver file would need to be modified to point to the new files.
+
+## Dash Report
+- `reportSimpleDASH.py`: Run this file with `python3 reportSimpleDASH.py` to produce a simple dashboard report. View in browser at `http://127.0.0.1:8050`. It can be printed to PDF using the browser Print option.
+
+
 
 
 ### Credits:
