@@ -269,7 +269,64 @@ trimVariable=['L_NB_HJ3_B1(S15_KGA2)_Min','L_NB_HJ3_B1(S15_KGA2)_Max','L_NB_HJ3_
 trimStart=  ['2020-SEP-18 14:40']
 trimEnd=    ['2020-SEP-18 16:25']
 df_SS = removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
-
+# remove data in bearing loads, d-factors and displacements due to blip in data on 9-october.
+trimVariable=['L_NB_HJ3_B1(S15_KGA2)_Min','L_NB_HJ3_B1(S15_KGA2)_Max','L_NB_HJ3_B1(S15_KGA2)_Avg',
+              'L_NB_HJ3_B2(S14_KGE1)_Min','L_NB_HJ3_B2(S14_KGE1)_Max','L_NB_HJ3_B2(S14_KGE1)_Avg',
+              'L_NB_HJ3_B3(S13_KGA1)_Min','L_NB_HJ3_B3(S13_KGA1)_Max','L_NB_HJ3_B3(S13_KGA1)_Avg',
+              'L_NB_HJ3_B123_Min','L_NB_HJ3_B123_Max','L_NB_HJ3_B123_Avg',
+              'DF_NB_HJ3_B1(S15_KGA2)_Min','DF_NB_HJ3_B1(S15_KGA2)_Max','DF_NB_HJ3_B1(S15_KGA2)_Avg',
+              'DF_NB_HJ3_B2(S14_KGE1)_Min','DF_NB_HJ3_B2(S14_KGE1)_Max','DF_NB_HJ3_B2(S14_KGE1)_Avg',
+              'DF_NB_HJ3_B3(S13_KGA1)_Min','DF_NB_HJ3_B3(S13_KGA1)_Max','DF_NB_HJ3_B3(S13_KGA1)_Avg',
+              'D_NB_HJ3_1HU_Min','D_NB_HJ3_1HL_Min','D_NB_HJ3_2HU_Min','D_NB_HJ3_1HU_Max',
+              'D_NB_HJ3_2HL_Min','D_NB_HJ3_3HU_Min','D_NB_HJ3_3HL_Min','D_NB_HJ3_2HL_Max',
+              'D_NB_HJ3_3HU_Max','D_NB_HJ3_3HL_Max','D_NB_HJ3_2HL_Avg','D_NB_HJ3_3HU_Avg',
+              'D_NB_HJ3_3HL_Avg','D_NB_HJ3_1HL_Max', 'D_NB_HJ3_2HU_Max','D_NB_HJ3_1HU_Avg',
+              'D_NB_HJ3_1HL_Avg','D_NB_HJ3_2HU_Avg']
+trimStart=  ['2020-OCT-09 13:15']
+trimEnd=    ['2020-OCT-09 14:50']
+df_SS = removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+# remove data in displacements of 1HU due to blip in data on 11-october.
+trimVariable=['D_NB_HJ3_1HU_Min','D_NB_HJ3_1HU_Max','D_NB_HJ3_1HU_Avg']
+trimStart=  ['2020-OCT-11 21:15']
+trimEnd=    ['2020-OCT-11 23:30']
+df_SS = removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+# remove data in load due to blips october-november.
+trimVariable=['L_NB_HJ3_B1(S15_KGA2)_Min','L_NB_HJ3_B1(S15_KGA2)_Max','L_NB_HJ3_B1(S15_KGA2)_Avg',
+              'L_NB_HJ3_B2(S14_KGE1)_Min','L_NB_HJ3_B2(S14_KGE1)_Max','L_NB_HJ3_B2(S14_KGE1)_Avg',
+              'L_NB_HJ3_B3(S13_KGA1)_Min','L_NB_HJ3_B3(S13_KGA1)_Max','L_NB_HJ3_B3(S13_KGA1)_Avg',
+              'L_NB_HJ3_B123_Min','L_NB_HJ3_B123_Max','L_NB_HJ3_B123_Avg',
+              'DF_NB_HJ3_B1(S15_KGA2)_Min','DF_NB_HJ3_B1(S15_KGA2)_Max','DF_NB_HJ3_B1(S15_KGA2)_Avg',
+              'DF_NB_HJ3_B2(S14_KGE1)_Min','DF_NB_HJ3_B2(S14_KGE1)_Max','DF_NB_HJ3_B2(S14_KGE1)_Avg',
+              'DF_NB_HJ3_B3(S13_KGA1)_Min','DF_NB_HJ3_B3(S13_KGA1)_Max','DF_NB_HJ3_B3(S13_KGA1)_Avg',
+              'D_NB_HJ3_1HU_Min','D_NB_HJ3_1HL_Min','D_NB_HJ3_2HU_Min','D_NB_HJ3_1HU_Max',
+              'D_NB_HJ3_2HL_Min','D_NB_HJ3_3HU_Min','D_NB_HJ3_3HL_Min','D_NB_HJ3_2HL_Max',
+              'D_NB_HJ3_3HU_Max','D_NB_HJ3_3HL_Max','D_NB_HJ3_2HL_Avg','D_NB_HJ3_3HU_Avg',
+              'D_NB_HJ3_3HL_Avg','D_NB_HJ3_1HL_Max', 'D_NB_HJ3_2HU_Max','D_NB_HJ3_1HU_Avg',
+              'D_NB_HJ3_1HL_Avg','D_NB_HJ3_2HU_Avg']
+trimStart=  ['2020-OCT-26 16:55',
+             '2020-OCT-27 07:50',
+             '2020-OCT-27 08:30',
+             '2020-OCT-29 12:40',
+             '2020-OCT-29 15:00',
+             '2020-NOV-12 12:50',
+             '2020-NOV-17 10:10',
+             '2020-NOV-17 23:40']
+trimEnd=    ['2020-OCT-26 18:25',
+             '2020-OCT-27 08:00',
+             '2020-OCT-27 08:40',
+             '2020-OCT-29 12:50',
+             '2020-OCT-29 15:10',
+             '2020-NOV-12 13:20',
+             '2020-NOV-17 11:40',
+             '2020-NOV-18 01:50']
+df_SS = removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
+# remove data in displacements of 1HU due to blip in data in late october.
+trimVariable=['D_NB_HJ3_1HU_Min','D_NB_HJ3_1HU_Max','D_NB_HJ3_1HU_Avg']
+trimStart=  ['2020-OCT-27 08:05',
+             '2020-OCT-29 12:55']
+trimEnd=    ['2020-OCT-27 08:25',
+             '2020-OCT-29 14:55']
+df_SS = removeVariableBetweenDates(df_SS,"TIMESTAMP",trimVariable,trimStart,trimEnd)
 
 ## RE-ALIGNING DATA
 # Re-align/join any datasets which have had shifts mid-data

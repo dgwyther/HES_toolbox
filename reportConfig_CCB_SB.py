@@ -136,7 +136,7 @@ timeseries_plots_avg4=['T_SB_HJ3_C2D_Avg',
                        'T_SB_HJ3_C3V_Avg']
 title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
-keyword_parameters4={'yAxisLims':[0,30],
+keyword_parameters4={'yAxisLims':[0,35],
                      'xAxisLims': 'None',
                      'plot_or_save':'save'
                      }
@@ -155,7 +155,7 @@ timeseries_plots_avg5=[ 'T_SB_HJ3_Asphalt_Avg',
                         'T_SB_HJ3_ToBS_Avg',]
 title_Beards5='Temperature - Concrete & Asphalt'
 yAx_Beards5='Temperature (C)'
-keyword_parameters5={'yAxisLims':'None',
+keyword_parameters5={'yAxisLims':[0,40],
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': 'None', #['sudden drop in ambient temperature'],
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
@@ -266,7 +266,7 @@ dispFactorMMA2=25
 dispRefMMA2='initial'
 title_dispMMA2='Strain (Vibrating Wire Sensor Group 1 - Min, Avg, Max, '+str(dispFactorMMA2)+'ue offset, temperature corrected)'
 yAx_dispMMA2=r'Microstrain ($\mu \epsilon$)'
-keyword_parametersDisp2={'yAxisLims':[-50,300],
+keyword_parametersDisp2={'yAxisLims':[-50,450],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                          'plot_or_save':'save'
                          }
@@ -298,7 +298,7 @@ dispFactorMMA3=25
 dispRefMMA3='initial'
 title_dispMMA3='Strain (Vibrating Wire Sensor Group 2 - Min, Avg, Max, '+str(dispFactorMMA3)+'ue offset, temperature corrected)'
 yAx_dispMMA3=r'Microstrain ($\mu \epsilon$)'
-keyword_parametersDisp3={'yAxisLims':[-50,250],
+keyword_parametersDisp3={'yAxisLims':[-100,400],
                          'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                          'plot_or_save':'save'
                          }

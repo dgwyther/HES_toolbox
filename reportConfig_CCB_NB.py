@@ -143,7 +143,7 @@ timeseries_plots_avg3=['T_NB_HJ3_C2B_Avg',
                        'T_NB_HJ3_C1V_Avg']
 title_Beards3='Temperature (Vibrating Wire Sensor Group 1)'
 yAx_Beards3='Temperature (C)'
-keyword_parameters3={'yAxisLims':[5,30],
+keyword_parameters3={'yAxisLims':[5,35],
                      'xAxisLims':'None', #['2020-8-27 09:00','2020-8-27 12:30']
                      'annotate': ['sudden drop in ambient temperature'],
                      'annotatePointXY': {'time':['26-07-2020 15:40'],'height':[15]},
@@ -178,7 +178,7 @@ timeseries_plots_avg4=['T_NB_HJ3_C2D_Avg',
                        'T_NB_HJ3_C3V_Avg']
 title_Beards4='Temperatures (Vibrating Wire Sensor Group 2)'
 yAx_Beards4='Temperature (C)'
-keyword_parameters4={'yAxisLims':[5,30],
+keyword_parameters4={'yAxisLims':[5,40],
                      'xAxisLims': 'None',
                      'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
@@ -198,7 +198,7 @@ timeseries_plots_avg5=['T_NB_HJ3_Asphalt_Avg',
                         'T_NB_HJ3_ToBS_Avg',]
 title_Beards5='Temperature - Concrete & Asphalt'
 yAx_Beards5='Temperature (C)'
-keyword_parameters5={'yAxisLims': [12.5,35],
+keyword_parameters5={'yAxisLims': [12.5,40],
                      'xAxisLims': 'None',
                      'xTickFormat':['%d-%m','weekly'],
                      'plot_or_save':'save'
