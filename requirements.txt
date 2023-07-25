@@ -55,7 +55,7 @@ MarkupSafe==1.1.0
 matplotlib==3.2.1
 monotonic==1.5
 netifaces==0.10.4
-numpy==1.18.4
+numpy==1.22.0
 oauthlib==3.1.0
 olefile==0.46
 pandas==1.0.3
