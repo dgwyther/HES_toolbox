@@ -94,7 +94,7 @@ simplejson==3.16.0
 six==1.14.0
 systemd-python==234
 testresources==2.0.1
-tornado==6.3.2
+tornado==6.3.3
 traitlets==4.3.3
 ua-parser==0.10.0
 ubuntu-advantage-tools==20.3
