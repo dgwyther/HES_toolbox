@@ -1,5 +1,6 @@
 # HES Toolbox
 This repository contains assorted tools for HES work.
+D.Gwyther 2019-2020
 
 ## Contents
 - [Install](#install)
